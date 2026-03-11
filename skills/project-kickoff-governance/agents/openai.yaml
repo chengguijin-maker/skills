@@ -1,4 +1,4 @@
 interface:
   display_name: "项目启动治理"
-  short_description: "新项目接手时统一完成仓库盘点、分支治理、快测和文档校准"
-  default_prompt: "使用 $project-kickoff-governance 为这个仓库完成启动治理：盘点约束、建立 git/worktree、设计分支与快测策略。"
+  short_description: "新项目接手时统一完成仓库盘点、分支治理、指定路径 worktree 和快测校准"
+  default_prompt: "使用 $project-kickoff-governance 为这个仓库完成启动治理：盘点约束、默认在 ~/.psm/worktrees 下建立 git/worktree、设计分支与快测策略。"

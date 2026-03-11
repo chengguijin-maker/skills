@@ -4,6 +4,8 @@
 
 - 检查是否已是 git 仓库：`git rev-parse --is-inside-work-tree`
 - 检查当前分支与 worktree：`git branch --show-current`、`git worktree list`
+- 确认用户是否指定了 `worktree` 根目录；若无额外说明，默认使用 `~/.psm/worktrees`
+- 若 `~/.psm/worktrees` 不存在，先执行 `mkdir -p ~/.psm/worktrees`
 - 扫描约束与设计资料：`AGENTS.md`、`.kiro/`、`docs/`、`README*`
 - 扫描项目类型：`pyproject.toml`、`package.json`、`go.mod`、`Cargo.toml`
 - 扫描测试入口：`tests/`、`scripts/run_tests.*`、`docs/TESTING.*`
@@ -26,6 +28,7 @@
 ## 3. 分支治理
 
 - 默认：`main` + `feat/*` + `worktree`
+- 默认：新的 `worktree` 落在指定根目录；若未指定，则固定使用 `~/.psm/worktrees`
 - 重构单开 `refactor/*`
 - 性能单开 `perf/*`
 - 文档单开 `docs/*`

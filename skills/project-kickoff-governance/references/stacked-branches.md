@@ -19,12 +19,17 @@
 - `refactor/pipeline-layout-export`
 - `feat/apple-spatial-bridge`
 
-## 3. worktree 命名
+## 3. worktree 根目录与命名
 
-- `../repo-wt-output-top-bottom`
-- `../repo-wt-output-depth-map-video`
-- `../repo-wt-output-audio-copy`
-- `../repo-wt-output-manifest`
+- 先确认用户是否指定了 `worktree` 根目录；如果没有额外说明，默认统一使用 `~/.psm/worktrees`。
+- 如果用户指定了其它目录，所有新 `worktree` 都必须落在该绝对路径下。
+- 不要把 `worktree` 建在仓库内部的嵌套目录、随机家目录、`/tmp` 或其它临时位置，除非用户明确要求。
+
+- `~/.psm/worktrees/repo-wt-output-top-bottom`
+- `~/.psm/worktrees/repo-wt-output-depth-map-video`
+- `~/.psm/worktrees/repo-wt-output-audio-copy`
+- `~/.psm/worktrees/repo-wt-output-manifest`
+- `~/.psm/worktrees/edit-mind-fix`
 
 保持“一个分支对应一个 worktree”的单射关系。
 
@@ -34,6 +39,8 @@
 2. 把最顶层泛化分支重命名成最后一个主题分支
 3. 以各主题提交点创建分支指针
 4. 为每个分支创建独立 worktree
+   - 若目录不存在，先执行：`mkdir -p ~/.psm/worktrees`
+   - 示例：`git worktree add ~/.psm/worktrees/edit-mind-fix fix/audit-p0`
 5. 验证拓扑：`git log --graph --oneline --decorate --all --simplify-by-decoration`
 6. 验证所有 worktree 干净：`git status --short`
 

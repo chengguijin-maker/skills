@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T12:49:30.735238Z",
+  "generated_at": "2026-03-11T13:05:20.072173Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -125,7 +125,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
-      "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
+      "content_hash": "030a6105b247e6204af9e6c37abd81e1ecb3607c0ef252030cf72be8c26b8253"
     },
     {
       "name": "repo-skill-authoring",
