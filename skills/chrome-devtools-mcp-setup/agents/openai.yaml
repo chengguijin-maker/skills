@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome DevTools MCP Setup"
+  short_description: "Install and repair Chrome DevTools MCP on Codex."
+  default_prompt: "Use $chrome-devtools-mcp-setup to install or fix Chrome DevTools MCP for Codex on Linux."

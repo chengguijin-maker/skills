@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T12:22:42.025272Z",
+  "generated_at": "2026-03-11T12:49:30.735238Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -37,6 +37,22 @@
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
       "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
+    },
+    {
+      "name": "chrome-devtools-mcp-setup",
+      "description": "\u5728 Codex CLI \u6216\u672c\u5730 Codex \u73af\u5883\u4e2d\u5b89\u88c5\u3001\u914d\u7f6e\u3001\u4fee\u590d Chrome DevTools MCP\u3002\u7528\u4e8e Linux/Ubuntu \u4e0a\u9996\u6b21\u5b89\u88c5 `chrome-devtools`\u3001\u628a\u914d\u7f6e\u6536\u655b\u4e3a\u6807\u51c6 `npx` \u65b9\u6848\u3001\u901a\u8fc7 `apt` \u5b89\u88c5\u7cfb\u7edf `google-chrome-stable`\u3001\u5904\u7406 `Could not find Google Chrome executable`\u3001`Transport closed`\u3001`ENOSPC`\u3001`Could not find DevToolsActivePort` \u7b49\u542f\u52a8\u9519\u8bef\uff0c\u6216\u9700\u8981\u7528\u771f\u5b9e `codex exec` smoke test \u9a8c\u8bc1\u6d4f\u89c8\u5668 MCP \u53ef\u7528\u6027\u7684\u573a\u666f\u3002",
+      "repo_path": "skills/chrome-devtools-mcp-setup",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "mcp",
+        "codex",
+        "setup",
+        "troubleshooting"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/chrome-devtools-mcp-setup",
+      "content_hash": "dc4e4f96f81469318904059709761ce79f2b6441016b433b9ba69379f41e13a2"
     },
     {
       "name": "find-skills",

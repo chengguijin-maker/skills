@@ -36,6 +36,21 @@
       }
     },
     {
+      "name": "chrome-devtools-mcp-setup",
+      "repo_path": "skills/chrome-devtools-mcp-setup",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "mcp",
+        "codex",
+        "setup",
+        "troubleshooting"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "find-skills",
       "repo_path": "skills/find-skills",
       "category": "discovery",
