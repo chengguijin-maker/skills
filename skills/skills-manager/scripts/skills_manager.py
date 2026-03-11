@@ -21,6 +21,9 @@ DEFAULT_REF = "main"
 MANAGER_DIRNAME = ".skills-manager"
 MANIFEST_FILENAME = "installed.json"
 CATALOG_RELATIVE_PATH = Path("catalog") / "skills.json"
+IGNORED_PATH_PARTS = {"__pycache__"}
+IGNORED_FILENAMES = {".DS_Store", "Thumbs.db"}
+IGNORED_SUFFIXES = {".pyc", ".pyo"}
 
 AGENT_ROOTS = {
     "codex": Path.home() / ".codex" / "skills",
@@ -78,11 +81,22 @@ def load_catalog(repo_dir: Path) -> dict:
     return json.loads(catalog_path.read_text(encoding="utf-8-sig"))
 
 
+def should_ignore_path(path: Path, root: Path) -> bool:
+    rel = path.relative_to(root)
+    if any(part in IGNORED_PATH_PARTS for part in rel.parts):
+        return True
+    if path.name in IGNORED_FILENAMES:
+        return True
+    if path.suffix in IGNORED_SUFFIXES:
+        return True
+    return False
+
+
 def hash_directory(root: Path) -> str:
     if not root.exists():
         raise ManagerError(f"directory not found: {root}")
     digest = hashlib.sha256()
-    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+    for path in sorted(p for p in root.rglob("*") if p.is_file() and not should_ignore_path(p, root)):
         rel = path.relative_to(root).as_posix().encode("utf-8")
         digest.update(rel)
         digest.update(b"\0")
@@ -133,7 +147,7 @@ def copy_skill(repo_dir: Path, entry: dict, root: Path) -> None:
     backup_existing(target, root)
     if target.exists():
         shutil.rmtree(target)
-    shutil.copytree(source, target)
+    shutil.copytree(source, target, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo", ".DS_Store", "Thumbs.db"))
 
 
 def update_manifest(root: Path, entry: dict, repo_url: str, ref: str) -> None:

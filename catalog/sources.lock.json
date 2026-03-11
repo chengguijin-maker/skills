@@ -6,6 +6,20 @@
   },
   "skills": [
     {
+      "name": "autonomous-task-executor",
+      "repo_path": "skills/autonomous-task-executor",
+      "category": "productivity",
+      "tags": [
+        "autonomy",
+        "execution",
+        "delivery",
+        "workflow"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "find-skills",
       "repo_path": "skills/find-skills",
       "category": "discovery",
@@ -20,6 +34,39 @@
         "upstream_repo": "vercel-labs/skills",
         "upstream_path": "skills/find-skills",
         "ref": "main"
+      }
+    },
+    {
+      "name": "gh-cli",
+      "repo_path": "skills/gh-cli",
+      "category": "integration",
+      "tags": [
+        "github",
+        "gh",
+        "cli",
+        "pull-request",
+        "issue"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "github/awesome-copilot",
+        "upstream_path": "skills/gh-cli",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "project-kickoff-governance",
+      "repo_path": "skills/project-kickoff-governance",
+      "category": "management",
+      "tags": [
+        "kickoff",
+        "governance",
+        "git",
+        "worktree",
+        "testing"
+      ],
+      "source": {
+        "type": "first_party"
       }
     },
     {

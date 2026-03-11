@@ -1,0 +1,4 @@
+interface:
+  display_name: "自治连续执行"
+  short_description: "在目标和计划明确后，默认连续执行到完成，只在真实阻塞时停下"
+  default_prompt: "使用 $autonomous-task-executor 按现有目标和计划连续执行到完成；除非遇到需求冲突、缺少必要输入/权限或存在不可逆高风险操作，否则不要停下来询问下一步。"

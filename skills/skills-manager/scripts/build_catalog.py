@@ -15,6 +15,9 @@ import sys
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---", re.DOTALL)
 NAME_RE = re.compile(r"^name:\s*(.+)$", re.MULTILINE)
 DESCRIPTION_RE = re.compile(r"^description:\s*(.+)$", re.MULTILINE)
+IGNORED_PATH_PARTS = {"__pycache__"}
+IGNORED_FILENAMES = {".DS_Store", "Thumbs.db"}
+IGNORED_SUFFIXES = {".pyc", ".pyo"}
 
 
 def parse_frontmatter(skill_md: Path) -> tuple[str, str]:
@@ -32,9 +35,20 @@ def parse_frontmatter(skill_md: Path) -> tuple[str, str]:
     return name, description
 
 
+def should_ignore_path(path: Path, root: Path) -> bool:
+    rel = path.relative_to(root)
+    if any(part in IGNORED_PATH_PARTS for part in rel.parts):
+        return True
+    if path.name in IGNORED_FILENAMES:
+        return True
+    if path.suffix in IGNORED_SUFFIXES:
+        return True
+    return False
+
+
 def hash_directory(root: Path) -> str:
     digest = hashlib.sha256()
-    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+    for path in sorted(p for p in root.rglob("*") if p.is_file() and not should_ignore_path(p, root)):
         rel = path.relative_to(root).as_posix().encode("utf-8")
         digest.update(rel)
         digest.update(b"\0")

@@ -1,11 +1,26 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T05:06:38.665744Z",
+  "generated_at": "2026-03-11T06:06:51.646477Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
   },
   "skills": [
+    {
+      "name": "autonomous-task-executor",
+      "description": "\u5728\u76ee\u6807\u3001\u8303\u56f4\u3001\u8ba1\u5212\u6216\u4efb\u52a1\u6e05\u5355\u5df2\u7ecf\u660e\u786e\u65f6\uff0c\u6309\u201c\u9ed8\u8ba4\u8fde\u7eed\u6267\u884c\u5230\u5b8c\u6210\u3001\u53ea\u5728\u771f\u5b9e\u963b\u585e\u65f6\u505c\u4e0b\u201d\u7684\u65b9\u5f0f\u63a8\u8fdb\u5f00\u53d1\u3001\u91cd\u6784\u3001\u4fee\u590d\u3001\u6587\u6863\u548c\u6d4b\u8bd5\u5de5\u4f5c\u3002\u7528\u4e8e\u201c\u5df2\u7ecf\u89c4\u5212\u597d\u4e86\u76f4\u63a5\u505a\u201d\u201c\u4e0d\u8981\u6bcf\u4e00\u6b65\u90fd\u95ee\u6211\u4e0b\u4e00\u6b65\u201d\u201c\u9664\u975e\u7f3a\u6743\u9650\u3001\u9700\u6c42\u51b2\u7a81\u6216\u6709\u7834\u574f\u6027\u98ce\u9669\u5426\u5219\u4e0d\u8981\u505c\u201d\u201c\u81ea\u5df1\u505a\u5408\u7406\u5047\u8bbe\u5e76\u7ee7\u7eed\u6267\u884c\u201d\u7b49\u8bf7\u6c42\u3002",
+      "repo_path": "skills/autonomous-task-executor",
+      "category": "productivity",
+      "tags": [
+        "autonomy",
+        "execution",
+        "delivery",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
+      "content_hash": "a80bc6c0a4bcb5a610f97567f2db4db47717d1e9d35301110f03d7e5c255b3c5"
+    },
     {
       "name": "find-skills",
       "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
@@ -25,6 +40,43 @@
         "path": "skills/find-skills",
         "ref": "main"
       }
+    },
+    {
+      "name": "gh-cli",
+      "description": "GitHub CLI (gh) comprehensive reference for repositories, issues, pull requests, Actions, projects, releases, gists, codespaces, organizations, extensions, and all GitHub operations from the command line.",
+      "repo_path": "skills/gh-cli",
+      "category": "integration",
+      "tags": [
+        "github",
+        "gh",
+        "cli",
+        "pull-request",
+        "issue"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/gh-cli",
+      "content_hash": "aaa15ef27f73bcf285030d9b7ad92931ee7992cc1bb783746649023ace973b9b",
+      "upstream": {
+        "repo": "github/awesome-copilot",
+        "path": "skills/gh-cli",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "project-kickoff-governance",
+      "description": "\u5728\u63a5\u624b\u65b0\u4ed3\u5e93\u3001\u964c\u751f\u9879\u76ee\u6216\u51c6\u5907\u5f00\u59cb\u5927\u6539\u52a8\u524d\uff0c\u6267\u884c\u6807\u51c6\u5316\u9879\u76ee\u542f\u52a8\u6cbb\u7406\uff1a\u76d8\u70b9 AGENTS\u3001\u8bbe\u8ba1\u6587\u6863\u3001\u6d4b\u8bd5\u7ea6\u675f\u4e0e\u771f\u5b9e\u5b9e\u73b0\uff0c\u521d\u59cb\u5316\u6216\u4fee\u590d git \u57fa\u7ebf\uff0c\u5efa\u7acb main \u52a0\u77ed\u547d\u4e3b\u9898\u5206\u652f\u6216 stacked branches \u4e0e worktree \u7ed3\u6784\uff0c\u89c4\u5212\u5e26 timeout \u7684\u5feb\u6d4b\u7b56\u7565\uff0c\u5e76\u8f93\u51fa\u7ed3\u6784\u5316\u6c47\u603b\u4e0e\u4e0b\u4e00\u6b65\u8ba1\u5212\u3002\u7528\u4e8e\u201c\u5148\u5206\u6790\u9879\u76ee\u201d\u201c\u5148\u628a git \u548c worktree \u5efa\u597d\u201d\u201c\u6309\u4f18\u79c0\u5b9e\u8df5\u62c6\u539f\u5b50\u63d0\u4ea4\u201d\u201c\u6574\u7406\u5206\u652f\u7b56\u7565\u201d\u201c\u4e3a\u540e\u7eed\u6539\u52a8\u5efa\u7acb\u5feb\u6d4b\u4e0e\u63d0\u4ea4\u89c4\u8303\u201d\u7b49\u8bf7\u6c42\u3002",
+      "repo_path": "skills/project-kickoff-governance",
+      "category": "management",
+      "tags": [
+        "kickoff",
+        "governance",
+        "git",
+        "worktree",
+        "testing"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
+      "content_hash": "1abeee1e7d2b670b3c4cd317ed5d306356bf4ae955b562eaaf8e31bbf11f01b4"
     },
     {
       "name": "repo-skill-authoring",
@@ -54,7 +106,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "b260b61ac187ee8a428da073eac3b4ea5c08d98ff0ffdd9355f95509ec395645"
+      "content_hash": "19d0896d31bc12eea887ced527226a8cd56af86311f78cdb80e955cb69795ad6"
     }
   ]
 }
