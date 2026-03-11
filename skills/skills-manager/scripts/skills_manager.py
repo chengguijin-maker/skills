@@ -74,7 +74,7 @@ def load_catalog(repo_dir: Path) -> dict:
     catalog_path = repo_dir / CATALOG_RELATIVE_PATH
     if not catalog_path.exists():
         raise ManagerError(f"catalog file not found: {catalog_path}")
-    return json.loads(catalog_path.read_text(encoding="utf-8"))
+    return json.loads(catalog_path.read_text(encoding="utf-8-sig"))
 
 
 def agent_roots(agent: str) -> dict[str, Path]:
@@ -93,7 +93,7 @@ def load_manifest(root: Path) -> dict:
     path = manifest_path(root)
     if not path.exists():
         return {"version": 1, "skills": {}}
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def save_manifest(root: Path, data: dict) -> None:

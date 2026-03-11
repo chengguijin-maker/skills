@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T04:23:34.947105Z",
+  "generated_at": "2026-03-11T04:39:00.769313Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -34,7 +34,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "ff118972ed12644ecdf39f30c9c3826e9b3f4d0343727c3faa8eeb538e5b9d60"
+      "content_hash": "5bb5b26ce08dd0868b3b547e05a125b73e493c919311dce4c3418cec8fd0aba2"
     }
   ]
 }
