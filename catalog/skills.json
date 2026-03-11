@@ -1,11 +1,28 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T06:45:24.370505Z",
+  "generated_at": "2026-03-11T09:36:31.776703Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
   },
   "skills": [
+    {
+      "name": "agent-workspace-migration",
+      "description": "Use when migrating a Claude, Codex, or similar agent workspace from one Linux server to another. Covers source and target host inventory, target user bootstrap, SSH key login, passwordless sudo, nvm with Node LTS and pnpm setup, GitHub-backed skill installation, copying working directories such as `open/`, and final verification.",
+      "repo_path": "skills/agent-workspace-migration",
+      "category": "operations",
+      "tags": [
+        "migration",
+        "server",
+        "ssh",
+        "skills",
+        "claude",
+        "codex"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-workspace-migration",
+      "content_hash": "97517d6683eec8ec5a0ef8d756f6f71e5b5d4a4a40aee78bd774b99bb2328de9"
+    },
     {
       "name": "autonomous-task-executor",
       "description": "\u5728\u76ee\u6807\u3001\u8303\u56f4\u3001\u8ba1\u5212\u6216\u4efb\u52a1\u6e05\u5355\u5df2\u7ecf\u660e\u786e\u65f6\uff0c\u6309\u201c\u9ed8\u8ba4\u8fde\u7eed\u6267\u884c\u5230\u5b8c\u6210\u3001\u53ea\u5728\u771f\u5b9e\u963b\u585e\u65f6\u505c\u4e0b\u201d\u7684\u65b9\u5f0f\u63a8\u8fdb\u5f00\u53d1\u3001\u91cd\u6784\u3001\u4fee\u590d\u3001\u6587\u6863\u548c\u6d4b\u8bd5\u5de5\u4f5c\u3002\u7528\u4e8e\u201c\u5df2\u7ecf\u89c4\u5212\u597d\u4e86\u76f4\u63a5\u505a\u201d\u201c\u4e0d\u8981\u6bcf\u4e00\u6b65\u90fd\u95ee\u6211\u4e0b\u4e00\u6b65\u201d\u201c\u9664\u975e\u7f3a\u6743\u9650\u3001\u9700\u6c42\u51b2\u7a81\u6216\u6709\u7834\u574f\u6027\u98ce\u9669\u5426\u5219\u4e0d\u8981\u505c\u201d\u201c\u81ea\u5df1\u505a\u5408\u7406\u5047\u8bbe\u5e76\u7ee7\u7eed\u6267\u884c\u201d\u7b49\u8bf7\u6c42\u3002",
@@ -106,7 +123,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "e05cd40e74633e0a90515efba91e4502461ff636ddec92f0e6a3073a1ffece61"
+      "content_hash": "c134e95eb6b2082b60c21e23f7d5cbdf723f0742e708c35165f3e69b3690219a"
     }
   ]
 }
