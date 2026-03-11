@@ -20,6 +20,22 @@
       }
     },
     {
+      "name": "agent-workspace-migration",
+      "repo_path": "skills/agent-workspace-migration",
+      "category": "operations",
+      "tags": [
+        "migration",
+        "server",
+        "ssh",
+        "skills",
+        "claude",
+        "codex"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "find-skills",
       "repo_path": "skills/find-skills",
       "category": "discovery",
