@@ -11,7 +11,11 @@ It is designed to stay compatible with:
 ## Repository Layout
 
 ```text
+catalog/
+  skills.json
+  sources.lock.json
 skills/
+  skills-manager/
   repo-skill-authoring/
 templates/
   skill-template/
@@ -20,6 +24,7 @@ docs/
 ```
 
 - `skills/`: real skills that can be published or installed.
+- `catalog/`: source lock and generated skill index.
 - `templates/`: starter material that should be copied before use.
 - `docs/`: repository-level notes and standards summaries.
 
@@ -31,6 +36,7 @@ docs/
 - Keep `SKILL.md` concise and task-focused.
 - Put deep documentation in `references/`, executable helpers in `scripts/`, and output resources in `assets/`.
 - Keep agent-specific metadata in `agents/` instead of mixing it into the shared skill instructions.
+- Keep physical layout flat under `skills/` and use `catalog/sources.lock.json` for logical categories and provenance.
 
 ## Adding a New Skill
 

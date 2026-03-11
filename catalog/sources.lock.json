@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "repository": {
+    "url": "https://github.com/chengguijin-maker/skills.git",
+    "default_ref": "main"
+  },
+  "skills": [
+    {
+      "name": "repo-skill-authoring",
+      "repo_path": "skills/repo-skill-authoring",
+      "category": "management",
+      "tags": [
+        "skills",
+        "authoring",
+        "repository"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
+      "name": "skills-manager",
+      "repo_path": "skills/skills-manager",
+      "category": "management",
+      "tags": [
+        "skills",
+        "sync",
+        "github",
+        "codex",
+        "claude"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    }
+  ]
+}

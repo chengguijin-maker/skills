@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "generated_at": "2026-03-11T04:23:34.947105Z",
+  "repository": {
+    "url": "https://github.com/chengguijin-maker/skills.git",
+    "default_ref": "main"
+  },
+  "skills": [
+    {
+      "name": "repo-skill-authoring",
+      "description": "Use when creating, updating, reviewing, or reorganizing skills in this repository. Applies this repo's layout, metadata rules, portability guidelines, and publication checklist.",
+      "repo_path": "skills/repo-skill-authoring",
+      "category": "management",
+      "tags": [
+        "skills",
+        "authoring",
+        "repository"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring",
+      "content_hash": "ad78199f71258643d9dc6a06f931709412c376016c7fe671c39f5d133924fb78"
+    },
+    {
+      "name": "skills-manager",
+      "description": "Use when installing, listing, checking, or syncing skills from the private GitHub repository into Codex or Claude. Also use when maintaining the private skills catalog, updating source locks, or managing first-party versus mirrored skills.",
+      "repo_path": "skills/skills-manager",
+      "category": "management",
+      "tags": [
+        "skills",
+        "sync",
+        "github",
+        "codex",
+        "claude"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
+      "content_hash": "ff118972ed12644ecdf39f30c9c3826e9b3f4d0343727c3faa8eeb538e5b9d60"
+    }
+  ]
+}

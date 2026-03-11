@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skills Manager"
+  short_description: "Manage install, sync, and updates for private skills."
+  default_prompt: "Use $skills-manager to install or sync skills from the private repository."
