@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -77,6 +78,19 @@ def load_catalog(repo_dir: Path) -> dict:
     return json.loads(catalog_path.read_text(encoding="utf-8-sig"))
 
 
+def hash_directory(root: Path) -> str:
+    if not root.exists():
+        raise ManagerError(f"directory not found: {root}")
+    digest = hashlib.sha256()
+    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+        rel = path.relative_to(root).as_posix().encode("utf-8")
+        digest.update(rel)
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
 def agent_roots(agent: str) -> dict[str, Path]:
     if agent == "both":
         return dict(AGENT_ROOTS)
@@ -123,6 +137,8 @@ def copy_skill(repo_dir: Path, entry: dict, root: Path) -> None:
 
 
 def update_manifest(root: Path, entry: dict, repo_url: str, ref: str) -> None:
+    target = root / entry["name"]
+    installed_hash = hash_directory(target)
     data = load_manifest(root)
     data["skills"][entry["name"]] = {
         "name": entry["name"],
@@ -133,6 +149,8 @@ def update_manifest(root: Path, entry: dict, repo_url: str, ref: str) -> None:
         "tags": entry.get("tags", []),
         "source_type": entry.get("source_type"),
         "content_hash": entry["content_hash"],
+        "catalog_hash": entry["content_hash"],
+        "installed_hash": installed_hash,
         "installed_at": utc_now(),
     }
     save_manifest(root, data)
@@ -143,6 +161,38 @@ def find_entry(catalog: dict, skill_name: str) -> dict:
         if entry["name"] == skill_name:
             return entry
     raise ManagerError(f"skill not found in catalog: {skill_name}")
+
+
+def installed_skill_path(root: Path, skill_name: str) -> Path:
+    return root / skill_name
+
+
+def actual_installed_hash(root: Path, skill_name: str) -> str | None:
+    target = installed_skill_path(root, skill_name)
+    if not target.exists():
+        return None
+    return hash_directory(target)
+
+
+def manifest_hash(installed: dict) -> str | None:
+    return installed.get("installed_hash") or installed.get("catalog_hash") or installed.get("content_hash")
+
+
+def skill_status(installed: dict, remote_entry: dict, root: Path) -> str:
+    actual_hash = actual_installed_hash(root, installed["name"])
+    if actual_hash is None:
+        return "missing-install"
+
+    remote_hash = remote_entry["content_hash"]
+    expected_hash = manifest_hash(installed)
+
+    if actual_hash == remote_hash:
+        return "up-to-date"
+    if expected_hash and actual_hash != expected_hash:
+        if remote_hash != expected_hash:
+            return "local-drift-and-update-available"
+        return "local-drift"
+    return "update-available"
 
 
 def cmd_list(args: argparse.Namespace) -> int:
@@ -192,7 +242,7 @@ def cmd_status(args: argparse.Namespace) -> int:
                 if not remote_entry:
                     print(f"  {name}: missing from catalog")
                     continue
-                status = "up-to-date" if installed["content_hash"] == remote_entry["content_hash"] else "update-available"
+                status = skill_status(installed, remote_entry, root)
                 print(f"  {name}: {status}")
         return 0
     finally:
@@ -216,7 +266,12 @@ def cmd_sync(args: argparse.Namespace) -> int:
                 if not remote_entry:
                     print(f"Skipped {name}: no longer present in catalog")
                     continue
-                if installed["content_hash"] == remote_entry["content_hash"]:
+                status = skill_status(installed, remote_entry, root)
+                if status == "up-to-date":
+                    if manifest_hash(installed) != remote_entry["content_hash"]:
+                        update_manifest(root, remote_entry, args.repo_url, args.ref)
+                        print(f"Reconciled manifest for {name} in {root}")
+                        continue
                     print(f"Up-to-date: {name}")
                     continue
                 copy_skill(repo_dir, remote_entry, root)

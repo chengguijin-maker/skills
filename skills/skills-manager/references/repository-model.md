@@ -73,3 +73,5 @@ It should contain:
 - content hash
 
 The content hash is the update key used by `skills-manager` for install status and sync decisions.
+
+At runtime, `skills-manager` also hashes the actual installed skill directory so it can detect local drift, partial installs, or manual edits under `~/.codex/skills` and `~/.claude/skills`.

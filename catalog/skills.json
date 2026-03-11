@@ -1,11 +1,31 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T04:39:00.769313Z",
+  "generated_at": "2026-03-11T05:06:38.665744Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
   },
   "skills": [
+    {
+      "name": "find-skills",
+      "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
+      "repo_path": "skills/find-skills",
+      "category": "discovery",
+      "tags": [
+        "skills",
+        "discovery",
+        "search",
+        "install"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/find-skills",
+      "content_hash": "00508c2fb94814cb85cae4d4af77273598dc19bc6ac1c6ae4b6b80d377974187",
+      "upstream": {
+        "repo": "vercel-labs/skills",
+        "path": "skills/find-skills",
+        "ref": "main"
+      }
+    },
     {
       "name": "repo-skill-authoring",
       "description": "Use when creating, updating, reviewing, or reorganizing skills in this repository. Applies this repo's layout, metadata rules, portability guidelines, and publication checklist.",
@@ -34,7 +54,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "5bb5b26ce08dd0868b3b547e05a125b73e493c919311dce4c3418cec8fd0aba2"
+      "content_hash": "b260b61ac187ee8a428da073eac3b4ea5c08d98ff0ffdd9355f95509ec395645"
     }
   ]
 }

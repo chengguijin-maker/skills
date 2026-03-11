@@ -23,8 +23,9 @@ Sync flow:
 
 1. Clone the private repository at the configured ref
 2. Read `catalog/skills.json`
-3. Compare remote `content_hash` with the local install manifest
-4. Backup and replace any changed managed skills
+3. Hash the actual installed skill directory
+4. Compare the actual installed hash and manifest state with the remote `content_hash`
+5. Backup and replace any changed or drifted managed skills
 
 ## Manifest Model
 
@@ -40,9 +41,12 @@ Each manifest entry records:
 - repo URL
 - ref
 - repo path
-- content hash
+- catalog hash
+- installed hash
 - source type
 - installed timestamp
+
+For backward compatibility, older manifests may still only contain `content_hash`.
 
 ## Private Repository Access
 

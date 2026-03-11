@@ -15,6 +15,7 @@ catalog/
   skills.json
   sources.lock.json
 skills/
+  find-skills/
   skills-manager/
   repo-skill-authoring/
 templates/
@@ -27,6 +28,11 @@ docs/
 - `catalog/`: source lock and generated skill index.
 - `templates/`: starter material that should be copied before use.
 - `docs/`: repository-level notes and standards summaries.
+
+The repository can mix:
+
+- first-party skills authored directly here
+- mirrored third-party skills with recorded upstream provenance
 
 ## Core Conventions
 

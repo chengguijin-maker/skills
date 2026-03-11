@@ -6,6 +6,23 @@
   },
   "skills": [
     {
+      "name": "find-skills",
+      "repo_path": "skills/find-skills",
+      "category": "discovery",
+      "tags": [
+        "skills",
+        "discovery",
+        "search",
+        "install"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "vercel-labs/skills",
+        "upstream_path": "skills/find-skills",
+        "ref": "main"
+      }
+    },
+    {
       "name": "repo-skill-authoring",
       "repo_path": "skills/repo-skill-authoring",
       "category": "management",
