@@ -61,3 +61,7 @@ Example:
 ```text
 https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring
 ```
+
+## Offline Mirror Sync
+
+If a target server cannot reach GitHub directly, use `scripts/sync-630-skills.ps1` from this workstation to push a committed repository snapshot to `630` and reinstall all managed skills from the server-local mirror.

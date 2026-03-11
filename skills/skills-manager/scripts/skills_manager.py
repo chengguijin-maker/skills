@@ -24,6 +24,17 @@ CATALOG_RELATIVE_PATH = Path("catalog") / "skills.json"
 IGNORED_PATH_PARTS = {"__pycache__"}
 IGNORED_FILENAMES = {".DS_Store", "Thumbs.db"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
+TEXT_SUFFIXES = {
+    ".json",
+    ".md",
+    ".ps1",
+    ".py",
+    ".sh",
+    ".toml",
+    ".txt",
+    ".yaml",
+    ".yml",
+}
 
 AGENT_ROOTS = {
     "codex": Path.home() / ".codex" / "skills",
@@ -92,6 +103,13 @@ def should_ignore_path(path: Path, root: Path) -> bool:
     return False
 
 
+def normalized_file_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix in TEXT_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
+
+
 def hash_directory(root: Path) -> str:
     if not root.exists():
         raise ManagerError(f"directory not found: {root}")
@@ -100,7 +118,7 @@ def hash_directory(root: Path) -> str:
         rel = path.relative_to(root).as_posix().encode("utf-8")
         digest.update(rel)
         digest.update(b"\0")
-        digest.update(path.read_bytes())
+        digest.update(normalized_file_bytes(path))
         digest.update(b"\0")
     return digest.hexdigest()
 

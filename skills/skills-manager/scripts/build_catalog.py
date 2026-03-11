@@ -18,6 +18,17 @@ DESCRIPTION_RE = re.compile(r"^description:\s*(.+)$", re.MULTILINE)
 IGNORED_PATH_PARTS = {"__pycache__"}
 IGNORED_FILENAMES = {".DS_Store", "Thumbs.db"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
+TEXT_SUFFIXES = {
+    ".json",
+    ".md",
+    ".ps1",
+    ".py",
+    ".sh",
+    ".toml",
+    ".txt",
+    ".yaml",
+    ".yml",
+}
 
 
 def parse_frontmatter(skill_md: Path) -> tuple[str, str]:
@@ -46,13 +57,20 @@ def should_ignore_path(path: Path, root: Path) -> bool:
     return False
 
 
+def normalized_file_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix in TEXT_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
+
+
 def hash_directory(root: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted(p for p in root.rglob("*") if p.is_file() and not should_ignore_path(p, root)):
         rel = path.relative_to(root).as_posix().encode("utf-8")
         digest.update(rel)
         digest.update(b"\0")
-        digest.update(path.read_bytes())
+        digest.update(normalized_file_bytes(path))
         digest.update(b"\0")
     return digest.hexdigest()
 
