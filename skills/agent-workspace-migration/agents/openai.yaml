@@ -1,4 +1,4 @@
 interface:
   display_name: "Agent Workspace Migration"
-  short_description: "Migrate Claude/Codex workspaces between servers."
-  default_prompt: "Use $agent-workspace-migration to migrate a Claude or Codex workspace to a new server."
+  short_description: "Migrate a full multi-agent workspace between Linux servers."
+  default_prompt: "Use $agent-workspace-migration to migrate a full Claude, Codex, Gemini, and MCP-enabled workspace to a new Linux server."

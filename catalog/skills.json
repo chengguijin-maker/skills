@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T09:40:50.012340Z",
+  "generated_at": "2026-03-11T12:00:29.209113Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -8,7 +8,7 @@
   "skills": [
     {
       "name": "agent-workspace-migration",
-      "description": "Use when migrating a Claude, Codex, or similar agent workspace from one Linux server to another. Covers source and target host inventory, target user bootstrap, SSH key login, passwordless sudo, nvm with Node LTS and pnpm setup, GitHub-backed skill installation, copying working directories such as `open/`, and final verification.",
+      "description": "Use when migrating a Claude, Codex, Gemini, or similar agent workspace from one Linux server to another. Covers source and target host inventory, target user bootstrap, SSH key login, passwordless sudo, nvm with Node LTS plus pnpm, standard `gh` setup, GitHub-backed skill installation, selective shell config sync, MCP and agent dotdir migration, filtered project transfer, and final verification.",
       "repo_path": "skills/agent-workspace-migration",
       "category": "operations",
       "tags": [
@@ -21,7 +21,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-workspace-migration",
-      "content_hash": "8b290b8cfa4ac66a4ce461aad21a1d726551708c40ce40d649c61faaf2f9c463"
+      "content_hash": "377c9423c88a8f36977c702663862d750177d495f8316daeba547953a4d5574e"
     },
     {
       "name": "autonomous-task-executor",
