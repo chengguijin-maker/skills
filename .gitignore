@@ -1,0 +1,22 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors
+.idea/
+.vscode/
+
+# Env and local state
+.env
+.env.*
+*.local
+
+# Build and temp
+dist/
+build/
+tmp/
+*.tmp

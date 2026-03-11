@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Skill Authoring"
+  short_description: "Maintain and evolve this skills repository."
+  default_prompt: "Use $repo-skill-authoring to add or update a skill in this repository."
