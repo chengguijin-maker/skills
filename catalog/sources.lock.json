@@ -86,6 +86,21 @@
       }
     },
     {
+      "name": "powershell-ssh-linux-ops",
+      "repo_path": "skills/powershell-ssh-linux-ops",
+      "category": "operations",
+      "tags": [
+        "powershell",
+        "windows",
+        "ssh",
+        "linux",
+        "quoting"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "repo-skill-authoring",
       "repo_path": "skills/repo-skill-authoring",
       "category": "management",

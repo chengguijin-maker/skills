@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T12:08:55.313104Z",
+  "generated_at": "2026-03-11T12:22:42.025272Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -78,6 +78,22 @@
         "path": "skills/gh-cli",
         "ref": "main"
       }
+    },
+    {
+      "name": "powershell-ssh-linux-ops",
+      "description": "Use when Windows PowerShell is driving SSH, SCP, rsync, Git, or agent operations against Linux hosts. Covers PowerShell 5 versus 7 command chaining, local versus remote quoting, escaping remote `$` variables, avoiding BOM or UTF-16 stdin corruption, choosing `python3` explicitly, staging complex remote Bash safely, and debugging failures such as `unexpected EOF`, hidden BOM characters, or missing-command errors.",
+      "repo_path": "skills/powershell-ssh-linux-ops",
+      "category": "operations",
+      "tags": [
+        "powershell",
+        "windows",
+        "ssh",
+        "linux",
+        "quoting"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/powershell-ssh-linux-ops",
+      "content_hash": "8a31a005d5b8e22df8d7663c7f6cb6958c22949c217234cfce43fd8668b9e989"
     },
     {
       "name": "project-kickoff-governance",

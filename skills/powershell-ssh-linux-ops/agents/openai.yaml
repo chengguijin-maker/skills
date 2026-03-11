@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerShell SSH Linux Ops"
+  short_description: "Operate Linux hosts safely from PowerShell"
+  default_prompt: "Use $powershell-ssh-linux-ops when Windows PowerShell is driving SSH, SCP, rsync, Git, or agent operations on Linux hosts."
