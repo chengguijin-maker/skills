@@ -93,7 +93,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/powershell-ssh-linux-ops",
-      "content_hash": "8a31a005d5b8e22df8d7663c7f6cb6958c22949c217234cfce43fd8668b9e989"
+      "content_hash": "37e9626ea35cff49dca2d01043b6975ee362e80ab5d7d476e21b03115489709d"
     },
     {
       "name": "project-kickoff-governance",
