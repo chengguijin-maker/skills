@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T06:28:14.319446Z",
+  "generated_at": "2026-03-11T06:45:24.370505Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -19,7 +19,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
-      "content_hash": "a80bc6c0a4bcb5a610f97567f2db4db47717d1e9d35301110f03d7e5c255b3c5"
+      "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
     },
     {
       "name": "find-skills",
@@ -76,7 +76,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
-      "content_hash": "1abeee1e7d2b670b3c4cd317ed5d306356bf4ae955b562eaaf8e31bbf11f01b4"
+      "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
     },
     {
       "name": "repo-skill-authoring",
@@ -90,7 +90,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring",
-      "content_hash": "33e54ad860e5889d90833a78f9e17f415d881f50972758d1f597ee3610cc3ecc"
+      "content_hash": "cfcbfe20dd19ab3d35701089d1f99a9646c3215fc43203ce7cff9cf072288f9d"
     },
     {
       "name": "skills-manager",
@@ -106,7 +106,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "87c6be7e8fdc83d4f807573365ad42d13da1d2c9b1c22e2a7607d71611461764"
+      "content_hash": "e05cd40e74633e0a90515efba91e4502461ff636ddec92f0e6a3073a1ffece61"
     }
   ]
 }
