@@ -6,6 +6,24 @@
   },
   "skills": [
     {
+      "name": "agent-device",
+      "repo_path": "skills/agent-device",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "android",
+        "ios",
+        "automation",
+        "debugging"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "callstackincubator/agent-device",
+        "upstream_path": "skills/agent-device",
+        "ref": "main"
+      }
+    },
+    {
       "name": "autonomous-task-executor",
       "repo_path": "skills/autonomous-task-executor",
       "category": "productivity",
@@ -48,6 +66,24 @@
       ],
       "source": {
         "type": "first_party"
+      }
+    },
+    {
+      "name": "chrome-devtools",
+      "repo_path": "skills/chrome-devtools",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "devtools",
+        "mcp",
+        "browser",
+        "debugging"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "ChromeDevTools/chrome-devtools-mcp",
+        "upstream_path": "skills/chrome-devtools",
+        "ref": "main"
       }
     },
     {
@@ -113,6 +149,42 @@
       ],
       "source": {
         "type": "first_party"
+      }
+    },
+    {
+      "name": "qa-testing-android",
+      "repo_path": "skills/qa-testing-android",
+      "category": "testing",
+      "tags": [
+        "android",
+        "qa",
+        "espresso",
+        "uiautomator",
+        "adb"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "vasilyu1983/AI-Agents-public",
+        "upstream_path": "frameworks/shared-skills/skills/qa-testing-android",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "qa-testing-mobile",
+      "repo_path": "skills/qa-testing-mobile",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "qa",
+        "android",
+        "ios",
+        "strategy"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "vasilyu1983/AI-Agents-public",
+        "upstream_path": "frameworks/shared-skills/skills/qa-testing-mobile",
+        "ref": "main"
       }
     },
     {

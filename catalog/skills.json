@@ -1,11 +1,32 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T12:49:30.735238Z",
+  "generated_at": "2026-03-12T14:43:31.996697Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
   },
   "skills": [
+    {
+      "name": "agent-device",
+      "description": "Automates interactions for iOS simulators/devices and Android emulators/devices. Use when navigating apps, taking snapshots/screenshots, tapping, typing, scrolling, or extracting UI info on mobile targets.",
+      "repo_path": "skills/agent-device",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "android",
+        "ios",
+        "automation",
+        "debugging"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-device",
+      "content_hash": "b28165a98e69400443ca2d64e0680aacea1089c5c3e132f6c9544405d4cb2d04",
+      "upstream": {
+        "repo": "callstackincubator/agent-device",
+        "path": "skills/agent-device",
+        "ref": "main"
+      }
+    },
     {
       "name": "agent-workspace-migration",
       "description": "Use when migrating a Claude, Codex, Gemini, or similar agent workspace from one Linux server to another. Covers source and target host inventory, target user bootstrap, SSH key login, passwordless sudo, nvm with Node LTS plus pnpm, standard `gh` setup, GitHub-backed skill installation, selective shell config sync, MCP and agent dotdir migration, filtered project transfer, and final verification.",
@@ -37,6 +58,27 @@
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
       "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
+    },
+    {
+      "name": "chrome-devtools",
+      "description": "Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation. Use when debugging web pages, automating browser interactions, analyzing performance, or inspecting network requests. This skill does not apply to `--slim` mode (MCP configuration).",
+      "repo_path": "skills/chrome-devtools",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "devtools",
+        "mcp",
+        "browser",
+        "debugging"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/chrome-devtools",
+      "content_hash": "2f0d4a57e4b18b84e4f4e81fe614909f9d954193abc0dbc7f78fad5fd9568fb2",
+      "upstream": {
+        "repo": "ChromeDevTools/chrome-devtools-mcp",
+        "path": "skills/chrome-devtools",
+        "ref": "main"
+      }
     },
     {
       "name": "chrome-devtools-mcp-setup",
@@ -126,6 +168,48 @@
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
       "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
+    },
+    {
+      "name": "qa-testing-android",
+      "description": "Android testing with Espresso, UIAutomator, and Compose Testing; layered strategy, flake control, device matrix, CI integration, and ADB automation.",
+      "repo_path": "skills/qa-testing-android",
+      "category": "testing",
+      "tags": [
+        "android",
+        "qa",
+        "espresso",
+        "uiautomator",
+        "adb"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/qa-testing-android",
+      "content_hash": "f76b4c02b9c36235c8128f77c083f06a69389994e1cbba6420a4c71313ab8ddc",
+      "upstream": {
+        "repo": "vasilyu1983/AI-Agents-public",
+        "path": "frameworks/shared-skills/skills/qa-testing-android",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "qa-testing-mobile",
+      "description": "Mobile app testing strategy and execution for iOS and Android (native + cross-platform): choose automation frameworks, define device matrix, control flakes, validate performance/reliability/accessibility, and set CI + release gates. Use when you need a mobile QA plan, device lab/CI setup, or guidance on XCUITest/Espresso/Appium/Detox/Maestro/Flutter testing.",
+      "repo_path": "skills/qa-testing-mobile",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "qa",
+        "android",
+        "ios",
+        "strategy"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/qa-testing-mobile",
+      "content_hash": "5ad7e19a438c90d4cd1090231511204396f54539e2b0b8c4ab9f6a5f0b6acdcf",
+      "upstream": {
+        "repo": "vasilyu1983/AI-Agents-public",
+        "path": "frameworks/shared-skills/skills/qa-testing-mobile",
+        "ref": "main"
+      }
     },
     {
       "name": "repo-skill-authoring",
