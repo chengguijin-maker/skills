@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "simple-cli-tool",
+  "config": "with_skill",
+  "expectations": [
+    {"text": "Response asks at least one question", "passed": true, "evidence": "Asks '谁在用这个工具，使用场景是什么？'"},
+    {"text": "Response asks only ONE main question", "passed": true, "evidence": "Single question with A/B/C/D options"},
+    {"text": "Response does NOT create files", "passed": true, "evidence": "No files generated"},
+    {"text": "Response explains why the question matters", "passed": true, "evidence": "'这个问题决定了 V1 的功能优先级和交互设计方向'"},
+    {"text": "[NEW] No workflow intro", "passed": true, "evidence": "Starts directly with '目前已知的信息：' - no '好的，我来用 idea-flow...'"},
+    {"text": "[NEW] Correct intent classification", "passed": true, "evidence": "Accepts the CLI tool intent without questioning it. No '更像是一个方案' language. Directly asks about usage details."},
+    {"text": "[NEW] Probes details not intent", "passed": true, "evidence": "Asks about target user/scenario (self, open source, non-tech), not whether user should build a CLI tool"}
+  ]
+}

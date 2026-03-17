@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-12T14:43:31.996697Z",
+  "generated_at": "2026-03-17T14:13:41.258138Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -58,6 +58,21 @@
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
       "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
+    },
+    {
+      "name": "changelog-maintenance",
+      "description": "Maintain a clear and informative changelog for software releases. Use when documenting version changes, tracking features, or communicating updates to users. Handles semantic versioning, changelog formats, and release notes.",
+      "repo_path": "skills/changelog-maintenance",
+      "category": "documentation",
+      "tags": [
+        "changelog",
+        "release",
+        "versioning",
+        "documentation"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/changelog-maintenance",
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "name": "chrome-devtools",
@@ -136,6 +151,52 @@
         "path": "skills/gh-cli",
         "ref": "main"
       }
+    },
+    {
+      "name": "idea-flow",
+      "description": "\u901a\u8fc7\u82cf\u683c\u62c9\u5e95\u5f0f\u4ea4\u4e92\u628a\u6a21\u7cca\u60f3\u6cd5\u6536\u655b\u6210\u53ef\u6267\u884c\u65b9\u6848\u7684\u5de5\u4f5c\u6d41\u3002\u5f53\u7528\u6237\u8bf4\"idea-flow\"\u3001\"\u7528 idea-flow \u6574\u7406\"\u3001\"\u5e2e\u6211\u6574\u7406\u8fd9\u4e2a\u60f3\u6cd5/\u9700\u6c42\"\u3001\"\u628a\u60f3\u6cd5\u6536\u655b\u6210\u4efb\u52a1\"\u3001\"\u82cf\u683c\u62c9\u5e95\u5f0f\u6536\u655b\"\u3001\"\u5e26\u4ea4\u4e92\u7684\u9700\u6c42\u6574\u7406\"\u65f6\u4f7f\u7528\u3002\u6838\u5fc3\u6d41\u7a0b\uff1a\u95ee\u9898\u5b9a\u951a\u2192\u89c4\u683c\u6536\u53e3\u2192\u4efb\u52a1\u5851\u5f62\u2192\u6267\u884c\u7f16\u6392\uff0c\u4e00\u6b21\u53ea\u95ee\u4e00\u4e2a\u95ee\u9898\uff0c\u591a\u9009\u4f18\u5148\uff0c\u6bcf\u4e2a\u9636\u6bb5\u786c\u95e8\u786e\u8ba4\u3002\u4ea7\u51fa WORK.md \u5355\u6587\u4ef6\u4e3b\u63a7 + AGENTS.md + \u6700\u5c0f\u4ed3\u5e93\u7ed3\u6784\u3002\u9002\u7528\u4e8e\u628a\u4e00\u53e5\u8bdd idea \u53d8\u6210\u53ef\u4ea4\u4ed8\u7684 spec \u548c\u4efb\u52a1\u6e05\u5355\u3001\u628a\u6a21\u7cca\u9700\u6c42\u62c6\u6210\u53ef\u6267\u884c\u8ba1\u5212\u3001\u7ed9\u65b0\u9879\u76ee\u5efa\u7acb\u8f7b\u91cf\u6d41\u7a0b\u9aa8\u67b6\u7b49\u573a\u666f\u3002\u5373\u4f7f\u7528\u6237\u6ca1\u6709\u660e\u786e\u63d0\u5230 idea-flow\uff0c\u53ea\u8981\u4efb\u52a1\u6d89\u53ca\"\u4ece\u6a21\u7cca\u60f3\u6cd5\u5230\u53ef\u6267\u884c\u65b9\u6848\"\u7684\u6536\u655b\u6574\u7406\uff0c\u5c31\u5e94\u8be5\u4f7f\u7528\u8fd9\u4e2a skill\u3002",
+      "repo_path": "skills/idea-flow",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "planning",
+        "socratic",
+        "spec",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-flow",
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "idea-ops-lite",
+      "description": "[\u5df2\u505c\u7528\u81ea\u52a8\u89e6\u53d1] \u5355\u6587\u4ef6\u4f18\u5148\u7684\u8f7b\u91cf\u5316 idea\u2192\u9a8c\u8bc1\u5de5\u4f5c\u6d41\uff08\u5df2\u88ab idea-flow \u878d\u5408\u66ff\u4ee3\uff09\u3002\u4ec5\u5728\u7528\u6237\u663e\u5f0f\u8bf4 /idea-ops-lite \u65f6\u89e6\u53d1\u3002\u539f\u59cb description \u5907\u4efd\u5728 idea-flow/references/archived-descriptions.md\u3002",
+      "repo_path": "skills/idea-ops-lite",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "validation",
+        "lightweight",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-ops-lite",
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "idea-spec-execution",
+      "description": "[\u5df2\u505c\u7528\u81ea\u52a8\u89e6\u53d1] \u8f7b\u91cf\u60f3\u6cd5\u2192\u89c4\u683c\u2192\u4efb\u52a1\u62c6\u89e3\u5de5\u4f5c\u6d41\uff08\u5df2\u88ab idea-flow \u878d\u5408\u66ff\u4ee3\uff09\u3002\u4ec5\u5728\u7528\u6237\u663e\u5f0f\u8bf4 /idea-spec-execution \u65f6\u89e6\u53d1\u3002\u539f\u59cb description \u5907\u4efd\u5728 idea-flow/references/archived-descriptions.md\u3002",
+      "repo_path": "skills/idea-spec-execution",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "spec",
+        "task-breakdown",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-spec-execution",
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "name": "powershell-ssh-linux-ops",

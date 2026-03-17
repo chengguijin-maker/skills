@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "eval_name": "simple-cli-tool",
+  "config": "without_skill",
+  "expectations": [
+    {
+      "text": "Response asks at least one question to the user instead of directly generating a solution",
+      "passed": false,
+      "evidence": "Generates complete '项目概述', '核心功能' list, and '建议的下一步' before asking any questions. Questions are an afterthought."
+    },
+    {
+      "text": "Response asks only ONE main question (not multiple questions bundled together)",
+      "passed": false,
+      "evidence": "Asks 5 groups of questions simultaneously: 技术选型, 样式系统, 输入输出, 使用方式, 发布方式"
+    },
+    {
+      "text": "Response probes the problem (who uses it, current workaround, why now) rather than jumping to implementation",
+      "passed": false,
+      "evidence": "Jumps directly to '核心功能' and '技术选型' without ever asking about the problem, user, or current workaround"
+    },
+    {
+      "text": "Response does NOT create WORK.md, repo structure, or task list in the first turn",
+      "passed": false,
+      "evidence": "Generates complete project overview, core features, tech options, CLI examples, and 5-step implementation plan"
+    },
+    {
+      "text": "Response explains why the question matters for the subsequent plan",
+      "passed": false,
+      "evidence": "Questions are presented as a flat list without explaining why each matters"
+    }
+  ]
+}

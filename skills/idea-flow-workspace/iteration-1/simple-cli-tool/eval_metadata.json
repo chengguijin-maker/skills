@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "eval_name": "simple-cli-tool",
+  "prompt": "用 idea-flow 帮我整理一下：我想做一个 CLI 工具，把 markdown 文件批量转成 PDF，支持自定义样式。",
+  "assertions": [
+    {
+      "id": "asks_question",
+      "text": "Response asks at least one question to the user instead of directly generating a solution",
+      "type": "qualitative"
+    },
+    {
+      "id": "one_question_only",
+      "text": "Response asks only ONE main question (not multiple questions bundled together)",
+      "type": "qualitative"
+    },
+    {
+      "id": "problem_framing",
+      "text": "Response probes the problem (who uses it, current workaround, why now) rather than jumping to implementation",
+      "type": "qualitative"
+    },
+    {
+      "id": "no_premature_files",
+      "text": "Response does NOT create WORK.md, repo structure, or task list in the first turn",
+      "type": "qualitative"
+    },
+    {
+      "id": "explains_why_asking",
+      "text": "Response explains why the question matters for the subsequent plan",
+      "type": "qualitative"
+    }
+  ]
+}

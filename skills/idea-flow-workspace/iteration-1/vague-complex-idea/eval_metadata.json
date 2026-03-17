@@ -1,0 +1,37 @@
+{
+  "eval_id": 3,
+  "eval_name": "vague-complex-idea",
+  "prompt": "用 idea-flow 帮我整理一下想法：我们团队有十几个人，内部文档散落在飞书、Notion、Google Docs 和各种 Git 仓库里，找东西很痛苦，想搞个统一的内部知识库。",
+  "assertions": [
+    {
+      "id": "summarizes_facts",
+      "text": "Response summarizes/acknowledges what the user has already stated before asking questions",
+      "type": "qualitative"
+    },
+    {
+      "id": "asks_question",
+      "text": "Response asks at least one clarifying question about unknowns",
+      "type": "qualitative"
+    },
+    {
+      "id": "one_question_only",
+      "text": "Response asks only ONE main question (not a list of 5 questions)",
+      "type": "qualitative"
+    },
+    {
+      "id": "no_complete_plan",
+      "text": "Response does NOT generate a complete solution/plan/architecture in the first turn",
+      "type": "qualitative"
+    },
+    {
+      "id": "probes_key_unknowns",
+      "text": "Response probes key unknowns (primary users, search needs, permissions, budget/timeline, etc.)",
+      "type": "qualitative"
+    },
+    {
+      "id": "uses_options_format",
+      "text": "If asking a question, response provides multiple choice options rather than open-ended questions",
+      "type": "qualitative"
+    }
+  ]
+}

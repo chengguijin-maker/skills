@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 README.md 文件", "passed": true, "evidence": "baseline 在 /tmp/test-idea-ops-1-baseline 生成了 README.md"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 AGENTS.md 文件", "passed": false, "evidence": "baseline 未生成 AGENTS.md，这是 idea-ops-lite 特有的概念"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 WORK.md 文件", "passed": false, "evidence": "baseline 未生成 WORK.md，而是创建了 docs/plan.md 作为项目计划"},
+    {"text": "创建了 archive/, scratch/, src/, tests/ 四个目录", "passed": false, "evidence": "baseline 创建了 src/ 和 tests/，但缺少 archive/ 和 scratch/"},
+    {"text": "WORK.md 包含项目 UID（PRJ-开头）", "passed": false, "evidence": "无 WORK.md，无 UID 系统"},
+    {"text": "WORK.md 包含术语表区块", "passed": false, "evidence": "无 WORK.md，无术语表"},
+    {"text": "WORK.md 包含目标与非目标区块", "passed": false, "evidence": "无 WORK.md，无目标/非目标区分"},
+    {"text": "WORK.md 包含范围图或功能映射区块", "passed": false, "evidence": "无 WORK.md，无结构化范围图"},
+    {"text": "WORK.md 包含架构与边界区块", "passed": false, "evidence": "无 WORK.md，虽然代码本身体现了架构但无文档化"},
+    {"text": "WORK.md 中有关于知识库工具的具体想法描述，而非空模板", "passed": false, "evidence": "直接跳入了代码实现（23 个源文件），而非先做结构化规划"},
+    {"text": "AGENTS.md 包含工作规则（如单文件优先、主控文件是WORK.md等）", "passed": false, "evidence": "无 AGENTS.md"}
+  ],
+  "summary": {"passed": 1, "failed": 10, "total": 11, "pass_rate": 0.09},
+  "timing": {"total_duration_seconds": 382.8}
+}

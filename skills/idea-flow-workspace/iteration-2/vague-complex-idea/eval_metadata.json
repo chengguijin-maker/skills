@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "eval_name": "vague-complex-idea",
+  "prompt": "用 idea-flow 帮我整理一下想法：我们团队有十几个人，内部文档散落在飞书、Notion、Google Docs 和各种 Git 仓库里，找东西很痛苦，想搞个统一的内部知识库。",
+  "assertions": [
+    {"id": "summarizes_facts", "text": "Response summarizes what the user has already stated before asking"},
+    {"id": "asks_question", "text": "Response asks at least one clarifying question"},
+    {"id": "one_question_only", "text": "Response asks only ONE main question"},
+    {"id": "no_complete_plan", "text": "Response does NOT generate a complete solution/plan in the first turn"},
+    {"id": "uses_options_format", "text": "Response provides multiple choice options"},
+    {"id": "no_workflow_intro", "text": "[NEW] Response does NOT start with '好的，我来用 idea-flow...' or explain what idea-flow is"}
+  ]
+}

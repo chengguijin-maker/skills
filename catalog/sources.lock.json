@@ -214,6 +214,63 @@
       "source": {
         "type": "first_party"
       }
+    },
+    {
+      "name": "changelog-maintenance",
+      "repo_path": "skills/changelog-maintenance",
+      "category": "documentation",
+      "tags": [
+        "changelog",
+        "release",
+        "versioning",
+        "documentation"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
+      "name": "idea-flow",
+      "repo_path": "skills/idea-flow",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "planning",
+        "socratic",
+        "spec",
+        "workflow"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
+      "name": "idea-ops-lite",
+      "repo_path": "skills/idea-ops-lite",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "validation",
+        "lightweight",
+        "workflow"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
+      "name": "idea-spec-execution",
+      "repo_path": "skills/idea-spec-execution",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "spec",
+        "task-breakdown",
+        "workflow"
+      ],
+      "source": {
+        "type": "first_party"
+      }
     }
   ]
 }

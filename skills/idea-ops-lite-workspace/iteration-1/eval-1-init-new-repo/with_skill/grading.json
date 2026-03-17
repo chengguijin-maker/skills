@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 README.md 文件", "passed": true, "evidence": "directory listing 确认 README.md 存在"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 AGENTS.md 文件", "passed": true, "evidence": "AGENTS.md 74 行，包含项目信息和 Rust 技术约束"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 WORK.md 文件", "passed": true, "evidence": "WORK.md 240 行，内容完整"},
+    {"text": "创建了 archive/, scratch/, src/, tests/ 四个目录", "passed": true, "evidence": "directory listing 确认四个目录均存在"},
+    {"text": "WORK.md 包含项目 UID（PRJ-开头）", "passed": true, "evidence": "PRJ-20260316-001"},
+    {"text": "WORK.md 包含术语表区块", "passed": true, "evidence": "6 个术语：Note、Vault、Tag、Frontmatter、Index、TUI"},
+    {"text": "WORK.md 包含目标与非目标区块", "passed": true, "evidence": "7 个目标（p0/p1 分级），6 个非目标"},
+    {"text": "WORK.md 包含范围图或功能映射区块", "passed": true, "evidence": "8 个 feature 需求，含依赖关系"},
+    {"text": "WORK.md 包含架构与边界区块", "passed": true, "evidence": "7 个模块、5 个接口契约、交互时序、关键限制"},
+    {"text": "WORK.md 中有关于知识库工具的具体想法描述，而非空模板", "passed": true, "evidence": "一句话想法、5 个痛点背景、5 项成功信号、完整技术栈选型"},
+    {"text": "AGENTS.md 包含工作规则（如单文件优先、主控文件是WORK.md等）", "passed": true, "evidence": "AGENTS.md 包含工作规则、去重规则、拆分规则、worktree 规则等"}
+  ],
+  "summary": {"passed": 11, "failed": 0, "total": 11, "pass_rate": 1.0},
+  "timing": {"total_duration_seconds": 232.2}
+}

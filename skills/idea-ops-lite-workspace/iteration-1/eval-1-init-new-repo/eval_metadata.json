@@ -1,0 +1,18 @@
+{
+  "eval_id": 1,
+  "eval_name": "init-new-repo",
+  "prompt": "我有个想法：做一个本地优先的个人知识库工具，支持 markdown 编辑、全文搜索和标签管理。目标用户是开发者，希望能在终端里快速查找和编辑笔记。帮我用 idea-ops-lite 从零开始初始化项目，把这个想法收敛成可执行方案。请在 /tmp/test-idea-ops-1 下初始化仓库。",
+  "assertions": [
+    "在 /tmp/test-idea-ops-1 下生成了 README.md 文件",
+    "在 /tmp/test-idea-ops-1 下生成了 AGENTS.md 文件",
+    "在 /tmp/test-idea-ops-1 下生成了 WORK.md 文件",
+    "创建了 archive/, scratch/, src/, tests/ 四个目录",
+    "WORK.md 包含项目 UID（PRJ-开头）",
+    "WORK.md 包含术语表区块",
+    "WORK.md 包含目标与非目标区块",
+    "WORK.md 包含范围图或功能映射区块",
+    "WORK.md 包含架构与边界区块",
+    "WORK.md 中有关于知识库工具的具体想法描述，而非空模板",
+    "AGENTS.md 包含工作规则（如单文件优先、主控文件是WORK.md等）"
+  ]
+}

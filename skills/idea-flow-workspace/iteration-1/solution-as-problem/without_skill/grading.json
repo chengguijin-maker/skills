@@ -1,0 +1,32 @@
+{
+  "eval_id": 2,
+  "eval_name": "solution-as-problem",
+  "config": "without_skill",
+  "expectations": [
+    {
+      "text": "Response identifies that the user gave a solution (React+TS rewrite) rather than a problem",
+      "passed": false,
+      "evidence": "Opens with '这是一个很常见也很有价值的技术升级项目' - accepts the rewrite as a given, no problem identification"
+    },
+    {
+      "text": "Response asks about the actual pain points with the jQuery admin panel",
+      "passed": false,
+      "evidence": "Pain point question is buried as item 5 of 5 question groups, treated as supplementary info rather than the starting point"
+    },
+    {
+      "text": "Response does NOT immediately accept React+TS as the decided approach and start speccing",
+      "passed": false,
+      "evidence": "Generates complete React tech stack table (React 18+, Vite, Zustand, Ant Design, etc.) and two migration strategies"
+    },
+    {
+      "text": "Response asks only ONE main question per message",
+      "passed": false,
+      "evidence": "Asks 5 groups of questions (system scale, backend, team/timeline, migration strategy, pain points)"
+    },
+    {
+      "text": "Response explicitly redirects from solution-space back to problem-space",
+      "passed": false,
+      "evidence": "Never redirects. Stays in solution space throughout, proposing tech stack and migration paths."
+    }
+  ]
+}

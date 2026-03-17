@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "simple-cli-tool",
+  "prompt": "用 idea-flow 帮我整理一下：我想做一个 CLI 工具，把 markdown 文件批量转成 PDF，支持自定义样式。",
+  "assertions": [
+    {"id": "asks_question", "text": "Response asks at least one question instead of directly generating a solution"},
+    {"id": "one_question_only", "text": "Response asks only ONE main question"},
+    {"id": "no_premature_files", "text": "Response does NOT create WORK.md, repo structure, or task list"},
+    {"id": "explains_why_asking", "text": "Response explains why the question matters"},
+    {"id": "no_workflow_intro", "text": "[NEW] Response does NOT start with '好的，我来用 idea-flow...' or explain what idea-flow is"},
+    {"id": "correct_intent_classification", "text": "[NEW] Response treats this as 'clear intent with details to fill' (NOT as 'solution disguised as problem'). Does not question whether user should build a CLI tool."},
+    {"id": "probes_details_not_intent", "text": "[NEW] Response asks about usage details (who uses it, current workaround, V1 priority) rather than questioning the intent itself"}
+  ]
+}

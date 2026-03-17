@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "skill_name": "idea-ops-lite",
+    "skill_path": "/home/jinchenggui/.claude/skills/idea-ops-lite",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-16T16:00:00Z",
+    "iteration": 2,
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "init-new-repo",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 358.1,
+        "tokens": 47768,
+        "tool_calls": 8,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "生成了 README.md", "passed": true, "evidence": "116 bytes"},
+        {"text": "生成了 AGENTS.md", "passed": true, "evidence": "49 lines"},
+        {"text": "生成了 WORK.md", "passed": true, "evidence": "255 lines, 15656 bytes"},
+        {"text": "创建了 archive/scratch/src/tests/", "passed": true, "evidence": "all 4 dirs confirmed"},
+        {"text": "WORK.md 包含 PRJ UID", "passed": true, "evidence": "PRJ-20260316-001"},
+        {"text": "包含术语表", "passed": true, "evidence": "section present"},
+        {"text": "包含目标与非目标", "passed": true, "evidence": "7 mentions"},
+        {"text": "包含范围图", "passed": true, "evidence": "11 REQ references"},
+        {"text": "包含架构与边界", "passed": true, "evidence": "15 MOD/架构 references"},
+        {"text": "有具体想法描述", "passed": true, "evidence": "67 domain-specific mentions (Markdown/全文搜索/标签/笔记)"},
+        {"text": "AGENTS.md 包含工作规则", "passed": true, "evidence": "contains 单文件 and WORK.md rules"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "init-new-repo",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 11,
+        "total": 11,
+        "time_seconds": 447.7,
+        "tokens": 137,
+        "tool_calls": 21,
+        "errors": 1
+      },
+      "expectations": [
+        {"text": "生成了 README.md", "passed": false, "evidence": "not created"},
+        {"text": "生成了 AGENTS.md", "passed": false, "evidence": "not created"},
+        {"text": "生成了 WORK.md", "passed": false, "evidence": "jumped to TypeScript code"},
+        {"text": "创建了 archive/scratch/src/tests/", "passed": false, "evidence": "only src/ and tests/"},
+        {"text": "WORK.md 包含 PRJ UID", "passed": false, "evidence": "no WORK.md"},
+        {"text": "包含术语表", "passed": false, "evidence": "no WORK.md"},
+        {"text": "包含目标与非目标", "passed": false, "evidence": "no WORK.md"},
+        {"text": "包含范围图", "passed": false, "evidence": "no WORK.md"},
+        {"text": "包含架构与边界", "passed": false, "evidence": "no doc, only code"},
+        {"text": "有具体想法描述", "passed": false, "evidence": "29 code files instead of planning"},
+        {"text": "AGENTS.md 包含工作规则", "passed": false, "evidence": "no AGENTS.md"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "takeover-existing",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.71,
+        "passed": 5,
+        "failed": 2,
+        "total": 7,
+        "time_seconds": 371.8,
+        "tokens": 42280,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "生成 WORK.md 主控文件", "passed": true, "evidence": "199 lines"},
+        {"text": "生成 AGENTS.md", "passed": false, "evidence": "not created"},
+        {"text": "提取已有文件内容", "passed": true, "evidence": "31 domain-specific refs"},
+        {"text": "整合到 WORK.md 对应区块", "passed": true, "evidence": "28 UID references"},
+        {"text": "草稿移到 scratch/", "passed": false, "evidence": "scratch/ created but notes.md not moved"},
+        {"text": "材料登记表记录分类", "passed": true, "evidence": "4 ART entries"},
+        {"text": "单文件优先", "passed": true, "evidence": "no extra docs created"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "takeover-existing",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 7,
+        "total": 7,
+        "time_seconds": 210.4,
+        "tokens": 10,
+        "tool_calls": 4,
+        "errors": 1
+      },
+      "expectations": [
+        {"text": "生成 WORK.md 主控文件", "passed": false, "evidence": "no WORK.md"},
+        {"text": "生成 AGENTS.md", "passed": false, "evidence": "no AGENTS.md"},
+        {"text": "提取已有文件内容", "passed": false, "evidence": "no work done"},
+        {"text": "整合到 WORK.md 对应区块", "passed": false, "evidence": "no WORK.md"},
+        {"text": "草稿移到 scratch/", "passed": false, "evidence": "no scratch/"},
+        {"text": "材料登记表记录分类", "passed": false, "evidence": "no registry"},
+        {"text": "单文件优先", "passed": false, "evidence": "no work performed"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "research-dedup",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 151.5,
+        "tokens": 33911,
+        "tool_calls": 9,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "先查看调研登记表", "passed": true, "evidence": "read WORK.md first"},
+        {"text": "识别 RES-001", "passed": true, "evidence": "5 references"},
+        {"text": "判断去重关系", "passed": true, "evidence": "detailed level analysis"},
+        {"text": "新增 RES-002 不覆盖", "passed": true, "evidence": "RES-002 added, RES-001 preserved"},
+        {"text": "完整字段", "passed": true, "evidence": "all fields including 复用说明"},
+        {"text": "状态/记录更新", "passed": true, "evidence": "实施记录 contains detailed dedup reasoning"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "research-dedup",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 90.6,
+        "tokens": 29063,
+        "tool_calls": 9,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "先查看调研登记表", "passed": true, "evidence": "read WORK.md first"},
+        {"text": "识别 RES-001", "passed": true, "evidence": "4 references"},
+        {"text": "判断去重关系", "passed": true, "evidence": "correct judgment"},
+        {"text": "新增 RES-002 不覆盖", "passed": true, "evidence": "RES-002 added"},
+        {"text": "完整字段", "passed": true, "evidence": "all fields filled"},
+        {"text": "状态/记录更新", "passed": true, "evidence": "实施记录 and 当前状态 updated"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.90, "stddev": 0.17, "min": 0.71, "max": 1.0},
+      "time_seconds": {"mean": 293.8, "stddev": 116.6, "min": 151.5, "max": 371.8},
+      "tokens": {"mean": 41320, "stddev": 7008, "min": 33911, "max": 47768}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.33, "stddev": 0.58, "min": 0.0, "max": 1.0},
+      "time_seconds": {"mean": 249.6, "stddev": 181.5, "min": 90.6, "max": 447.7},
+      "tokens": {"mean": 9737, "stddev": 16534, "min": 10, "max": 29063}
+    },
+    "delta": {
+      "pass_rate": "+0.57",
+      "time_seconds": "+44.2",
+      "tokens": "+31583"
+    }
+  },
+  "comparison_with_iteration_1": {
+    "iteration_1": {"with_skill_pass_rate": 1.0, "without_skill_pass_rate": 0.36, "delta": "+0.64"},
+    "iteration_2": {"with_skill_pass_rate": 0.90, "without_skill_pass_rate": 0.33, "delta": "+0.57"},
+    "notes": [
+      "Eval 1 with-skill improved: now fills WORK.md content (255 lines with 67 domain-specific mentions) vs iteration 1 which also passed",
+      "Eval 2 with-skill regressed slightly: 5/7 (71%) vs iteration 1's 7/7 (100%) - missing AGENTS.md and scratch/ file movement",
+      "Eval 3 remains tied at 6/6 for both configurations across both iterations",
+      "Baseline results consistent: Eval 1 baseline still jumps to code, Eval 2 baseline still fails to organize",
+      "Note: Eval 1 and 2 baselines partially impacted by 503 errors"
+    ]
+  },
+  "notes": [
+    "Eval 2 with-skill regression: AGENTS.md not generated and notes.md not moved to scratch/ - skill needs stronger instructions for takeover scenario",
+    "Eval 1 with-skill: WORK.md now has 255 lines of rich content (iteration 1 also had 240 lines) - '初始化后必须立即填充内容' instruction working as intended",
+    "Eval 3 with-skill: dedup reasoning now explicitly documented in 实施记录 with detailed judgment - new '去重判定依据' instruction working",
+    "Eval 3 remains a tie (6/6 both sides) since baseline can follow existing WORK.md structure",
+    "Baseline Eval 2 got 503'd before doing any work - 0/7 may not fully reflect capability, but iteration 1 also scored 0/7",
+    "Baseline Eval 1 produced 29 TypeScript code files instead of planning documents - consistent pattern across iterations"
+  ]
+}

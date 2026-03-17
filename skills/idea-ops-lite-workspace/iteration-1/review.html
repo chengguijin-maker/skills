@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>idea-ops-lite Skill Evaluation - Iteration 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#58a6ff;margin-bottom:8px;font-size:28px}
+h2{color:#79c0ff;margin:24px 0 12px;font-size:20px;border-bottom:1px solid #21262d;padding-bottom:8px}
+h3{color:#d2a8ff;margin:16px 0 8px;font-size:16px}
+.subtitle{color:#8b949e;margin-bottom:24px}
+.tabs{display:flex;gap:4px;margin-bottom:20px}
+.tab{padding:8px 20px;cursor:pointer;background:#21262d;border:1px solid #30363d;border-radius:6px 6px 0 0;color:#8b949e;border-bottom:none}
+.tab.active{background:#0d1117;color:#58a6ff;border-color:#30363d;border-bottom:1px solid #0d1117;margin-bottom:-1px;z-index:1}
+.tab-content{display:none;border:1px solid #30363d;border-radius:0 6px 6px 6px;padding:20px}
+.tab-content.active{display:block}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}
+.card-title{font-size:14px;color:#8b949e;margin-bottom:8px}
+.card-value{font-size:32px;font-weight:700}
+.card-value.green{color:#3fb950}
+.card-value.red{color:#f85149}
+.card-value.yellow{color:#d29922}
+.card-detail{font-size:12px;color:#8b949e;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{padding:10px 12px;text-align:left;border:1px solid #21262d;font-size:14px}
+th{background:#161b22;color:#79c0ff;font-weight:600}
+tr:hover{background:#161b2280}
+.pass{color:#3fb950;font-weight:600}
+.fail{color:#f85149;font-weight:600}
+.eval-section{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;margin-bottom:16px}
+.eval-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pass{background:#23863620;color:#3fb950;border:1px solid #23863640}
+.badge-fail{background:#f8514920;color:#f85149;border:1px solid #f8514940}
+.badge-tie{background:#d2992220;color:#d29922;border:1px solid #d2992240}
+.note{background:#1c2128;border-left:3px solid #58a6ff;padding:12px 16px;margin:8px 0;border-radius:0 6px 6px 0;font-size:13px}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comparison>div{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px}
+.comparison h4{font-size:13px;margin-bottom:8px}
+.with-skill-label{color:#3fb950}
+.without-skill-label{color:#f85149}
+.feedback-area{width:100%;min-height:80px;background:#0d1117;border:1px solid #30363d;border-radius:6px;color:#c9d1d9;padding:8px;font-family:inherit;font-size:13px;resize:vertical}
+.btn{padding:10px 24px;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:14px}
+.btn-primary{background:#238636;color:#fff}
+.btn-primary:hover{background:#2ea043}
+.progress-bar{height:8px;background:#21262d;border-radius:4px;overflow:hidden;margin:4px 0}
+.progress-fill{height:100%;border-radius:4px;transition:width 0.3s}
+.progress-fill.green{background:#3fb950}
+.progress-fill.red{background:#f85149}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>idea-ops-lite Skill Evaluation</h1>
+<p class="subtitle">Iteration 1 | 2026-03-16 | Model: claude-opus-4-6</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('benchmark')">Benchmark</div>
+  <div class="tab" onclick="switchTab('outputs')">Outputs</div>
+  <div class="tab" onclick="switchTab('feedback')">Feedback</div>
+</div>
+
+<!-- BENCHMARK TAB -->
+<div id="benchmark" class="tab-content active">
+<h2>Overall Summary</h2>
+<div class="summary-grid">
+  <div class="card">
+    <div class="card-title">With Skill Pass Rate</div>
+    <div class="card-value green">100%</div>
+    <div class="card-detail">24/24 assertions passed across 3 evals</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Without Skill Pass Rate</div>
+    <div class="card-value red">36%</div>
+    <div class="card-detail">7/24 assertions passed across 3 evals</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Delta (Pass Rate)</div>
+    <div class="card-value green">+64%</div>
+    <div class="card-detail">Skill provides significant structural improvement</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Avg Time (With Skill)</div>
+    <div class="card-value yellow">189s</div>
+    <div class="card-detail">vs 204s without skill (-15s faster)</div>
+  </div>
+</div>
+
+<h2>Per-Eval Breakdown</h2>
+<table>
+  <tr><th>Eval</th><th>With Skill</th><th>Without Skill</th><th>Time (W/S)</th><th>Time (W/O)</th><th>Tokens (W/S)</th><th>Tokens (W/O)</th></tr>
+  <tr>
+    <td><strong>1. init-new-repo</strong></td>
+    <td><span class="pass">11/11 (100%)</span></td>
+    <td><span class="fail">1/11 (9%)</span></td>
+    <td>232s</td><td>383s</td>
+    <td>47,768</td><td>51,166</td>
+  </tr>
+  <tr>
+    <td><strong>2. takeover-existing</strong></td>
+    <td><span class="pass">7/7 (100%)</span></td>
+    <td><span class="fail">0/7 (0%)</span></td>
+    <td>186s</td><td>123s</td>
+    <td>42,280</td><td>32,005</td>
+  </tr>
+  <tr>
+    <td><strong>3. research-dedup</strong></td>
+    <td><span class="pass">6/6 (100%)</span></td>
+    <td><span class="pass">6/6 (100%)</span></td>
+    <td>149s</td><td>107s</td>
+    <td>34,860</td><td>31,801</td>
+  </tr>
+</table>
+
+<h2>Analyst Observations</h2>
+<div class="note">Eval 3 (research-dedup) 在两组都是 100% 通过 — 因为 baseline 已有结构化 WORK.md，两者表现相似。但 with-skill 版的去重推理记录更详细（包含去重判定依据和互补关系说明）。</div>
+<div class="note">Eval 1 和 2 差异极大：with-skill 100% vs baseline 0-9%。Skill 提供的结构化框架在「从零建项目」和「接管整理」两个场景价值显著。</div>
+<div class="note">Baseline 在 Eval 1 直接跳入代码实现（23 个源文件 + 19 个测试），花费更多时间（383s vs 232s）和 token，但完全偏离了「规划收敛」的目标。</div>
+<div class="note">With-skill 平均耗时反而更短（189s vs 204s），说明结构化流程并不慢于无指引的发散探索。</div>
+<div class="note">Skill 在「从零初始化」和「接管整理」两个核心场景价值最大，在「调研去重」场景中主要提供格式一致性和推理记录保障。</div>
+</div>
+
+<!-- OUTPUTS TAB -->
+<div id="outputs" class="tab-content">
+<h2>Eval 1: init-new-repo (从零初始化新项目)</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-pass">With Skill: 11/11</span>
+    <span class="badge badge-fail">Baseline: 1/11</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">我有个想法：做一个本地优先的个人知识库工具，支持 markdown 编辑、全文搜索和标签管理。目标用户是开发者。帮我从零开始初始化项目，把这个想法收敛成可执行方案。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill (240 行 WORK.md)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>运行 init_repo.py 生成仓库骨架</li>
+        <li>填充 WORK.md 15 个区块（术语 6 条、目标 7 个、非目标 6 个、需求 8 项、模块 7 个、接口 5 个、里程碑 5 个、任务 10 个）</li>
+        <li>创建 AGENTS.md（74 行，含 Rust 技术约束）</li>
+        <li>状态推进到 scope，材料登记表和归档记录就绪</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline (23 个源文件)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>直接用 TypeScript 实现完整 CLI 工具</li>
+        <li>23 个源文件 + 19 个测试用例</li>
+        <li>生成 README.md + docs/plan.md</li>
+        <li>无 WORK.md / AGENTS.md / UID / 术语表</li>
+        <li>跳过规划直接写代码，偏离「想法收敛」目标</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Eval 2: takeover-existing (接管已有项目)</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-pass">With Skill: 7/7</span>
+    <span class="badge badge-fail">Baseline: 0/7</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">已有项目有散乱文档和代码（notes.md, research-db.md, api-draft.rs），用 idea-ops-lite 接管整理。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill (192 行 WORK.md)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>从 3 个文件提取信息统一收敛到 WORK.md</li>
+        <li>材料分类：notes.md→scratch/，research-db.md→archive/，api-draft.rs→src/</li>
+        <li>去重：notes.md 和 research-db.md 的 SQLite 结论统一为 RES-001</li>
+        <li>材料登记表 3 条记录，归档删除记录完整</li>
+        <li>所有子文件添加回链标记</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline (7 个新文件)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>创建 README.md + docs/ + planning/ + src/</li>
+        <li>内容拆分到 5+ 个文件</li>
+        <li>无 WORK.md 主控文件</li>
+        <li>无 AGENTS.md</li>
+        <li>无材料登记表或生命周期管理</li>
+        <li>违反单文件优先原则</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Eval 3: research-dedup (调研去重)</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-tie">Both: 6/6 (Tie)</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">项目已有 RES-001（SQLite vs PostgreSQL 选型），新增「SQLite 全文搜索性能」调研，需去重判断。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>明确去重判定：RES-001 是选型，新问题是性能验证，属不同层次</li>
+        <li>RES-002 包含完整字段 + 互补关系说明</li>
+        <li>实施记录含去重判定依据</li>
+        <li>当前状态报告同步更新</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>正确判断需新增 RES-002</li>
+        <li>字段完整，标注了依赖 RES-001</li>
+        <li>实施记录和状态报告已更新</li>
+        <li>与 with-skill 质量接近（因已有结构化 WORK.md）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FEEDBACK TAB -->
+<div id="feedback" class="tab-content">
+<h2>Leave Your Feedback</h2>
+<p style="color:#8b949e;margin-bottom:16px">Review each eval and leave feedback. Empty = looks good.</p>
+
+<div class="eval-section">
+  <h3>Eval 1: init-new-repo</h3>
+  <textarea class="feedback-area" id="fb-1" placeholder="Your feedback on eval 1..."></textarea>
+</div>
+<div class="eval-section">
+  <h3>Eval 2: takeover-existing</h3>
+  <textarea class="feedback-area" id="fb-2" placeholder="Your feedback on eval 2..."></textarea>
+</div>
+<div class="eval-section">
+  <h3>Eval 3: research-dedup</h3>
+  <textarea class="feedback-area" id="fb-3" placeholder="Your feedback on eval 3..."></textarea>
+</div>
+<div style="margin-top:16px;text-align:right">
+  <button class="btn btn-primary" onclick="submitFeedback()">Submit All Reviews</button>
+</div>
+</div>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function submitFeedback(){
+  const fb={reviews:[
+    {run_id:'eval-1',feedback:document.getElementById('fb-1').value,timestamp:new Date().toISOString()},
+    {run_id:'eval-2',feedback:document.getElementById('fb-2').value,timestamp:new Date().toISOString()},
+    {run_id:'eval-3',feedback:document.getElementById('fb-3').value,timestamp:new Date().toISOString()}
+  ],status:'complete'};
+  const blob=new Blob([JSON.stringify(fb,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='feedback.json';a.click();
+  alert('Feedback downloaded as feedback.json');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "eval_name": "research-dedup",
+  "prompt": "我的项目 /tmp/test-idea-ops-3 已经有 WORK.md，里面有调研登记表记录了之前关于 SQLite vs PostgreSQL 的调研（结论是选 SQLite）。现在我想调研一下 'SQLite 的全文搜索性能'。请按照 idea-ops-lite 的调研去重规则处理：先检查旧调研，判断是否需要新增，如果需要则正确新增并更新 WORK.md。",
+  "assertions": [
+    "在操作前先查看了 WORK.md 中已有的调研登记表",
+    "识别出已有的 SQLite vs PostgreSQL 调研（RES-001）",
+    "判断新调研与旧调研的关系（相关但问题不同，需新增）",
+    "新增了调研条目（如 RES-002），而非覆盖旧条目",
+    "新调研条目包含完整字段：问题、结论、证据来源、上次检查时间、重查条件",
+    "WORK.md 的状态或实施记录区块有更新记录"
+  ]
+}

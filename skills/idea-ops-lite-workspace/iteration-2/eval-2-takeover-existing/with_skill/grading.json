@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "生成或更新了 WORK.md 主控文件", "passed": true, "evidence": "WORK.md created (199 lines, 8779 bytes) with full structure"},
+    {"text": "生成或更新了 AGENTS.md 约束文件", "passed": false, "evidence": "No AGENTS.md found in /tmp/test-idea-ops-2/"},
+    {"text": "WORK.md 中包含从已有文件中提取的内容（非空模板）", "passed": true, "evidence": "31 references to Rust/tantivy/SQLite/Obsidian/NoteStore from source files"},
+    {"text": "已有的散乱文档内容被整合到 WORK.md 的对应区块中", "passed": true, "evidence": "28 UID references (RES-/TERM-/G-/REQ-/MOD-) with content from notes.md, research-db.md, api-draft.rs"},
+    {"text": "临时或草稿材料被移到或建议移到 scratch/ 目录", "passed": false, "evidence": "scratch/ dir created but notes.md still in root, not moved"},
+    {"text": "WORK.md 包含材料登记表，记录了现有文件的分类", "passed": true, "evidence": "4 ART- references in 材料登记表"},
+    {"text": "没有创建多余的文档文件（单文件优先原则）", "passed": true, "evidence": "Only 3 .md files total (WORK.md + original notes.md + research-db.md), no extra docs created"}
+  ],
+  "summary": {"passed": 5, "failed": 2, "total": 7, "pass_rate": 0.71},
+  "timing": {"total_duration_seconds": 371.8}
+}

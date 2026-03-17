@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "solution-as-problem",
+  "config": "with_skill",
+  "expectations": [
+    {"text": "Identifies solution not problem", "passed": true, "evidence": "'这是一个明确的技术方案，但我需要先退一步搞清楚它要解决的问题'"},
+    {"text": "Asks about pain points", "passed": true, "evidence": "Asks '最让团队头疼的是哪类问题？' with A/B/C/D"},
+    {"text": "Does NOT accept React as given", "passed": true, "evidence": "No React tech stack, no migration strategies. Stays in problem space."},
+    {"text": "One question only", "passed": true, "evidence": "Single question with options"},
+    {"text": "Redirects to problem", "passed": true, "evidence": "'不同的痛点会导向完全不同的重写策略、范围和优先级，甚至可能根本不需要全量重写'"},
+    {"text": "[NEW] No workflow intro", "passed": true, "evidence": "No '好的，我来用 idea-flow...' - starts directly with the observation about the solution"}
+  ]
+}

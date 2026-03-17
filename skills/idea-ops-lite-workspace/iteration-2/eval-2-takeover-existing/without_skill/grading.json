@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "生成或更新了 WORK.md 主控文件", "passed": false, "evidence": "No WORK.md - only original 3 files remain unchanged"},
+    {"text": "生成或更新了 AGENTS.md 约束文件", "passed": false, "evidence": "No AGENTS.md created"},
+    {"text": "WORK.md 中包含从已有文件中提取的内容（非空模板）", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "已有的散乱文档内容被整合到 WORK.md 的对应区块中", "passed": false, "evidence": "No consolidation performed - 503 killed agent before any work"},
+    {"text": "临时或草稿材料被移到或建议移到 scratch/ 目录", "passed": false, "evidence": "No scratch/ directory, no file movements"},
+    {"text": "WORK.md 包含材料登记表，记录了现有文件的分类", "passed": false, "evidence": "No WORK.md or material registry"},
+    {"text": "没有创建多余的文档文件（单文件优先原则）", "passed": false, "evidence": "No work performed due to API error"}
+  ],
+  "summary": {"passed": 0, "failed": 7, "total": 7, "pass_rate": 0.0},
+  "timing": {"total_duration_seconds": 210.4}
+}

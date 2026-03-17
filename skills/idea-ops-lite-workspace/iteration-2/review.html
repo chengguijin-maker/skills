@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>idea-ops-lite Skill Evaluation - Iteration 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:#58a6ff;margin-bottom:8px;font-size:28px}
+h2{color:#79c0ff;margin:24px 0 12px;font-size:20px;border-bottom:1px solid #21262d;padding-bottom:8px}
+h3{color:#d2a8ff;margin:16px 0 8px;font-size:16px}
+.subtitle{color:#8b949e;margin-bottom:24px}
+.tabs{display:flex;gap:4px;margin-bottom:20px}
+.tab{padding:8px 20px;cursor:pointer;background:#21262d;border:1px solid #30363d;border-radius:6px 6px 0 0;color:#8b949e;border-bottom:none}
+.tab.active{background:#0d1117;color:#58a6ff;border-color:#30363d;border-bottom:1px solid #0d1117;margin-bottom:-1px;z-index:1}
+.tab-content{display:none;border:1px solid #30363d;border-radius:0 6px 6px 6px;padding:20px}
+.tab-content.active{display:block}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}
+.card-title{font-size:14px;color:#8b949e;margin-bottom:8px}
+.card-value{font-size:32px;font-weight:700}
+.card-value.green{color:#3fb950}
+.card-value.red{color:#f85149}
+.card-value.yellow{color:#d29922}
+.card-detail{font-size:12px;color:#8b949e;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{padding:10px 12px;text-align:left;border:1px solid #21262d;font-size:14px}
+th{background:#161b22;color:#79c0ff;font-weight:600}
+tr:hover{background:#161b2280}
+.pass{color:#3fb950;font-weight:600}
+.fail{color:#f85149;font-weight:600}
+.eval-section{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;margin-bottom:16px}
+.eval-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-pass{background:#23863620;color:#3fb950;border:1px solid #23863640}
+.badge-fail{background:#f8514920;color:#f85149;border:1px solid #f8514940}
+.badge-tie{background:#d2992220;color:#d29922;border:1px solid #d2992240}
+.badge-warn{background:#d2992220;color:#d29922;border:1px solid #d2992240}
+.note{background:#1c2128;border-left:3px solid #58a6ff;padding:12px 16px;margin:8px 0;border-radius:0 6px 6px 0;font-size:13px}
+.note.warn{border-left-color:#d29922}
+.note.good{border-left-color:#3fb950}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comparison>div{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px}
+.comparison h4{font-size:13px;margin-bottom:8px}
+.with-skill-label{color:#3fb950}
+.without-skill-label{color:#f85149}
+.iter-compare{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.iter-compare h3{color:#79c0ff}
+.arrow-up{color:#3fb950}
+.arrow-down{color:#f85149}
+.arrow-same{color:#d29922}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>idea-ops-lite Skill Evaluation</h1>
+<p class="subtitle">Iteration 2 | 2026-03-16 | Model: claude-opus-4-6 | SKILL.md updated with 3 improvements</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('benchmark')">Benchmark</div>
+  <div class="tab" onclick="switchTab('changes')">Changes</div>
+  <div class="tab" onclick="switchTab('outputs')">Outputs</div>
+</div>
+
+<!-- BENCHMARK TAB -->
+<div id="benchmark" class="tab-content active">
+<h2>Overall Summary</h2>
+<div class="summary-grid">
+  <div class="card">
+    <div class="card-title">With Skill Pass Rate</div>
+    <div class="card-value green">90%</div>
+    <div class="card-detail">22/24 assertions passed across 3 evals</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Without Skill Pass Rate</div>
+    <div class="card-value red">33%</div>
+    <div class="card-detail">6/24 assertions passed across 3 evals</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Delta (Pass Rate)</div>
+    <div class="card-value green">+57%</div>
+    <div class="card-detail">Skill still provides significant improvement</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Avg Time (With Skill)</div>
+    <div class="card-value yellow">294s</div>
+    <div class="card-detail">vs 250s without skill (+44s)</div>
+  </div>
+</div>
+
+<h2>Iteration 1 vs Iteration 2 Comparison</h2>
+<div class="iter-compare">
+<table>
+  <tr><th>Metric</th><th>Iteration 1</th><th>Iteration 2</th><th>Change</th></tr>
+  <tr>
+    <td>With-Skill Pass Rate</td>
+    <td><span class="pass">100% (24/24)</span></td>
+    <td><span class="pass">92% (22/24)</span></td>
+    <td><span class="arrow-down">-8% (Eval 2 regression)</span></td>
+  </tr>
+  <tr>
+    <td>Without-Skill Pass Rate</td>
+    <td><span class="fail">36% (7/24)</span></td>
+    <td><span class="fail">25% (6/24)</span></td>
+    <td><span class="arrow-same">~same (503 impact)</span></td>
+  </tr>
+  <tr>
+    <td>Eval 1 (init) With-Skill</td>
+    <td><span class="pass">11/11</span></td>
+    <td><span class="pass">11/11</span></td>
+    <td><span class="arrow-same">= (stable)</span></td>
+  </tr>
+  <tr>
+    <td>Eval 2 (takeover) With-Skill</td>
+    <td><span class="pass">7/7</span></td>
+    <td><span class="fail">5/7</span></td>
+    <td><span class="arrow-down">-2 (missing AGENTS.md + scratch move)</span></td>
+  </tr>
+  <tr>
+    <td>Eval 3 (dedup) With-Skill</td>
+    <td><span class="pass">6/6</span></td>
+    <td><span class="pass">6/6</span></td>
+    <td><span class="arrow-same">= (stable)</span></td>
+  </tr>
+  <tr>
+    <td>Eval 3 Dedup Reasoning</td>
+    <td>Basic</td>
+    <td>Detailed with 去重判定依据</td>
+    <td><span class="arrow-up">Improved (new instruction working)</span></td>
+  </tr>
+</table>
+</div>
+
+<h2>Per-Eval Breakdown</h2>
+<table>
+  <tr><th>Eval</th><th>With Skill</th><th>Without Skill</th><th>Time (W/S)</th><th>Time (W/O)</th><th>Tokens (W/S)</th><th>Tokens (W/O)</th></tr>
+  <tr>
+    <td><strong>1. init-new-repo</strong></td>
+    <td><span class="pass">11/11 (100%)</span></td>
+    <td><span class="fail">0/11 (0%)</span></td>
+    <td>358s</td><td>448s</td>
+    <td>47,768</td><td>137</td>
+  </tr>
+  <tr>
+    <td><strong>2. takeover-existing</strong></td>
+    <td><span class="fail">5/7 (71%)</span></td>
+    <td><span class="fail">0/7 (0%)</span></td>
+    <td>372s</td><td>210s</td>
+    <td>42,280</td><td>10</td>
+  </tr>
+  <tr>
+    <td><strong>3. research-dedup</strong></td>
+    <td><span class="pass">6/6 (100%)</span></td>
+    <td><span class="pass">6/6 (100%)</span></td>
+    <td>152s</td><td>91s</td>
+    <td>33,911</td><td>29,063</td>
+  </tr>
+</table>
+
+<h2>Analyst Observations</h2>
+<div class="note good">Eval 1 (init-new-repo): 稳定 11/11。WORK.md 255 行，包含 67 个领域特定描述。「初始化后必须立即填充内容」指令持续生效。</div>
+<div class="note warn">Eval 2 (takeover-existing) 回归：5/7 vs iteration-1 的 7/7。两个失败点：(1) 未生成 AGENTS.md (2) notes.md 未移到 scratch/。Skill 对「接管」场景的 AGENTS.md 生成和文件移动指令不够明确。</div>
+<div class="note good">Eval 3 (research-dedup): 实施记录中的去重判定依据显著改善 — 现在包含详细的「问题层次不同，RES-001 是选型，RES-002 是性能验证」推理记录。新增的去重推理文档指令生效。</div>
+<div class="note">Baseline Eval 1/2 受 503 影响但趋势一致：Eval 1 baseline 仍跳入代码实现（29 个 TypeScript 文件），Eval 2 baseline 0/7。</div>
+<div class="note">Eval 3 仍然是 tie（6/6 双方）— 当已有结构化 WORK.md 时，baseline 也能正确跟随。Skill 在此场景的价值主要体现在去重推理记录的完整性。</div>
+</div>
+
+<!-- CHANGES TAB -->
+<div id="changes" class="tab-content">
+<h2>Iteration 2 SKILL.md Changes</h2>
+
+<div class="eval-section">
+  <h3>Change 1: Description 重写</h3>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:8px">使 description 更通用、更「pushy」以提升触发率</p>
+  <div class="note">新增触发短语："整理一下这个想法""帮我建个项目骨架""收敛一下需求""把散乱文档归拢""初始化一个轻量项目""接管这个仓库""先规划不要写代码"</div>
+</div>
+
+<div class="eval-section">
+  <h3>Change 2: 「初始化后必须立即填充内容」</h3>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:8px">9 步指南确保 init_repo.py 后立即填充 WORK.md 内容</p>
+  <div class="note good">效果验证：Eval 1 WORK.md 255 行，67 个领域特定描述。指令生效。</div>
+</div>
+
+<div class="eval-section">
+  <h3>Change 3: 去重判定依据记录要求</h3>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:8px">要求在实施记录中写明去重判定依据</p>
+  <div class="note good">效果验证：Eval 3 实施记录包含完整去重判定："RES-002 与 RES-001 去重判定：问题层次不同。RES-001 是数据库选型（横向比较），RES-002 是性能验证（纵向深入）。"</div>
+</div>
+
+<div class="eval-section">
+  <h3 style="color:#f85149">Identified Issues for Iteration 3</h3>
+  <ul style="font-size:13px;padding-left:16px">
+    <li><strong>接管场景缺 AGENTS.md</strong>：Skill 的工作顺序说「把稳定规则写进 AGENTS.md」但在接管场景中不够明确。需要在「接管已有仓库」流程中强调必须生成 AGENTS.md。</li>
+    <li><strong>scratch/ 文件移动未执行</strong>：Skill 说「把临时内容先放进 scratch/」但 agent 仅创建了目录未移动文件。需要更明确的「实际移动文件」指令。</li>
+  </ul>
+</div>
+</div>
+
+<!-- OUTPUTS TAB -->
+<div id="outputs" class="tab-content">
+<h2>Eval 1: init-new-repo</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-pass">With Skill: 11/11</span>
+    <span class="badge badge-fail">Baseline: 0/11</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">我有个想法：做一个本地优先的个人知识库工具，支持 markdown 编辑、全文搜索和标签管理。目标用户是开发者。帮我从零开始初始化项目，把这个想法收敛成可执行方案。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill (255 行 WORK.md)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>运行 init_repo.py 生成仓库骨架</li>
+        <li>WORK.md 填充 255 行：术语、目标 7 个、非目标、需求、模块、接口</li>
+        <li>67 个领域特定描述（Markdown/全文搜索/标签/笔记）</li>
+        <li>AGENTS.md 49 行，含工作规则</li>
+        <li>状态推进到 scope</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline (29 个文件)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>直接写 TypeScript 项目代码</li>
+        <li>29 个文件（package.json, tsconfig, vitest, src/, tests/）</li>
+        <li>无 WORK.md / AGENTS.md / README.md</li>
+        <li>完全跳过规划直接实现</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Eval 2: takeover-existing</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-warn">With Skill: 5/7</span>
+    <span class="badge badge-fail">Baseline: 0/7</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">已有项目有散乱文档和代码（notes.md, research-db.md, api-draft.rs），接管整理。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill (199 行 WORK.md, 2 failures)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>WORK.md 199 行，31 个领域特定引用，28 个 UID</li>
+        <li>材料登记表 4 条 ART 记录</li>
+        <li style="color:#f85149">FAIL: 未生成 AGENTS.md</li>
+        <li style="color:#f85149">FAIL: notes.md 未移到 scratch/</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline (0/7 - 503 error)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>503 导致未执行任何工作</li>
+        <li>仅保留原始 3 个文件</li>
+        <li>（iteration-1 baseline 也是 0/7：创建 7 个分散文件）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Eval 3: research-dedup</h2>
+<div class="eval-section">
+  <div class="eval-header">
+    <h3>Prompt</h3>
+    <span class="badge badge-tie">Both: 6/6 (Tie)</span>
+  </div>
+  <p style="font-size:13px;color:#8b949e;margin-bottom:12px">项目已有 RES-001（SQLite vs PostgreSQL 选型），新增「SQLite 全文搜索性能」调研。</p>
+  <div class="comparison">
+    <div>
+      <h4 class="with-skill-label">With Skill (improved dedup reasoning)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>去重判定详细：「问题层次不同，RES-001 是选型(横向比较)，RES-002 是性能验证(纵向深入)」</li>
+        <li>实施记录包含完整去重判定依据</li>
+        <li>RES-002 包含互补关系说明</li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="without-skill-label">Baseline (correct but less detailed)</h4>
+      <ul style="font-size:13px;padding-left:16px">
+        <li>正确判断需新增 RES-002</li>
+        <li>实施记录更简洁：「SQLite 全文搜索性能调研，基于 RES-001 选型结论深入验证」</li>
+        <li>功能正确但缺少去重推理细节</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

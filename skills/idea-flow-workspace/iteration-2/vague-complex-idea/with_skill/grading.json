@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "eval_name": "vague-complex-idea",
+  "config": "with_skill",
+  "expectations": [
+    {"text": "Summarizes facts", "passed": true, "evidence": "Lists 4 bullet points: team size, platforms, pain, goal"},
+    {"text": "Asks at least one question", "passed": true, "evidence": "'找东西痛苦最主要的场景是哪种？'"},
+    {"text": "One question only", "passed": true, "evidence": "Single focused question"},
+    {"text": "No complete plan", "passed": true, "evidence": "No solutions proposed. Ends with options."},
+    {"text": "Multiple choice options", "passed": true, "evidence": "A/B/C/D with descriptions and solution implications"},
+    {"text": "[NEW] No workflow intro", "passed": true, "evidence": "Starts with '先梳理一下你已经说清楚的部分：' - no intro or explanation"}
+  ]
+}
