@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-17T14:13:41.258138Z",
+  "generated_at": "2026-03-17T16:15:25.784857Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -72,7 +72,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/changelog-maintenance",
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "content_hash": "ebe4896d30937a1d4811332acbc6fb69f80c9344da00f08b6163f42f83bcb5f3"
     },
     {
       "name": "chrome-devtools",
@@ -166,7 +166,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-flow",
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "content_hash": "f0b99ce0474fa6ffc12a25ed29dfbebe617caff4dd28ff53e96aa9267a678580"
     },
     {
       "name": "idea-ops-lite",
@@ -181,7 +181,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-ops-lite",
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "content_hash": "22ce2c36aa7fb1c82b7bfdf9d0872d19f0abf02884c6a5dc792fe917fa54b370"
     },
     {
       "name": "idea-spec-execution",
@@ -196,7 +196,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-spec-execution",
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "content_hash": "f04476261f3e117b109abf401f7248b58b1ecadf969feb6998c6620e2f81c6ce"
     },
     {
       "name": "powershell-ssh-linux-ops",
@@ -300,7 +300,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "e05cd40e74633e0a90515efba91e4502461ff636ddec92f0e6a3073a1ffece61"
+      "content_hash": "c134e95eb6b2082b60c21e23f7d5cbdf723f0742e708c35165f3e69b3690219a"
     }
   ]
 }
