@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-17T16:15:25.784857Z",
+  "generated_at": "2026-03-17T18:15:47.513923Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -58,6 +58,22 @@
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
       "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
+    },
+    {
+      "name": "cc-go",
+      "description": "Claude Code Go \u2014 autonomous task executor that decomposes work, runs subagents in parallel, tracks progress, and verifies results. Use /cc-go when you have a concrete task and want Claude to just get it done without asking at every step. Effective for: multi-file coding tasks, bug investigation and fixing, research and analysis, project scaffolding, complex refactoring, automation scripting (deploy, CI/CD, build pipelines), migration tasks (JS\u2192TS, framework upgrades), and any task requiring parallel execution. Use this skill whenever the user describes a substantial coding task, asks to build/create/implement/write something multi-step, wants debugging help on a complex issue, or needs a research report. Works with Chinese prompts like '/cc-go \u5b9e\u73b0\u767b\u5f55\u529f\u80fd' or '/cc-go \u5e2e\u6211\u6392\u67e5\u8fd9\u4e2a bug'. Do NOT use for: simple one-line questions, git commits, quick code reviews, or single-command operations.",
+      "repo_path": "skills/cc-go",
+      "category": "productivity",
+      "tags": [
+        "autonomous",
+        "execution",
+        "parallel",
+        "subagent",
+        "task-management"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cc-go",
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "name": "changelog-maintenance",

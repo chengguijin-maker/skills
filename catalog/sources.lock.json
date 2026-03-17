@@ -271,6 +271,21 @@
       "source": {
         "type": "first_party"
       }
+    },
+    {
+      "name": "cc-go",
+      "repo_path": "skills/cc-go",
+      "category": "productivity",
+      "tags": [
+        "autonomous",
+        "execution",
+        "parallel",
+        "subagent",
+        "task-management"
+      ],
+      "source": {
+        "type": "first_party"
+      }
     }
   ]
 }
