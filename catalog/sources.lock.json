@@ -273,6 +273,20 @@
       }
     },
     {
+      "name": "skill-installer",
+      "repo_path": "skills/skill-installer",
+      "category": "management",
+      "tags": [
+        "skills",
+        "install",
+        "github",
+        "codex"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "cc-go",
       "repo_path": "skills/cc-go",
       "category": "productivity",
