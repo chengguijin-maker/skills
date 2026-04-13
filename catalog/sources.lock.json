@@ -300,6 +300,42 @@
       "source": {
         "type": "first_party"
       }
+    },
+    {
+      "name": "hv-analysis",
+      "repo_path": "skills/hv-analysis",
+      "category": "productivity",
+      "tags": [
+        "research",
+        "analysis",
+        "horizontal",
+        "vertical",
+        "report"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "KKKKhazix/khazix-skills",
+        "upstream_path": "hv-analysis",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "khazix-writer",
+      "repo_path": "skills/khazix-writer",
+      "category": "productivity",
+      "tags": [
+        "writing",
+        "wechat",
+        "article",
+        "long-form",
+        "style"
+      ],
+      "source": {
+        "type": "mirrored",
+        "upstream_repo": "KKKKhazix/khazix-skills",
+        "upstream_path": "khazix-writer",
+        "ref": "main"
+      }
     }
   ]
 }
