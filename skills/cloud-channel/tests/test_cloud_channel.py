@@ -62,6 +62,15 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def read_state_events(root: Path) -> list[dict[str, object]]:
+    state_file = root / "channel-state.jsonl"
+    return [
+        json.loads(line)
+        for line in state_file.read_text(encoding="utf-8").splitlines()
+        if line.strip() and line.startswith("{")
+    ]
+
+
 class CloudChannelTests(unittest.TestCase):
     def test_detect_outputs_environment_report(self) -> None:
         result = run_command("detect", "--raw-json")
@@ -107,13 +116,13 @@ class CloudChannelTests(unittest.TestCase):
             run_command("unpack", "--input-dir", str(inbox), "--out-dir", str(received))
             payload_file = next(received.glob("*/payload/payload.txt"))
             self.assertEqual(payload_file.read_text(encoding="utf-8"), "hello cloud outer")
-            index_records = [
-                json.loads(line)
-                for line in (received / "index.jsonl").read_text(encoding="utf-8").splitlines()
-                if line.strip()
-            ]
-            self.assertEqual(index_records[0]["conversation_id"], index_records[0]["message_id"])
-            self.assertEqual(index_records[0]["reply_to"], "")
+            state_events = read_state_events(root)
+            created = next(event for event in state_events if event["event"] == "created")
+            received_event = next(event for event in state_events if event["event"] == "received")
+            self.assertEqual(created["conversation_id"], created["message_id"])
+            self.assertEqual(received_event["conversation_id"], received_event["message_id"])
+            self.assertEqual(received_event["reply_to"], "")
+            self.assertFalse((received / "index.jsonl").exists())
 
     def test_inline_file_round_trip_preserves_hash(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -453,6 +462,9 @@ class CloudChannelTests(unittest.TestCase):
             payload_folder = outbox / message["payload"]["folder_name"]
             self.assertTrue(payload_folder.is_dir())
             self.assertEqual((payload_folder / "SKILL.md").read_text(encoding="utf-8"), "skill body")
+            created = next(event for event in read_state_events(root) if event["event"] == "created")
+            self.assertEqual(created["payload_type"], "sidecar-folder")
+            self.assertIn("outbox/", created["paths"][0])
 
             shutil.copy2(json_file, inbox / json_file.name)
             shutil.copytree(payload_folder, inbox / payload_folder.name, copy_function=shutil.copy2)
@@ -665,13 +677,31 @@ class CloudChannelTests(unittest.TestCase):
             self.assertEqual(reply["conversation_id"], request["message_id"])
 
             run_command("unpack", "--input-dir", str(reply_outbox), "--out-dir", str(received))
-            index_records = [
-                json.loads(line)
-                for line in (received / "index.jsonl").read_text(encoding="utf-8").splitlines()
-                if line.strip()
-            ]
-            self.assertEqual(index_records[0]["reply_to"], request["message_id"])
-            self.assertEqual(index_records[0]["conversation_id"], request["message_id"])
+            state_events = read_state_events(root)
+            received_event = next(
+                event for event in state_events if event["event"] == "received" and event["message_id"] == reply["message_id"]
+            )
+            reply_received = next(
+                event
+                for event in state_events
+                if event["event"] == "reply_received" and event["message_id"] == reply["message_id"]
+            )
+            self.assertEqual(received_event["reply_to"], request["message_id"])
+            self.assertEqual(received_event["conversation_id"], request["message_id"])
+            self.assertEqual(reply_received["reply_to"], request["message_id"])
+            moved = next(
+                event
+                for event in state_events
+                if event["event"] == "moved_to_sent" and event["message_id"] == request["message_id"]
+            )
+            self.assertIn("sent/", moved["path"])
+            self.assertFalse(any(outbox.glob("*.json")))
+            self.assertTrue(next((root / "sent").glob(f"*/{request['message_id']}/*.json")).exists())
+            self.assertFalse((received / "index.jsonl").exists())
+            (root / "channel-state.jsonl").write_text(
+                (root / "channel-state.jsonl").read_text(encoding="utf-8") + "bad json line\n",
+                encoding="utf-8",
+            )
 
             followup_outbox = root / "followup-outbox"
             followup_outbox.mkdir()
@@ -792,6 +822,29 @@ class CloudChannelTests(unittest.TestCase):
             commands = (out_dir / "run_on_cloud_inner.md").read_text(encoding="utf-8")
             self.assertIn("换 patch set", commands)
             self.assertIn("换新 change", commands)
+
+    def test_clean_removes_only_old_sent_archives(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            old_sent = root / "sent" / "20000101" / "old-message"
+            new_sent = root / "sent" / "29990101" / "new-message"
+            outbox = root / "outbox"
+            received = root / "received"
+            old_sent.mkdir(parents=True)
+            new_sent.mkdir(parents=True)
+            outbox.mkdir()
+            received.mkdir()
+            (old_sent / "message.json").write_text("{}", encoding="utf-8")
+            (new_sent / "message.json").write_text("{}", encoding="utf-8")
+            (outbox / "keep.json").write_text("{}", encoding="utf-8")
+            (received / "keep.json").write_text("{}", encoding="utf-8")
+
+            run_command("clean", "--root", str(root), "--sent-days", "14")
+
+            self.assertFalse((root / "sent" / "20000101").exists())
+            self.assertTrue(new_sent.exists())
+            self.assertTrue((outbox / "keep.json").exists())
+            self.assertTrue((received / "keep.json").exists())
 
     def test_environment_guard_blocks_known_wrong_direction(self) -> None:
         detect_result = run_command("detect", "--raw-json")

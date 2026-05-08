@@ -25,6 +25,8 @@ python .\scripts\cloud_channel.py unpack --input-dir .\inbox --out-dir .\receive
 python .\scripts\cloud_channel.py pack --reply-to <message_id> --text "已收到，开始处理"
 ```
 
+本机会把创建、收到和回复配对事件追加到通道根目录的 `channel-state.jsonl`。收到回复后，如果本机 `outbox` 里还保留原始发送件，会自动移入 `sent/<yyyyMMdd>/<message_id>/`。
+
 ## 云内到云外已有压缩包
 
 在云内运行：
@@ -57,6 +59,16 @@ python3 scripts/cloud_channel.py unpack --input-dir ./inbox --out-dir ./received
 
 ```bash
 python3 scripts/cloud_channel.py pack --reply-to <message_id> --text "已收到，开始处理"
+```
+
+通道状态只写入当前本机通道根目录的 `channel-state.jsonl`。云内不能修改云外映射目录；如果云内找不到云外 outbox 原件，只记录收件和回复配对，不做跨环境归档。
+
+## 清理历史归档
+
+只清理 `sent` 下的历史归档，避免误删仍在流转的 `outbox`、`inbox` 或 `received`：
+
+```bash
+python3 scripts/cloud_channel.py clean --root . --sent-days 14
 ```
 
 ## 自动失败时的最小补充参数

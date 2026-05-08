@@ -170,11 +170,62 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def candidate_received_roots(args: argparse.Namespace) -> list[Path]:
-    roots = [Path("received")]
+def channel_root_from_child(path: Path) -> Path:
+    lower_name = path.name.lower()
+    if lower_name in {"outbox", "inbox", "received", "sent"} or lower_name.endswith(
+        ("outbox", "inbox", "received")
+    ):
+        return path.parent
+    return path
+
+
+def state_path(channel_root: Path) -> Path:
+    return channel_root / "channel-state.jsonl"
+
+
+def append_state_event(channel_root: Path, event: dict[str, Any]) -> None:
+    path = state_path(channel_root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    record = {"time": utc_now(), **event}
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+def read_state_events(channel_root: Path) -> list[dict[str, Any]]:
+    path = state_path(channel_root)
+    if not path.exists():
+        return []
+    events: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            events.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return events
+
+
+def has_state_event(channel_root: Path, event_name: str, message_id: str) -> bool:
+    for event in read_state_events(channel_root):
+        if event.get("event") == event_name and event.get("message_id") == message_id:
+            return True
+    return False
+
+
+def path_for_state(channel_root: Path, path: Path) -> str:
+    try:
+        return path.resolve().relative_to(channel_root.resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def candidate_channel_roots(args: argparse.Namespace) -> list[Path]:
+    roots = [Path(".")]
     out_dir = getattr(args, "out_dir", None)
     if out_dir:
-        roots.append(Path(out_dir).parent / "received")
+        roots.append(channel_root_from_child(Path(out_dir)))
+        roots.append(Path(out_dir).parent)
     unique_roots: list[Path] = []
     seen: set[str] = set()
     for root in roots:
@@ -191,21 +242,12 @@ def find_conversation_id_for_reply(args: argparse.Namespace, reply_to: str) -> s
         message = load_json(reply_path)
         return message.get("conversation_id") or message.get("message_id") or reply_to
 
-    for root in candidate_received_roots(args):
-        index_path = root / "index.jsonl"
-        if index_path.exists():
-            lines = index_path.read_text(encoding="utf-8").splitlines()
-            for line in reversed(lines):
-                if not line.strip():
-                    continue
-                try:
-                    record = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
-                if record.get("message_id") == reply_to:
-                    return record.get("conversation_id") or reply_to
+    for root in candidate_channel_roots(args):
+        for event in reversed(read_state_events(root)):
+            if event.get("message_id") == reply_to:
+                return event.get("conversation_id") or reply_to
 
-        message_path = root / reply_to / "message.json"
+        message_path = root / "received" / reply_to / "message.json"
         if message_path.exists():
             message = load_json(message_path)
             return message.get("conversation_id") or message.get("message_id") or reply_to
@@ -391,6 +433,24 @@ def output_name(message_id: str, suffix: str) -> str:
     return f"{message_id}_{safe_suffix}.json"
 
 
+def record_created(args: argparse.Namespace, message: dict[str, Any], paths: list[Path]) -> None:
+    out_dir = Path(args.out_dir)
+    channel_root = channel_root_from_child(out_dir)
+    message_id = message.get("message_id", "")
+    append_state_event(
+        channel_root,
+        {
+            "event": "created",
+            "message_id": message_id,
+            "conversation_id": message.get("conversation_id", ""),
+            "reply_to": message.get("reply_to", ""),
+            "direction": message.get("direction", ""),
+            "payload_type": message.get("payload_type", ""),
+            "paths": [path_for_state(channel_root, path) for path in paths],
+        },
+    )
+
+
 def command_pack(args: argparse.Namespace) -> int:
     apply_pack_defaults(args)
     guard_pack_direction(args)
@@ -449,6 +509,7 @@ def command_pack(args: argparse.Namespace) -> int:
             if should_use_sidecar(args, len(archive_bytes)):
                 return write_sidecar_archive(args, envelope, archive_name, archive_bytes)
             return write_archive_messages(args, envelope, archive_name, archive_bytes)
+        envelope["payload_type"] = "inline-file"
         envelope["payload"] = {
             "file_name": file_path.name,
             "encoding": "utf-8",
@@ -460,8 +521,10 @@ def command_pack(args: argparse.Namespace) -> int:
         }
         enforce_message_size(args, envelope)
         enforce_transfer_size(args, [envelope])
-        write_json(out_dir / output_name(message_id, "file"), envelope)
-        print(str(out_dir / output_name(message_id, "file")))
+        out_path = out_dir / output_name(message_id, "file")
+        write_json(out_path, envelope)
+        record_created(args, envelope, [out_path])
+        print(str(out_path))
         return 0
 
     if args.payload_type == "inline-archive":
@@ -497,41 +560,114 @@ def find_message_files(input_dir: Path, message_id: str | None) -> list[Path]:
     return found
 
 
-def append_message_index(root_dir: Path, message: dict[str, Any], message_dir: Path) -> None:
-    index_path = root_dir / "index.jsonl"
-    record = {
-        "message_id": message.get("message_id", ""),
-        "conversation_id": message.get("conversation_id", message.get("message_id", "")),
-        "reply_to": message.get("reply_to", ""),
-        "direction": message.get("direction", ""),
-        "sender": message.get("sender", ""),
-        "receiver": message.get("receiver", ""),
-        "subject": message.get("subject", ""),
-        "body": message.get("body", ""),
-        "payload_type": message.get("payload_type", ""),
-        "created_at": message.get("created_at", ""),
-        "expect_reply_before": message.get("expect_reply_before", ""),
-        "message_dir": str(message_dir),
-    }
-    index_path.parent.mkdir(parents=True, exist_ok=True)
-    existing_ids: set[str] = set()
-    if index_path.exists():
-        for line in index_path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
+def outbox_candidates(channel_root: Path) -> list[Path]:
+    candidates = [channel_root / "outbox"]
+    if channel_root.exists():
+        for child in sorted(channel_root.iterdir()):
+            if child.is_dir() and child.name.lower().endswith("outbox") and child not in candidates:
+                candidates.append(child)
+    return candidates
+
+
+def original_outbox_paths(channel_root: Path, message_id: str) -> list[Path]:
+    paths: list[Path] = []
+    seen: set[Path] = set()
+    for outbox in outbox_candidates(channel_root):
+        if not outbox.exists():
+            continue
+        for json_path in sorted(outbox.glob("*.json")):
             try:
-                existing_ids.add(json.loads(line).get("message_id", ""))
-            except json.JSONDecodeError:
+                message = load_json(json_path)
+            except Exception:
                 continue
-    if record["message_id"] in existing_ids:
+            if message.get("message_id") != message_id:
+                continue
+            for path in sidecar_paths_for_message(outbox, message):
+                if path.exists() and path not in seen:
+                    paths.append(path)
+                    seen.add(path)
+            if json_path not in seen:
+                paths.append(json_path)
+                seen.add(json_path)
+    return paths
+
+
+def sidecar_paths_for_message(outbox: Path, message: dict[str, Any]) -> list[Path]:
+    payload = message.get("payload", {})
+    payload_type = message.get("payload_type", "")
+    paths: list[Path] = []
+    if payload_type == "sidecar-folder":
+        folder_name = sanitize_file_name(payload.get("folder_name") or "")
+        if folder_name:
+            paths.append(outbox / folder_name)
+    if payload_type == "sidecar-archive":
+        sidecar_file = sanitize_file_name(payload.get("sidecar_file") or "")
+        if sidecar_file:
+            paths.append(outbox / sidecar_file)
+    return paths
+
+
+def move_original_to_sent(channel_root: Path, message_id: str) -> None:
+    if not message_id or has_state_event(channel_root, "moved_to_sent", message_id):
         return
-    with index_path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n")
+    source_paths = original_outbox_paths(channel_root, message_id)
+    if not source_paths:
+        return
+    sent_dir = channel_root / "sent" / datetime.now(timezone.utc).strftime("%Y%m%d") / message_id
+    sent_dir.mkdir(parents=True, exist_ok=True)
+    moved_paths: list[Path] = []
+    for source_path in source_paths:
+        target_path = sent_dir / source_path.name
+        if target_path.exists():
+            continue
+        shutil.move(str(source_path), str(target_path))
+        moved_paths.append(target_path)
+    if moved_paths:
+        append_state_event(
+            channel_root,
+            {
+                "event": "moved_to_sent",
+                "message_id": message_id,
+                "path": path_for_state(channel_root, sent_dir),
+                "paths": [path_for_state(channel_root, path) for path in moved_paths],
+            },
+        )
 
 
 def write_received_message(root_dir: Path, message_dir: Path, message: dict[str, Any]) -> None:
+    channel_root = channel_root_from_child(root_dir)
+    message_id = message.get("message_id", "")
+    reply_to = message.get("reply_to", "")
     write_json(message_dir / "message.json", message)
-    append_message_index(root_dir, message, message_dir)
+    if not has_state_event(channel_root, "received", message_id):
+        append_state_event(
+            channel_root,
+            {
+                "event": "received",
+                "message_id": message_id,
+                "conversation_id": message.get("conversation_id", message_id),
+                "reply_to": reply_to,
+                "direction": message.get("direction", ""),
+                "sender": message.get("sender", ""),
+                "receiver": message.get("receiver", ""),
+                "subject": message.get("subject", ""),
+                "payload_type": message.get("payload_type", ""),
+                "created_at": message.get("created_at", ""),
+                "expect_reply_before": message.get("expect_reply_before", ""),
+                "message_dir": path_for_state(channel_root, message_dir),
+            },
+        )
+    if reply_to and not has_state_event(channel_root, "reply_received", message_id):
+        append_state_event(
+            channel_root,
+            {
+                "event": "reply_received",
+                "message_id": message_id,
+                "reply_to": reply_to,
+                "conversation_id": message.get("conversation_id", reply_to),
+            },
+        )
+        move_original_to_sent(channel_root, reply_to)
 
 
 def command_unpack(args: argparse.Namespace) -> int:
@@ -765,6 +901,7 @@ def write_archive_messages(args: argparse.Namespace, envelope: dict[str, Any], a
         enforce_transfer_size(args, [single_message])
         out_path = out_dir / output_name(message_id, "archive")
         write_json(out_path, single_message)
+        record_created(args, single_message, [out_path])
         print(str(out_path))
         return 0
 
@@ -794,10 +931,14 @@ def write_archive_messages(args: argparse.Namespace, envelope: dict[str, Any], a
         enforce_message_size(args, part)
         messages.append(part)
     enforce_transfer_size(args, messages)
+    out_paths: list[Path] = []
     for index, part in enumerate(messages, start=1):
         name = output_name(message_id, f"part{index:03d}of{total:03d}")
-        write_json(out_dir / name, part)
-        print(str(out_dir / name))
+        out_path = out_dir / name
+        write_json(out_path, part)
+        out_paths.append(out_path)
+        print(str(out_path))
+    record_created(args, messages[0], out_paths)
     return 0
 
 
@@ -818,6 +959,7 @@ def write_text_message(args: argparse.Namespace, envelope: dict[str, Any], paylo
     enforce_transfer_size(args, [message])
     out_path = out_dir / output_name(message_id, "text")
     write_json(out_path, message)
+    record_created(args, message, [out_path])
     print(str(out_path))
     return 0
 
@@ -838,6 +980,7 @@ def write_sidecar_folder(args: argparse.Namespace, envelope: dict[str, Any], sou
     message["integrity"] = payload_folder_integrity(payload_folder)
     out_path = out_dir / output_name(message_id, "folder")
     write_json(out_path, message)
+    record_created(args, message, [out_path, payload_folder])
     print(str(out_path))
     print(str(payload_folder))
     return 0
@@ -865,6 +1008,7 @@ def write_sidecar_archive(args: argparse.Namespace, envelope: dict[str, Any], ar
     }
     out_path = out_dir / output_name(message_id, "sidecar")
     write_json(out_path, message)
+    record_created(args, message, [out_path, sidecar_path])
     print(str(out_path))
     print(str(sidecar_path))
     return 0
@@ -894,6 +1038,39 @@ def command_list(args: argparse.Namespace) -> int:
                 ]
             )
         )
+    return 0
+
+
+def command_clean(args: argparse.Namespace) -> int:
+    if args.sent_days < 0:
+        raise SystemExit("--sent-days 不能为负数")
+    channel_root = Path(args.root)
+    sent_dir = channel_root / "sent"
+    if not sent_dir.exists():
+        return 0
+    cutoff = datetime.now(timezone.utc) - timedelta(days=args.sent_days)
+    removed: list[Path] = []
+    for child in sorted(sent_dir.iterdir()):
+        should_remove = False
+        if child.is_dir() and len(child.name) == 8 and child.name.isdigit():
+            try:
+                folder_date = datetime.strptime(child.name, "%Y%m%d").date()
+                should_remove = folder_date < cutoff.date()
+            except ValueError:
+                should_remove = False
+        elif child.is_dir():
+            mtime = datetime.fromtimestamp(child.stat().st_mtime, timezone.utc)
+            should_remove = mtime < cutoff
+        if not should_remove:
+            continue
+        try:
+            child.resolve().relative_to(sent_dir.resolve())
+        except ValueError:
+            continue
+        shutil.rmtree(child)
+        removed.append(child)
+    for path in removed:
+        print(str(path))
     return 0
 
 
@@ -1123,6 +1300,11 @@ def build_parser() -> argparse.ArgumentParser:
     list_cmd.add_argument("--input-dir", required=True)
     list_cmd.add_argument("--message-id")
     list_cmd.set_defaults(func=command_list)
+
+    clean = sub.add_parser("clean", help="清理 sent 中的历史归档。")
+    clean.add_argument("--root", default=".")
+    clean.add_argument("--sent-days", type=int, default=14)
+    clean.set_defaults(func=command_clean)
 
     detect = sub.add_parser("detect", help="检测当前云内外通道环境。")
     detect.add_argument("--raw-json", action="store_true")

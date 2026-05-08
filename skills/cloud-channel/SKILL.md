@@ -33,7 +33,7 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 
 ## 载荷模型
 
-通道统一按“一个传输文件夹”处理。无论是文本、单文件、多文件还是多文件夹，发送前都先放进 `transfer-root`，然后把这个文件夹压成一个 zip。通道只负责传这个 zip 和对应 JSON 清单。
+通道统一按“一个传输文件夹”处理。无论是单文件、多文件还是多文件夹，发送前都先放进 `transfer-root`。云内到云外默认压成 zip 后放进 JSON 或分片 JSON；云外到云内默认生成一个 JSON 清单和一个同目录旁路 payload 文件夹，不压缩、不记录完整文件列表。
 
 默认自动项：
 
@@ -52,12 +52,12 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 保留的载荷类型：
 
 - `auto`：默认入口。用户只提供 `--file transfer-root`，脚本自动选择后续载荷。
-- `inline-archive`：默认载荷。传输文件夹压成 zip 后，Base64 放入 JSON。
+- `inline-archive`：Gerrit 方向默认载荷。传输文件夹压成 zip 后，Base64 放入 JSON。
 - `inline-archive-chunk`：zip 放不进单条 JSON 时生成的分片消息。
 - `sidecar-folder`：云外到云内的默认文件载荷。JSON 只放清单，文件原样放在同目录旁路 payload 文件夹。
 - `sidecar-archive`：兼容旧的大包载荷。JSON 只放清单，zip 作为同目录旁路文件传递。
 
-`text` 和 `inline-file` 只作为兼容入口，内部也会被整理成 zip，不作为推荐用法。新流程不要单独设计文本、单文件或多文件夹参数，统一先放进 `transfer-root`。
+`text` 用于即时短消息；文件类内容推荐统一先放进 `transfer-root`。`inline-file` 只作为兼容入口，不作为推荐用法。
 
 ## 异步沟通
 
@@ -86,7 +86,19 @@ python3 scripts/cloud_channel.py pack --reply-to <message_id> --text "已收到�
 python3 scripts/cloud_channel.py pack --reply-to <message_id> --file transfer-root
 ```
 
-使用 `--reply-to` 时，脚本会优先从 `received/index.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。找不到原消息时，才把 `conversation_id` 设为这个 `reply_to`。日常不要手写 `--conversation-id`。
+使用 `--reply-to` 时，脚本会优先从通道根目录的 `channel-state.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。找不到原消息时，才把 `conversation_id` 设为这个 `reply_to`。日常不要手写 `--conversation-id`。
+
+## 状态和归档
+
+通道根目录只维护一个状态文件：`channel-state.jsonl`。`pack` 写入 `created` 事件，`unpack` 写入 `received` 事件；如果收到的是回复消息，再写入 `reply_received`。原始消息 JSON 不被修改。
+
+收到对本机已发消息的回复时，脚本会在同一个通道根目录内把本机 `outbox` 中对应的原始 JSON 和旁路 payload 移到 `sent/<yyyyMMdd>/<message_id>/`，并写入 `moved_to_sent`。如果当前机器找不到原始 outbox 文件，就只记录收件状态，不报错。云内不能修改云外映射目录，因此归档只发生在当前本机通道根目录内。
+
+需要清理历史归档时只清 `sent`，不清 `outbox`、`inbox` 和 `received`：
+
+```bash
+python3 scripts/cloud_channel.py clean --root . --sent-days 14
+```
 
 谨慎使用内联载荷：
 
@@ -115,6 +127,7 @@ python3 scripts/cloud_channel.py doctor
 python3 scripts/cloud_channel.py pack --help
 python3 scripts/cloud_channel.py unpack --help
 python3 scripts/cloud_channel.py list --help
+python3 scripts/cloud_channel.py clean --help
 python3 scripts/cloud_channel.py probe-plan --help
 ```
 

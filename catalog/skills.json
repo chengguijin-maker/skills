@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T05:08:48.617440Z",
+  "generated_at": "2026-05-08T06:11:41.017743Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -52,7 +52,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cloud-channel",
-      "content_hash": "bfd7d07a1deb051e25a0f75611dd5a45fdb22a08ff3cdd27854d1c4d61b67a12"
+      "content_hash": "49262c33f9267e55afb17e252ef05c2b5da1a808eb4f9f07adecd4a6a8a63fa4"
     },
     {
       "name": "find-skills",

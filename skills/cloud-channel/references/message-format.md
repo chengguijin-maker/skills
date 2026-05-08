@@ -31,8 +31,8 @@
 载荷模型：
 
 - 所有业务内容先整理成一个传输文件夹。
-- 通道把这个文件夹压成一个 zip。
-- 后续只传 zip 和 JSON 清单，不单独设计文本、单文件、多文件夹协议。
+- 云内到云外默认把这个文件夹压成一个 zip，再放入 JSON 或分片 JSON。
+- 云外到云内默认生成 JSON 清单和同目录旁路 payload 文件夹，不压缩，不记录完整文件列表。
 - 日常命令只需要 `pack --file transfer-root`。如果当前目录已经存在 `transfer-root`，可以省略 `--file`。
 - 方向、身份、传输方式、输出目录、标题、载荷类型、压缩级别和分片策略都默认自动推断。
 - 异步沟通靠 `conversation_id` 和 `reply_to` 配对，不依赖额外确认命令。
@@ -41,17 +41,18 @@
 载荷类型：
 
 - `auto`：默认入口。使用方只传 `--file transfer-root`，脚本自动选择实际载荷。
-- `inline-archive`：默认载荷。传输文件夹压成 zip 后，把完整 zip 用 Base64 存放在 `payload.content`。
+- `inline-archive`：Gerrit 方向默认载荷。传输文件夹压成 zip 后，把完整 zip 用 Base64 存放在 `payload.content`。
 - `inline-archive-chunk`：Base64 压缩包分片，存放在 `payload.content`。
 - `sidecar-folder`：JSON 存放旁路 payload 文件夹名和轻量校验信息，文件和目录原样作为同目录文件夹传递。主要用于 `citrix-drive`。
 - `sidecar-archive`：兼容旧格式，JSON 存放旁路文件名和校验信息，压缩包作为同目录文件传递。
-- `text` 和 `inline-file`：兼容入口，推荐新流程不要使用。
+- `text`：即时短消息入口。
+- `inline-file`：兼容入口，推荐新流程不要使用。
 
 异步配对：
 
 - 新发起消息时，`conversation_id` 默认等于自己的 `message_id`，`reply_to` 为空。
 - 回复消息时，使用 `--reply-to <message_id>`，`reply_to` 写入原消息编号。
-- 回复消息时，脚本优先从 `received/index.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。
+- 回复消息时，脚本优先从通道根目录的 `channel-state.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。
 - 找不到原消息时，`conversation_id` 默认使用 `reply_to`，仍能形成粗粒度会话。
 - 只有本地索引缺失且必须挂到指定旧会话时，才显式补 `--conversation-id <conversation_id>`。
 - 使用 `--timeout-minutes <分钟>` 时，脚本写入 `expect_reply_before`。
@@ -90,13 +91,23 @@
 - 每个分片有 `payload.chunk_index` 和 `payload.chunk_count`。
 - 接收方必须收齐全部分片，再运行 `unpack`。
 - `unpack` 会校验分片连续性、还原 Base64、校验压缩包 SHA256，并把 zip 解压到 `payload` 目录。
-- `unpack` 会在输出目录维护 `index.jsonl`，用于后续按 `message_id`、`conversation_id` 和 `reply_to` 查看沟通关系。
+- `pack` 和 `unpack` 都只维护通道根目录下的 `channel-state.jsonl`，用于后续按 `message_id`、`conversation_id` 和 `reply_to` 查看沟通关系。
 - `sidecar-folder` 要求 JSON 和 `<message_id>_payload/` 在同一个 `input-dir`。接收端会重新计算 `file_count`、`directory_count`、`total_size` 和 `tree_fingerprint`，一致后复制到 `received/<message_id>/payload/`。
 - `tree_fingerprint` 只使用相对路径、文件大小和秒级修改时间，不读取文件内容，不记录完整文件列表。
 - 复制 `sidecar-folder` 时必须保留修改时间。
 - `sidecar-archive` 还原时要求旁路文件和 JSON 在同一个 `input-dir`，校验 SHA256 后再解压。
 - 如果缺少分片，接收方不解包，保留原文件并按错误信息人工补齐。
 - 真实 Gerrit 边界需要用 `probe-plan` 生成探测计划后在云内专用承载 change 上测试。测试说明见 `references/gerrit-capacity-probe.md`。
+
+状态文件：
+
+- 状态文件固定为 `<channel-root>/channel-state.jsonl`。
+- `created`：本机创建了待发送消息。
+- `received`：本机还原了收到的消息。
+- `reply_received`：收到的消息带有 `reply_to`，可和旧消息配对。
+- `moved_to_sent`：收到回复后，本机 outbox 中的原始发送件已移入 `sent/<yyyyMMdd>/<message_id>/`。
+- 不生成每条消息的状态 JSON，不生成 manifest，不再维护 `received/index.jsonl`。
+- 清理只通过 `clean` 删除旧的 `sent` 归档，不清 `outbox`、`inbox` 和 `received`。
 
 Gerrit 限制依据：
 
