@@ -19,10 +19,10 @@ python3 scripts/cloud_channel.py pack --file transfer-root
 python .\scripts\cloud_channel.py unpack --input-dir .\inbox --out-dir .\received
 ```
 
-需要回执时运行：
+需要回应时直接创建回复消息：
 
 ```powershell
-python .\scripts\cloud_channel.py ack --message .\inbox\message.json
+python .\scripts\cloud_channel.py pack --reply-to <message_id> --text "已收到，开始处理"
 ```
 
 ## 云内到云外已有压缩包
@@ -53,10 +53,10 @@ python .\scripts\cloud_channel.py pack --file .\transfer-root
 python3 scripts/cloud_channel.py unpack --input-dir ./inbox --out-dir ./received
 ```
 
-需要回执时运行：
+需要回应时直接创建回复消息：
 
 ```bash
-python3 scripts/cloud_channel.py ack --message ./inbox/message.json
+python3 scripts/cloud_channel.py pack --reply-to <message_id> --text "已收到，开始处理"
 ```
 
 ## 自动失败时的最小补充参数

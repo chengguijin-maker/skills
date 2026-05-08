@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T02:41:49.153590Z",
+  "generated_at": "2026-05-08T03:39:15.498314Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -40,7 +40,7 @@
     },
     {
       "name": "cloud-channel",
-      "description": "\u5efa\u7acb\u548c\u4f7f\u7528\u4e91\u5185\u4e0e\u4e91\u5916\u4e4b\u95f4\u7684\u57fa\u7840\u901a\u4fe1\u901a\u9053\u3002\u9002\u7528\u4e8e\u901a\u8fc7\u4e91\u5185\u5230\u4e91\u5916\u7684 Gerrit \u90ae\u4ef6\u8def\u5f84\uff0c\u6216\u4e91\u5916\u5230\u4e91\u5185\u7684 Citrix \u6620\u5c04\u8def\u5f84\uff0c\u4ee5\u9ed8\u8ba4\u81ea\u52a8\u53c2\u6570\u4ea4\u6362\u4e00\u4e2a\u4f20\u8f93\u6587\u4ef6\u5939\u3002\u672c\u6280\u80fd\u53ea\u8d1f\u8d23\u901a\u9053\u5c42\u548c\u56de\u6267\u534f\u8bae\uff0c\u4e0d\u8d1f\u8d23\u98de\u4e66\u3001JIRA\u3001Confluence \u7b49\u4e0a\u5c42\u4e1a\u52a1\u96c6\u6210\u3002",
+      "description": "\u5efa\u7acb\u548c\u4f7f\u7528\u4e91\u5185\u4e0e\u4e91\u5916\u4e4b\u95f4\u7684\u57fa\u7840\u901a\u4fe1\u901a\u9053\u3002\u9002\u7528\u4e8e\u901a\u8fc7\u4e91\u5185\u5230\u4e91\u5916\u7684 Gerrit \u90ae\u4ef6\u8def\u5f84\uff0c\u6216\u4e91\u5916\u5230\u4e91\u5185\u7684 Citrix \u6620\u5c04\u8def\u5f84\uff0c\u4ee5\u9ed8\u8ba4\u81ea\u52a8\u53c2\u6570\u4ea4\u6362\u6587\u672c\u6216\u4f20\u8f93\u6587\u4ef6\u5939\uff0c\u5e76\u7528 reply_to \u4e0e conversation_id \u505a\u5f02\u6b65\u6d88\u606f\u914d\u5bf9\u3002\u672c\u6280\u80fd\u53ea\u8d1f\u8d23\u901a\u9053\u5c42\u548c\u6d88\u606f\u914d\u5bf9\uff0c\u4e0d\u8d1f\u8d23\u98de\u4e66\u3001JIRA\u3001Confluence \u7b49\u4e0a\u5c42\u4e1a\u52a1\u96c6\u6210\u3002",
       "repo_path": "skills/cloud-channel",
       "category": "integration",
       "tags": [
@@ -52,7 +52,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cloud-channel",
-      "content_hash": "626183e1bf3c38f21418a248126ba6d2d3664ac9c2ebae4ad6937fcc6a7322ec"
+      "content_hash": "28d4bc239d3b3ddcf597cc2e2434a314299755324278dfef6d872c7ed34c0269"
     },
     {
       "name": "find-skills",

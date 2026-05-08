@@ -1,6 +1,6 @@
 ---
 name: cloud-channel
-description: 建立和使用云内与云外之间的基础通信通道。适用于通过云内到云外的 Gerrit 邮件路径，或云外到云内的 Citrix 映射路径，以默认自动参数交换一个传输文件夹。本技能只负责通道层和回执协议，不负责飞书、JIRA、Confluence 等上层业务集成。
+description: 建立和使用云内与云外之间的基础通信通道。适用于通过云内到云外的 Gerrit 邮件路径，或云外到云内的 Citrix 映射路径，以默认自动参数交换文本或传输文件夹，并用 reply_to 与 conversation_id 做异步消息配对。本技能只负责通道层和消息配对，不负责飞书、JIRA、Confluence 等上层业务集成。
 ---
 
 # 云内外通道
@@ -20,7 +20,7 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 3. 云内通过 Gerrit 评论发送 JSON 文件内容，优先使用现有 `gerrit-notify` 技能。
 4. Gerrit 发送邮件通知。
 5. 云外读取 Coremail 并提取通道 JSON。
-6. 云外还原 JSON 载荷，并按需创建回执消息。
+6. 云外还原 JSON 载荷，并按需用 `--reply-to` 创建后续消息。
 
 云外到云内：
 
@@ -29,7 +29,7 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 3. 云外默认把文件写入 `D:\cloudshare\cloud-channel\outbox`。
 4. Citrix 驱动器映射把文件暴露到跳板机。
 5. 跳板机使用 SCP 把文件复制到云内 Linux 收件目录。
-6. 云内还原 JSON 载荷，并按需通过 Gerrit 邮件回执。
+6. 云内还原 JSON 载荷，并按需通过 Gerrit 邮件回复。
 
 ## 载荷模型
 
@@ -44,7 +44,8 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 - 载荷类型：默认 `auto`，先压缩成 zip，再按方向和大小自动决定内联、分片或旁路 zip。
 - 压缩级别：Gerrit 方向默认 `9`，Citrix/SCP 方向默认 `3`。
 - 标题：未提供时默认 `云内外通道消息`。
-- 回执：按原消息自动反推方向、身份、传输方式和输出目录。
+- 异步配对：新消息自动创建 `conversation_id`，回复消息用 `--reply-to` 关联上一条消息。
+- 超时提醒：`--timeout-minutes` 只写入期望回复时间，用于 `list` 提示，不自动失败。
 
 日常使用只需要准备 `transfer-root`，再运行 `pack --file transfer-root`。如果当前目录已经有 `transfer-root`，也可以只运行 `pack`。只有自动环境识别失败、默认输出目录不符合当前机器、或需要探测 Gerrit 边界时，才显式配置参数。
 
@@ -54,9 +55,37 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 - `inline-archive`：默认载荷。传输文件夹压成 zip 后，Base64 放入 JSON。
 - `inline-archive-chunk`：zip 放不进单条 JSON 时生成的分片消息。
 - `sidecar-archive`：云外到云内的大包载荷。JSON 只放清单，zip 作为同目录旁路文件传递。
-- `ack`：已收到消息的回执。
 
 `text` 和 `inline-file` 只作为兼容入口，内部也会被整理成 zip，不作为推荐用法。新流程不要单独设计文本、单文件或多文件夹参数，统一先放进 `transfer-root`。
+
+## 异步沟通
+
+通道不等待某个问题处理完成。任何一方都可以继续发送新消息或回复旧消息，靠消息字段配对：
+
+- `message_id`：当前消息编号。
+- `conversation_id`：同一组沟通的会话编号。新消息默认等于自己的 `message_id`。
+- `reply_to`：当前消息回复哪一条消息。
+- `expect_reply_before`：希望对方回应的时间，只做提醒。
+
+发起消息：
+
+```bash
+python3 scripts/cloud_channel.py pack --text "请检查构建失败" --timeout-minutes 30
+```
+
+回复消息：
+
+```bash
+python3 scripts/cloud_channel.py pack --reply-to <message_id> --text "已收到，开始处理"
+```
+
+带文件回复：
+
+```bash
+python3 scripts/cloud_channel.py pack --reply-to <message_id> --file transfer-root
+```
+
+使用 `--reply-to` 时，脚本默认把 `conversation_id` 设为这个 `reply_to`。如果要把回复挂到更早的会话上，可以显式补 `--conversation-id <conversation_id>`。
 
 谨慎使用内联载荷：
 
@@ -82,7 +111,6 @@ python3 scripts/cloud_channel.py detect
 python3 scripts/cloud_channel.py doctor
 python3 scripts/cloud_channel.py pack --help
 python3 scripts/cloud_channel.py unpack --help
-python3 scripts/cloud_channel.py ack --help
 python3 scripts/cloud_channel.py list --help
 python3 scripts/cloud_channel.py probe-plan --help
 ```
@@ -93,7 +121,7 @@ python3 scripts/cloud_channel.py probe-plan --help
 python3 tests/test_cloud_channel.py
 ```
 
-测试中包含一套云外模拟云内的完整闭环：云内到云外，云外回执，再回到云内。测试用本地目录模拟 Gerrit 邮件提取和 Citrix 驱动器映射，因此不需要真实访问云内网络，也能验证通道协议。
+测试中包含一套云外模拟云内的完整闭环：云内到云外，云外用 `reply_to` 回复，再回到云内。测试用本地目录模拟 Gerrit 邮件提取和 Citrix 驱动器映射，因此不需要真实访问云内网络，也能验证通道协议。
 
 Windows 也可以使用 PowerShell 包装脚本：
 
@@ -163,14 +191,6 @@ python .\scripts\cloud_channel.py pack
 python3 scripts/cloud_channel.py unpack --input-dir ./inbox --out-dir ./received
 ```
 
-## 回执
-
-任意一侧都可以创建回执：
-
-```bash
-python3 scripts/cloud_channel.py ack --message ./inbox/message.json
-```
-
 ## 需要显式配置的情况
 
 日常不要显式配置方向、身份、传输方式、载荷类型、压缩级别和分片大小。只在下面情况加参数：
@@ -178,6 +198,8 @@ python3 scripts/cloud_channel.py ack --message ./inbox/message.json
 - 当前环境识别为 `unknown` 或 `ambiguous-windows`：先运行 `detect` 和 `doctor`，人工确认后再加 `--direction` 和 `--skip-environment-guard`。
 - 不使用默认发件目录：加 `--out-dir`。
 - 需要更清晰的人类摘要：加 `--subject` 或 `--body`。
+- 回复已有消息：加 `--reply-to <message_id>`。
+- 需要提示对方回应时限：加 `--timeout-minutes <分钟>`。
 - Gerrit 容量边界已经重新实测：才调整 `--max-message-bytes`、`--max-transfer-bytes` 或 `--chunk-chars`。
 
 ## 参考资料

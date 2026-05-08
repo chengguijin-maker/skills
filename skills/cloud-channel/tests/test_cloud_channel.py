@@ -98,7 +98,6 @@ class CloudChannelTests(unittest.TestCase):
                 str(outbox),
                 "--transport-hint",
                 "gerrit-mail",
-                "--ack-required",
                 "--skip-environment-guard",
             )
             for message_file in outbox.glob("*.json"):
@@ -107,8 +106,15 @@ class CloudChannelTests(unittest.TestCase):
             run_command("unpack", "--input-dir", str(inbox), "--out-dir", str(received))
             payload_file = next(received.glob("*/payload/payload.txt"))
             self.assertEqual(payload_file.read_text(encoding="utf-8"), "hello cloud outer")
+            index_records = [
+                json.loads(line)
+                for line in (received / "index.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual(index_records[0]["conversation_id"], index_records[0]["message_id"])
+            self.assertEqual(index_records[0]["reply_to"], "")
 
-    def test_inline_file_round_trip_preserves_hash_and_ack(self) -> None:
+    def test_inline_file_round_trip_preserves_hash(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             source = root / "task.md"
@@ -139,7 +145,6 @@ class CloudChannelTests(unittest.TestCase):
                 str(outbox),
                 "--transport-hint",
                 "citrix-drive",
-                "--ack-required",
                 "--skip-environment-guard",
             )
             for message_file in outbox.glob("*.json"):
@@ -148,20 +153,6 @@ class CloudChannelTests(unittest.TestCase):
             run_command("unpack", "--input-dir", str(inbox), "--out-dir", str(received))
             restored = next(received.glob("*/payload/task.md"))
             self.assertEqual(sha256_file(source), sha256_file(restored))
-
-            run_command(
-                "ack",
-                "--message",
-                str(next(inbox.glob("*.json"))),
-                "--out-dir",
-                str(outbox),
-                "--state",
-                "received",
-            )
-            ack_message = json.loads(next(outbox.glob("*_ack.json")).read_text(encoding="utf-8"))
-            self.assertEqual(ack_message["sender"], "cloud-inner")
-            self.assertEqual(ack_message["receiver"], "cloud-outer")
-            self.assertEqual(ack_message["delivery"]["transport_hint"], "gerrit-mail")
 
     def test_inline_archive_chunk_round_trip_preserves_hash(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -540,6 +531,112 @@ class CloudChannelTests(unittest.TestCase):
             self.assertEqual(message["delivery"]["transport_hint"], "gerrit-mail")
             self.assertEqual(message["payload"]["archive_name"], "transfer-root.zip")
 
+    def test_async_reply_pairing_timeout_and_list_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            outbox = root / "outbox"
+            received = root / "received"
+            outbox.mkdir()
+
+            run_command(
+                "pack",
+                "--direction",
+                "cloud-inner-to-cloud-outer",
+                "--sender",
+                "cloud-inner",
+                "--receiver",
+                "cloud-outer",
+                "--subject",
+                "async request",
+                "--body",
+                "body",
+                "--text",
+                "please inspect",
+                "--out-dir",
+                str(outbox),
+                "--transport-hint",
+                "gerrit-mail",
+                "--timeout-minutes",
+                "1",
+                "--skip-environment-guard",
+            )
+            request = json.loads(next(outbox.glob("*.json")).read_text(encoding="utf-8"))
+            self.assertEqual(request["conversation_id"], request["message_id"])
+            self.assertEqual(request["reply_to"], "")
+            self.assertTrue(request["expect_reply_before"])
+
+            reply_outbox = root / "reply-outbox"
+            reply_outbox.mkdir()
+            run_command(
+                "pack",
+                "--direction",
+                "cloud-outer-to-cloud-inner",
+                "--sender",
+                "cloud-outer",
+                "--receiver",
+                "cloud-inner",
+                "--subject",
+                "async reply",
+                "--body",
+                "body",
+                "--text",
+                "started",
+                "--reply-to",
+                request["message_id"],
+                "--out-dir",
+                str(reply_outbox),
+                "--transport-hint",
+                "citrix-drive",
+                "--skip-environment-guard",
+            )
+            reply = json.loads(next(reply_outbox.glob("*.json")).read_text(encoding="utf-8"))
+            self.assertEqual(reply["reply_to"], request["message_id"])
+            self.assertEqual(reply["conversation_id"], request["message_id"])
+
+            run_command("unpack", "--input-dir", str(reply_outbox), "--out-dir", str(received))
+            index_records = [
+                json.loads(line)
+                for line in (received / "index.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual(index_records[0]["reply_to"], request["message_id"])
+            self.assertEqual(index_records[0]["conversation_id"], request["message_id"])
+
+            expired_outbox = root / "expired-outbox"
+            expired_outbox.mkdir()
+            run_command(
+                "pack",
+                "--direction",
+                "cloud-inner-to-cloud-outer",
+                "--sender",
+                "cloud-inner",
+                "--receiver",
+                "cloud-outer",
+                "--subject",
+                "expired",
+                "--text",
+                "timeout probe",
+                "--message-id",
+                "expired-message",
+                "--conversation-id",
+                "expired-conversation",
+                "--timeout-minutes",
+                "1",
+                "--out-dir",
+                str(expired_outbox),
+                "--transport-hint",
+                "gerrit-mail",
+                "--skip-environment-guard",
+            )
+            expired_file = next(expired_outbox.glob("*.json"))
+            expired_message = json.loads(expired_file.read_text(encoding="utf-8"))
+            expired_message["expect_reply_before"] = "2000-01-01T00:00:00+00:00"
+            expired_file.write_text(json.dumps(expired_message, ensure_ascii=False), encoding="utf-8")
+
+            list_result = run_command("list", "--input-dir", str(expired_outbox))
+            self.assertIn("expired-conversation", list_result.stdout)
+            self.assertIn("timeout", list_result.stdout)
+
     def test_gerrit_mail_rejects_transfer_over_soft_limit(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -679,7 +776,6 @@ class CloudChannelTests(unittest.TestCase):
                 str(inner_outbox),
                 "--transport-hint",
                 "gerrit-mail",
-                "--ack-required",
                 "--skip-environment-guard",
             )
 
@@ -693,30 +789,46 @@ class CloudChannelTests(unittest.TestCase):
             self.assertEqual(outer_payload.read_text(encoding="utf-8"), "inner says hello")
 
             original_message = next(outer_inbox.glob("*.json"))
+            original = json.loads(original_message.read_text(encoding="utf-8"))
             run_command(
-                "ack",
-                "--message",
-                str(original_message),
+                "pack",
+                "--direction",
+                "cloud-outer-to-cloud-inner",
+                "--sender",
+                "cloud-outer",
+                "--receiver",
+                "cloud-inner",
+                "--subject",
+                "closed loop response",
+                "--body",
+                "reply message",
+                "--payload-type",
+                "text",
+                "--text",
+                "outer received the request",
+                "--reply-to",
+                original["message_id"],
+                "--conversation-id",
+                original["conversation_id"],
                 "--out-dir",
                 str(outer_outbox),
-                "--state",
-                "received",
+                "--transport-hint",
+                "citrix-drive",
+                "--skip-environment-guard",
             )
 
-            for message_file in outer_outbox.glob("*_ack.json"):
+            for message_file in outer_outbox.glob("*.json"):
                 (simulated_citrix_drive / message_file.name).write_bytes(message_file.read_bytes())
             for message_file in simulated_citrix_drive.glob("*.json"):
                 (inner_inbox / message_file.name).write_bytes(message_file.read_bytes())
 
             run_command("unpack", "--input-dir", str(inner_inbox), "--out-dir", str(inner_received))
-            ack_file = next(inner_received.glob("*/ack.json"))
-            ack_message = json.loads(ack_file.read_text(encoding="utf-8"))
-            original = json.loads(original_message.read_text(encoding="utf-8"))
-            self.assertEqual(ack_message["payload"]["ack_message_id"], original["message_id"])
-            self.assertEqual(ack_message["direction"], "cloud-outer-to-cloud-inner")
-            self.assertEqual(ack_message["sender"], "cloud-outer")
-            self.assertEqual(ack_message["receiver"], "cloud-inner")
-            self.assertEqual(ack_message["delivery"]["transport_hint"], "citrix-drive")
+            reply_file = next(inner_received.glob("*/message.json"))
+            reply_message = json.loads(reply_file.read_text(encoding="utf-8"))
+            self.assertEqual(reply_message["reply_to"], original["message_id"])
+            self.assertEqual(reply_message["conversation_id"], original["conversation_id"])
+            self.assertEqual(reply_message["direction"], "cloud-outer-to-cloud-inner")
+            self.assertEqual(next(inner_received.glob("*/payload/payload.txt")).read_text(encoding="utf-8"), "outer received the request")
 
 
 if __name__ == "__main__":

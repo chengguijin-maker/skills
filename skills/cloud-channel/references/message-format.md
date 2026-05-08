@@ -10,13 +10,15 @@
   "version": "1.0",
   "message_id": "20260507T094000Z-a1b2c3d4",
   "transfer_id": "20260507T094000Z-a1b2c3d4",
+  "conversation_id": "20260507T094000Z-a1b2c3d4",
+  "reply_to": "",
+  "expect_reply_before": "2026-05-07T10:10:00+00:00",
   "direction": "cloud-inner-to-cloud-outer",
   "created_at": "2026-05-07T09:40:00+00:00",
   "sender": "cloud-inner",
   "receiver": "cloud-outer",
   "subject": "短标题",
   "body": "给人阅读的摘要",
-  "ack_required": true,
   "payload_type": "text",
   "payload": {},
   "delivery": {
@@ -33,7 +35,8 @@
 - 后续只传 zip 和 JSON 清单，不单独设计文本、单文件、多文件夹协议。
 - 日常命令只需要 `pack --file transfer-root`。如果当前目录已经存在 `transfer-root`，可以省略 `--file`。
 - 方向、身份、传输方式、输出目录、标题、载荷类型、压缩级别和分片策略都默认自动推断。
-- 回执只需要 `ack --message ./inbox/message.json`，脚本按原消息自动反推回执方向和通道。
+- 异步沟通靠 `conversation_id` 和 `reply_to` 配对，不依赖额外确认命令。
+- `expect_reply_before` 只做超时提醒，不自动失败、不自动重发。
 
 载荷类型：
 
@@ -42,7 +45,15 @@
 - `inline-archive-chunk`：Base64 压缩包分片，存放在 `payload.content`。
 - `sidecar-archive`：JSON 存放旁路文件名和校验信息，压缩包作为同目录文件传递。主要用于 `citrix-drive`。
 - `text` 和 `inline-file`：兼容入口，推荐新流程不要使用。
-- `ack`：另一条消息的回执。
+
+异步配对：
+
+- 新发起消息时，`conversation_id` 默认等于自己的 `message_id`，`reply_to` 为空。
+- 回复消息时，使用 `--reply-to <message_id>`，`reply_to` 写入原消息编号。
+- 回复消息时，`conversation_id` 默认使用 `reply_to`，仍能形成粗粒度会话。
+- 如果要把回复挂到更早的会话上，可以显式补 `--conversation-id <conversation_id>`。
+- 使用 `--timeout-minutes <分钟>` 时，脚本写入 `expect_reply_before`。
+- `list` 发现 `expect_reply_before` 已经过期时只提示 `timeout`。
 
 大小策略：
 
@@ -66,6 +77,8 @@
 - 不要把 `direction`、`sender`、`receiver`、`transport_hint`、`payload_type` 当成日常配置。
 - 环境自动识别失败时，先运行 `detect` 和 `doctor`；人工确认后才显式设置 `--direction` 和 `--skip-environment-guard`。
 - 默认发件目录不合适时，只补 `--out-dir`。
+- 回复已有消息时，只补 `--reply-to`。
+- 希望对方在一段时间内回应时，只补 `--timeout-minutes`。
 - 重新探测过 Gerrit 容量后，才调整大小和分片参数。
 
 分片发送和还原：
@@ -75,8 +88,9 @@
 - 每个分片有 `payload.chunk_index` 和 `payload.chunk_count`。
 - 接收方必须收齐全部分片，再运行 `unpack`。
 - `unpack` 会校验分片连续性、还原 Base64、校验压缩包 SHA256，并把 zip 解压到 `payload` 目录。
+- `unpack` 会在输出目录维护 `index.jsonl`，用于后续按 `message_id`、`conversation_id` 和 `reply_to` 查看沟通关系。
 - `sidecar-archive` 还原时要求旁路文件和 JSON 在同一个 `input-dir`，校验 SHA256 后再解压。
-- 如果缺少分片，接收方只回执缺失分片号，不要要求发送方重发整批，除非分片大量缺失。
+- 如果缺少分片，接收方不解包，保留原文件并按错误信息人工补齐。
 - 真实 Gerrit 边界需要用 `probe-plan` 生成探测计划后在云内专用承载 change 上测试。测试说明见 `references/gerrit-capacity-probe.md`。
 
 Gerrit 限制依据：

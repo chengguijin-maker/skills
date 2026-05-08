@@ -14,7 +14,7 @@ import socket
 import sys
 import uuid
 import zipfile
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -52,6 +52,15 @@ KNOWN_GERRIT_PORT = 29418
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def parse_iso_datetime(value: str) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
 
 def new_message_id() -> str:
@@ -152,19 +161,40 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def resolve_conversation_id(args: argparse.Namespace, message_id: str) -> str:
+    configured = getattr(args, "conversation_id", None)
+    if configured:
+        return configured
+    reply_to = getattr(args, "reply_to", None)
+    if reply_to:
+        return reply_to
+    return message_id
+
+
+def resolve_expect_reply_before(args: argparse.Namespace) -> str:
+    timeout_minutes = getattr(args, "timeout_minutes", None)
+    if timeout_minutes is None:
+        return ""
+    if timeout_minutes <= 0:
+        raise SystemExit("--timeout-minutes 必须大于 0")
+    return (datetime.now(timezone.utc) + timedelta(minutes=timeout_minutes)).replace(microsecond=0).isoformat()
+
+
 def base_envelope(args: argparse.Namespace, message_id: str) -> dict[str, Any]:
     return {
         "channel_message_type": MESSAGE_TYPE,
         "version": VERSION,
         "message_id": message_id,
         "transfer_id": getattr(args, "transfer_id", None) or message_id,
+        "conversation_id": resolve_conversation_id(args, message_id),
+        "reply_to": getattr(args, "reply_to", None) or "",
+        "expect_reply_before": resolve_expect_reply_before(args),
         "direction": args.direction,
         "created_at": utc_now(),
         "sender": args.sender,
         "receiver": args.receiver,
         "subject": args.subject,
         "body": args.body or "",
-        "ack_required": bool(args.ack_required),
         "payload_type": "auto" if args.payload_type == "auto" else args.payload_type,
         "delivery": {
             "state": "created",
@@ -423,9 +453,46 @@ def find_message_files(input_dir: Path, message_id: str | None) -> list[Path]:
     return found
 
 
+def append_message_index(root_dir: Path, message: dict[str, Any], message_dir: Path) -> None:
+    index_path = root_dir / "index.jsonl"
+    record = {
+        "message_id": message.get("message_id", ""),
+        "conversation_id": message.get("conversation_id", message.get("message_id", "")),
+        "reply_to": message.get("reply_to", ""),
+        "direction": message.get("direction", ""),
+        "sender": message.get("sender", ""),
+        "receiver": message.get("receiver", ""),
+        "subject": message.get("subject", ""),
+        "body": message.get("body", ""),
+        "payload_type": message.get("payload_type", ""),
+        "created_at": message.get("created_at", ""),
+        "expect_reply_before": message.get("expect_reply_before", ""),
+        "message_dir": str(message_dir),
+    }
+    index_path.parent.mkdir(parents=True, exist_ok=True)
+    existing_ids: set[str] = set()
+    if index_path.exists():
+        for line in index_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                existing_ids.add(json.loads(line).get("message_id", ""))
+            except json.JSONDecodeError:
+                continue
+    if record["message_id"] in existing_ids:
+        return
+    with index_path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+def write_received_message(root_dir: Path, message_dir: Path, message: dict[str, Any]) -> None:
+    write_json(message_dir / "message.json", message)
+    append_message_index(root_dir, message, message_dir)
+
+
 def command_unpack(args: argparse.Namespace) -> int:
     input_dir = Path(args.input_dir)
-    out_dir = Path(args.out_dir)
+    root_out_dir = Path(args.out_dir)
     files = find_message_files(input_dir, args.message_id)
     if not files:
         raise SystemExit("没有找到通道消息文件")
@@ -435,7 +502,7 @@ def command_unpack(args: argparse.Namespace) -> int:
     if len(message_ids) != 1:
         raise SystemExit("发现多个消息编号。请传入 --message-id。")
     message_id = message_ids[0]
-    out_dir = out_dir / message_id
+    out_dir = root_out_dir / message_id
     out_dir.mkdir(parents=True, exist_ok=True)
 
     first = messages[0]
@@ -446,7 +513,7 @@ def command_unpack(args: argparse.Namespace) -> int:
         data = text.encode("utf-8")
         verify_sha(first, data)
         (out_dir / "payload.txt").write_bytes(data)
-        write_json(out_dir / "message.json", first)
+        write_received_message(root_out_dir, out_dir, first)
         print(str(out_dir))
         return 0
 
@@ -457,7 +524,7 @@ def command_unpack(args: argparse.Namespace) -> int:
         verify_sha(first, data)
         file_name = sanitize_file_name(payload.get("file_name") or "payload.txt")
         (out_dir / file_name).write_bytes(data)
-        write_json(out_dir / "message.json", first)
+        write_received_message(root_out_dir, out_dir, first)
         print(str(out_dir))
         return 0
 
@@ -469,7 +536,7 @@ def command_unpack(args: argparse.Namespace) -> int:
             archive_name = sanitize_file_name(first.get("payload", {}).get("archive_name") or "payload.zip")
             (out_dir / archive_name).write_bytes(archive_bytes)
             extract_archive_bytes(archive_bytes, out_dir)
-            write_json(out_dir / "message.json", first)
+            write_received_message(root_out_dir, out_dir, first)
             print(str(out_dir))
             return 0
 
@@ -487,7 +554,7 @@ def command_unpack(args: argparse.Namespace) -> int:
         archive_name = sanitize_file_name(chunks[0].get("payload", {}).get("archive_name") or "payload.zip")
         (out_dir / archive_name).write_bytes(archive_bytes)
         extract_archive_bytes(archive_bytes, out_dir)
-        write_json(out_dir / "message.json", chunks[0])
+        write_received_message(root_out_dir, out_dir, chunks[0])
         print(str(out_dir))
         return 0
 
@@ -509,12 +576,7 @@ def command_unpack(args: argparse.Namespace) -> int:
             payload_dir = out_dir / "payload"
             payload_dir.mkdir(parents=True, exist_ok=True)
             (payload_dir / archive_name).write_bytes(archive_bytes)
-        write_json(out_dir / "message.json", first)
-        print(str(out_dir))
-        return 0
-
-    if payload_type == "ack":
-        write_json(out_dir / "ack.json", first)
+        write_received_message(root_out_dir, out_dir, first)
         print(str(out_dir))
         return 0
 
@@ -645,55 +707,25 @@ def write_sidecar_archive(args: argparse.Namespace, envelope: dict[str, Any], ar
     return 0
 
 
-def command_ack(args: argparse.Namespace) -> int:
-    source = load_json(Path(args.message))
-    message_id = args.message_id or new_message_id()
-    original_id = source.get("message_id", "")
-    direction = "cloud-inner-to-cloud-outer"
-    if source.get("direction") == "cloud-inner-to-cloud-outer":
-        direction = "cloud-outer-to-cloud-inner"
-    sender = args.sender or default_sender_for_direction(direction)
-    receiver = args.receiver or default_receiver_for_direction(direction)
-    transport_hint = args.transport_hint or default_transport_for_direction(direction)
-    out_dir = args.out_dir or default_out_dir_for_transport(transport_hint)
-    envelope = {
-        "channel_message_type": MESSAGE_TYPE,
-        "version": VERSION,
-        "message_id": message_id,
-        "transfer_id": source.get("transfer_id", original_id),
-        "direction": direction,
-        "created_at": utc_now(),
-        "sender": sender,
-        "receiver": receiver,
-        "subject": f"ack: {source.get('subject', original_id)}",
-        "body": args.body or f"acknowledged {original_id}",
-        "ack_required": False,
-        "payload_type": "ack",
-        "payload": {
-            "ack_message_id": original_id,
-            "ack_state": args.state,
-        },
-        "delivery": {
-            "state": "created",
-            "transport_hint": transport_hint,
-        },
-    }
-    out_path = Path(out_dir) / output_name(message_id, "ack")
-    write_json(out_path, envelope)
-    print(str(out_path))
-    return 0
-
-
 def command_list(args: argparse.Namespace) -> int:
     files = find_message_files(Path(args.input_dir), args.message_id)
+    now = datetime.now(timezone.utc)
     for path in files:
         data = load_json(path)
+        expect_reply_before = data.get("expect_reply_before", "")
+        timeout_state = ""
+        deadline = parse_iso_datetime(expect_reply_before)
+        if deadline and deadline.astimezone(timezone.utc) < now:
+            timeout_state = "timeout"
         print(
             "\t".join(
                 [
                     data.get("message_id", ""),
+                    data.get("conversation_id", data.get("message_id", "")),
+                    data.get("reply_to", ""),
                     data.get("direction", ""),
                     data.get("payload_type", ""),
+                    timeout_state,
                     data.get("subject", ""),
                     str(path),
                 ]
@@ -787,8 +819,10 @@ def command_probe_plan(args: argparse.Namespace) -> int:
             body=f"probe payload bytes {size}",
             payload_type="text",
             transport_hint="gerrit-mail",
-            ack_required=False,
             transfer_id=f"probe-{size}",
+            conversation_id=f"probe-{size}",
+            reply_to="",
+            timeout_minutes=None,
         )
         envelope = base_envelope(sample_args, f"probe-{size}")
         archive_bytes = build_zip_bytes(DEFAULT_TEXT_ENTRY_NAME, payload)
@@ -903,11 +937,13 @@ def build_parser() -> argparse.ArgumentParser:
     pack.add_argument("--out-dir")
     pack.add_argument("--message-id")
     pack.add_argument("--transfer-id")
+    pack.add_argument("--conversation-id")
+    pack.add_argument("--reply-to")
+    pack.add_argument("--timeout-minutes", type=int)
     pack.add_argument("--chunk-chars", type=int, default=DEFAULT_CHUNK_CHARS)
     pack.add_argument("--max-message-bytes", type=int)
     pack.add_argument("--max-transfer-bytes", type=int)
     pack.add_argument("--transport-hint", default="")
-    pack.add_argument("--ack-required", action="store_true")
     pack.add_argument("--compress", action=argparse.BooleanOptionalAction, default=True)
     pack.add_argument("--compression-level", type=int)
     pack.add_argument("--sidecar", action=argparse.BooleanOptionalAction, default=True)
@@ -919,17 +955,6 @@ def build_parser() -> argparse.ArgumentParser:
     unpack.add_argument("--out-dir", required=True)
     unpack.add_argument("--message-id")
     unpack.set_defaults(func=command_unpack)
-
-    ack = sub.add_parser("ack", help="创建回执消息。")
-    ack.add_argument("--message", required=True)
-    ack.add_argument("--sender")
-    ack.add_argument("--receiver")
-    ack.add_argument("--out-dir")
-    ack.add_argument("--state", default="received", choices=["received", "acknowledged", "failed"])
-    ack.add_argument("--body", default="")
-    ack.add_argument("--message-id")
-    ack.add_argument("--transport-hint", default="")
-    ack.set_defaults(func=command_ack)
 
     list_cmd = sub.add_parser("list", help="列出目录中的通道消息。")
     list_cmd.add_argument("--input-dir", required=True)
