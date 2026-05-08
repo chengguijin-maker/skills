@@ -20,6 +20,21 @@
       }
     },
     {
+      "name": "cloud-channel",
+      "repo_path": "skills/cloud-channel",
+      "category": "integration",
+      "tags": [
+        "cloud",
+        "channel",
+        "gerrit",
+        "citrix",
+        "transfer"
+      ],
+      "source": {
+        "type": "first_party"
+      }
+    },
+    {
       "name": "agent-workspace-migration",
       "repo_path": "skills/agent-workspace-migration",
       "category": "operations",

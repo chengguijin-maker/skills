@@ -1,0 +1,4 @@
+interface:
+  display_name: "云内外通道"
+  short_description: "交换云内和云外通道消息"
+  default_prompt: "使用云内外通道，在云内和云外之间交换结构化消息、内联文本文件和小型压缩包分片。"

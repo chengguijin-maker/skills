@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-11T12:22:42.025272Z",
+  "generated_at": "2026-05-08T02:41:49.153590Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -21,7 +21,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-workspace-migration",
-      "content_hash": "5ff05992d69677f826e6e9db2b1652af71c5e270d09399f96d56e83295436f2a"
+      "content_hash": "377c9423c88a8f36977c702663862d750177d495f8316daeba547953a4d5574e"
     },
     {
       "name": "autonomous-task-executor",
@@ -36,7 +36,23 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
-      "content_hash": "a8ac226dfd010c1458e9f8f561aa22c09186b2dad377fbd248547fc4cb06cd81"
+      "content_hash": "a80bc6c0a4bcb5a610f97567f2db4db47717d1e9d35301110f03d7e5c255b3c5"
+    },
+    {
+      "name": "cloud-channel",
+      "description": "\u5efa\u7acb\u548c\u4f7f\u7528\u4e91\u5185\u4e0e\u4e91\u5916\u4e4b\u95f4\u7684\u57fa\u7840\u901a\u4fe1\u901a\u9053\u3002\u9002\u7528\u4e8e\u901a\u8fc7\u4e91\u5185\u5230\u4e91\u5916\u7684 Gerrit \u90ae\u4ef6\u8def\u5f84\uff0c\u6216\u4e91\u5916\u5230\u4e91\u5185\u7684 Citrix \u6620\u5c04\u8def\u5f84\uff0c\u4ee5\u9ed8\u8ba4\u81ea\u52a8\u53c2\u6570\u4ea4\u6362\u4e00\u4e2a\u4f20\u8f93\u6587\u4ef6\u5939\u3002\u672c\u6280\u80fd\u53ea\u8d1f\u8d23\u901a\u9053\u5c42\u548c\u56de\u6267\u534f\u8bae\uff0c\u4e0d\u8d1f\u8d23\u98de\u4e66\u3001JIRA\u3001Confluence \u7b49\u4e0a\u5c42\u4e1a\u52a1\u96c6\u6210\u3002",
+      "repo_path": "skills/cloud-channel",
+      "category": "integration",
+      "tags": [
+        "cloud",
+        "channel",
+        "gerrit",
+        "citrix",
+        "transfer"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cloud-channel",
+      "content_hash": "626183e1bf3c38f21418a248126ba6d2d3664ac9c2ebae4ad6937fcc6a7322ec"
     },
     {
       "name": "find-skills",
@@ -93,7 +109,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/powershell-ssh-linux-ops",
-      "content_hash": "37e9626ea35cff49dca2d01043b6975ee362e80ab5d7d476e21b03115489709d"
+      "content_hash": "06d01985d859e3ae5b6031a8577f4b3bcd02f75a9f4d401b11472b18e5310598"
     },
     {
       "name": "project-kickoff-governance",
@@ -109,7 +125,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
-      "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
+      "content_hash": "1abeee1e7d2b670b3c4cd317ed5d306356bf4ae955b562eaaf8e31bbf11f01b4"
     },
     {
       "name": "repo-skill-authoring",
@@ -123,7 +139,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring",
-      "content_hash": "cfcbfe20dd19ab3d35701089d1f99a9646c3215fc43203ce7cff9cf072288f9d"
+      "content_hash": "33e54ad860e5889d90833a78f9e17f415d881f50972758d1f597ee3610cc3ecc"
     },
     {
       "name": "skills-manager",
@@ -139,7 +155,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "e05cd40e74633e0a90515efba91e4502461ff636ddec92f0e6a3073a1ffece61"
+      "content_hash": "87c6be7e8fdc83d4f807573365ad42d13da1d2c9b1c22e2a7607d71611461764"
     }
   ]
 }
