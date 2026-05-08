@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "eval_name": "simple-cli-tool",
+  "config": "with_skill",
+  "expectations": [
+    {
+      "text": "Response asks at least one question to the user instead of directly generating a solution",
+      "passed": true,
+      "evidence": "Asks '你目前把 Markdown 转成 PDF 时，最让你头疼的是哪个环节？' with 4 options"
+    },
+    {
+      "text": "Response asks only ONE main question (not multiple questions bundled together)",
+      "passed": true,
+      "evidence": "Only one question asked, with A/B/C/D options for answering"
+    },
+    {
+      "text": "Response probes the problem (who uses it, current workaround, why now) rather than jumping to implementation",
+      "passed": true,
+      "evidence": "Explicitly says '先理解你要解决的根本问题' and '更像是一个解决方案，我想先退一步搞清楚它背后的痛点'"
+    },
+    {
+      "text": "Response does NOT create WORK.md, repo structure, or task list in the first turn",
+      "passed": true,
+      "evidence": "No files, no project structure, no task list generated. Pure interaction."
+    },
+    {
+      "text": "Response explains why the question matters for the subsequent plan",
+      "passed": true,
+      "evidence": "States '它直接决定了 V1 的边界和优先级——如果痛点不同，最终方案可能完全不一样'"
+    }
+  ]
+}

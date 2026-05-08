@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 README.md 文件", "passed": true, "evidence": "README.md exists (116 bytes)"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 AGENTS.md 文件", "passed": true, "evidence": "AGENTS.md exists (49 lines, 903 bytes)"},
+    {"text": "在 /tmp/test-idea-ops-1 下生成了 WORK.md 文件", "passed": true, "evidence": "WORK.md exists (255 lines, 15656 bytes)"},
+    {"text": "创建了 archive/, scratch/, src/, tests/ 四个目录", "passed": true, "evidence": "All 4 directories confirmed present"},
+    {"text": "WORK.md 包含项目 UID（PRJ-开头）", "passed": true, "evidence": "PRJ-20260316-001"},
+    {"text": "WORK.md 包含术语表区块", "passed": true, "evidence": "术语表 section present with terms"},
+    {"text": "WORK.md 包含目标与非目标区块", "passed": true, "evidence": "7 mentions of 目标, structured goals/non-goals"},
+    {"text": "WORK.md 包含范围图或功能映射区块", "passed": true, "evidence": "11 mentions of 范围/功能映射/REQ-"},
+    {"text": "WORK.md 包含架构与边界区块", "passed": true, "evidence": "15 mentions of 架构/MOD-/模块"},
+    {"text": "WORK.md 中有关于知识库工具的具体想法描述，而非空模板", "passed": true, "evidence": "67 mentions of Markdown/全文搜索/标签/笔记 - rich content about knowledge base tool"},
+    {"text": "AGENTS.md 包含工作规则（如单文件优先、主控文件是WORK.md等）", "passed": true, "evidence": "AGENTS.md contains 单文件 and WORK.md references"}
+  ],
+  "summary": {"passed": 11, "failed": 0, "total": 11, "pass_rate": 1.0},
+  "timing": {"total_duration_seconds": 358.1}
+}

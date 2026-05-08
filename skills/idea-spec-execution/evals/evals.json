@@ -1,0 +1,52 @@
+{
+  "skill_name": "idea-spec-execution",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们 SaaS 后台管理系统需要加一个通知中心，运营和客服经常错过重要系统告警和用户反馈，现在都是靠企微群里@人，很容易漏。你帮我把这个想法整理成问题卡、规格和任务，如果任务多就补执行编排。输出到 docs/light-specs/notification-center/ 目录下。",
+      "expected_output": "产出 problem-frame.md 和 spec-and-tasks.md，问题卡聚焦于'运营漏消息'而非直接跳到方案；任务清单原子化、有 Validation 和 Done Signal；若任务>5则补 execution-plan.md",
+      "files": [],
+      "expectations": [
+        "产出了 problem-frame.md 文件，且包含问题描述、约束、假设、V1边界、成功标准等完整章节",
+        "problem-frame.md 中问题描述聚焦于用户痛点（漏消息/效率低），而非直接描述技术方案",
+        "problem-frame.md 中 Constraints 与 Assumptions 分开写，没有混在一起",
+        "problem-frame.md 中 V1 In/Out 边界明确，有具体的包含项和排除项",
+        "产出了 spec-and-tasks.md 文件，包含一句话范围、用户流、关键组件、任务清单等章节",
+        "spec-and-tasks.md 中关键组件数量不超过9个",
+        "任务清单中每个任务都有 Validation 和 Done Signal 字段，且内容具体而非模糊",
+        "任务清单中任务标题用动词开头",
+        "所有文档使用中文撰写"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我们的订单模块现在是 REST API，前端每次要拼好几个接口才能拿到完整数据，移动端更惨要发4-5个请求。老板说考虑迁到 GraphQL，但我也不确定是不是最优解。帮我从问题开始梳理，给我问题卡和规格任务，关键的技术决策也帮我列出来。输出到 docs/light-specs/order-graphql/ 目录。",
+      "expected_output": "产出 problem-frame.md、spec-and-tasks.md 和 critical-decisions.md；问题聚焦于'前端数据拼装成本高'而非预设GraphQL；关键决策文档记录GraphQL vs BFF vs其他方案的取舍",
+      "files": [],
+      "expectations": [
+        "产出了 problem-frame.md，问题定锚在'前端多次请求拼数据效率低'而非预设'迁移到GraphQL'",
+        "产出了 critical-decisions.md 文件，记录了至少2个备选技术方案的对比",
+        "critical-decisions.md 中包含取舍分析（trade-off），不只是列方案",
+        "spec-and-tasks.md 中的选定方案有明确依据，不是随意选择",
+        "任务清单考虑了迁移的渐进性，不是一步到位的大爆炸式改造",
+        "产出的文档中区分了约束与假设",
+        "所有文档使用中文撰写"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "最近用户流失率从5%涨到了12%，老板很着急让我们想办法。我也不太清楚具体原因，可能是竞品多了，也可能是我们产品体验有问题。你帮我理一下这个事情，先把问题搞清楚再说方案。输出到 docs/light-specs/user-churn/ 目录。",
+      "expected_output": "在问题还不清晰时，应该重点收口问题而非急于给方案；problem-frame.md 应体现问题的不确定性和多种可能原因；不应过早跳到具体功能方案",
+      "files": [],
+      "expectations": [
+        "产出了 problem-frame.md，且承认问题根因不明确，列出了多种可能原因",
+        "problem-frame.md 中的假设部分体现了保守假设原则，对不确定的原因做了标注",
+        "没有在 problem-frame 阶段就预设一个确定的技术方案",
+        "V1 范围聚焦在可快速验证的最小闭环，而非大而全的留存方案",
+        "如果产出了 spec-and-tasks.md，任务应包含数据分析/用户调研类的验证任务",
+        "整体产出体现了'先问题后方案'的原则",
+        "所有文档使用中文撰写"
+      ]
+    }
+  ]
+}

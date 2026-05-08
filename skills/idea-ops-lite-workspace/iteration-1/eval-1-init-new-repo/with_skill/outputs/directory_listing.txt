@@ -1,0 +1,10 @@
+total 792
+drwxrwxr-x   6 jinchenggui jinchenggui   4096 Mar 16 15:11 .
+drwxrwxrwt 105 root        root        774144 Mar 16 15:21 ..
+-rw-rw-r--   1 jinchenggui jinchenggui    903 Mar 16 15:11 AGENTS.md
+drwxrwxr-x   2 jinchenggui jinchenggui   4096 Mar 16 15:11 archive
+-rw-rw-r--   1 jinchenggui jinchenggui    116 Mar 16 15:11 README.md
+drwxrwxr-x   2 jinchenggui jinchenggui   4096 Mar 16 15:11 scratch
+drwxrwxr-x   2 jinchenggui jinchenggui   4096 Mar 16 15:11 src
+drwxrwxr-x   2 jinchenggui jinchenggui   4096 Mar 16 15:11 tests
+-rw-rw-r--   1 jinchenggui jinchenggui   2710 Mar 16 15:11 WORK.md

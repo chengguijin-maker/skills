@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "在 /tmp/test-idea-ops-1-baseline 下生成了 README.md 文件", "passed": false, "evidence": "No README.md - only TypeScript code files"},
+    {"text": "在 /tmp/test-idea-ops-1-baseline 下生成了 AGENTS.md 文件", "passed": false, "evidence": "No AGENTS.md created"},
+    {"text": "在 /tmp/test-idea-ops-1-baseline 下生成了 WORK.md 文件", "passed": false, "evidence": "No WORK.md - jumped directly to code implementation"},
+    {"text": "创建了 archive/, scratch/, src/, tests/ 四个目录", "passed": false, "evidence": "Only src/ and tests/ created (code dirs), no archive/ or scratch/"},
+    {"text": "WORK.md 包含项目 UID（PRJ-开头）", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "WORK.md 包含术语表区块", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "WORK.md 包含目标与非目标区块", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "WORK.md 包含范围图或功能映射区块", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "WORK.md 包含架构与边界区块", "passed": false, "evidence": "No WORK.md exists"},
+    {"text": "WORK.md 中有关于知识库工具的具体想法描述，而非空模板", "passed": false, "evidence": "No planning doc - 29 files of TypeScript code instead"},
+    {"text": "AGENTS.md 包含工作规则（如单文件优先、主控文件是WORK.md等）", "passed": false, "evidence": "No AGENTS.md exists"}
+  ],
+  "summary": {"passed": 0, "failed": 11, "total": 11, "pass_rate": 0.0},
+  "timing": {"total_duration_seconds": 447.7}
+}

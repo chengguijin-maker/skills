@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目编码调试工作流"
+  short_description: "按项目维度处理编码开发、调试、日志、性能、代码问题和构建分支。"
+  default_prompt: "按项目编码调试工作流，帮我整理任务、确认分支、规划取证、自测和转测。"

@@ -1,0 +1,14 @@
+{
+  "eval_id": 2,
+  "eval_name": "takeover-existing",
+  "prompt": "我有一个已经存在的项目目录 /tmp/test-idea-ops-2，里面有一些散乱的文档和代码。请用 idea-ops-lite 的方式接管这个项目，把现有材料整理收敛到 WORK.md 主控文件里。注意去重和材料分类。",
+  "assertions": [
+    "生成或更新了 WORK.md 主控文件",
+    "生成或更新了 AGENTS.md 约束文件",
+    "WORK.md 中包含从已有文件中提取的内容（非空模板）",
+    "已有的散乱文档内容被整合到 WORK.md 的对应区块中",
+    "临时或草稿材料被移到或建议移到 scratch/ 目录",
+    "WORK.md 包含材料登记表，记录了现有文件的分类",
+    "没有创建多余的文档文件（单文件优先原则）"
+  ]
+}

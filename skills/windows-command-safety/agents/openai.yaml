@@ -1,0 +1,4 @@
+interface:
+  display_name: "Windows 命令安全"
+  short_description: "避免 Windows Terminal 命令卡死"
+  default_prompt: "使用 Windows 命令安全，在 Windows Terminal 和 PowerShell 中执行命令时控制超时、输出、递归扫描、网络探测和循环。"

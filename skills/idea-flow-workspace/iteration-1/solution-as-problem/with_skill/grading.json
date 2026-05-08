@@ -1,0 +1,32 @@
+{
+  "eval_id": 2,
+  "eval_name": "solution-as-problem",
+  "config": "with_skill",
+  "expectations": [
+    {
+      "text": "Response identifies that the user gave a solution (React+TS rewrite) rather than a problem",
+      "passed": true,
+      "evidence": "Explicitly states '注意到你描述的是一个方案（用 React + TypeScript 重写），而不是一个问题'"
+    },
+    {
+      "text": "Response asks about the actual pain points with the jQuery admin panel",
+      "passed": true,
+      "evidence": "Asks '这次重写想要解决的核心痛点是什么？' with 5 specific options covering efficiency, quality, hiring, feature bottleneck"
+    },
+    {
+      "text": "Response does NOT immediately accept React+TS as the decided approach and start speccing",
+      "passed": true,
+      "evidence": "Does not mention any React tech stack, component libraries, or migration strategies. Stays in problem space."
+    },
+    {
+      "text": "Response asks only ONE main question per message",
+      "passed": true,
+      "evidence": "Single question '核心痛点是什么' with multiple choice options"
+    },
+    {
+      "text": "Response explicitly redirects from solution-space back to problem-space",
+      "passed": true,
+      "evidence": "Says '需要先搞清楚要解决的根本问题是什么，再决定方案是否合理。这样做的好处是避免在错误的方向上投入大量工作。'"
+    }
+  ]
+}

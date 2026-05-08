@@ -1,0 +1,82 @@
+[
+  {
+    "query": "用 idea-flow 帮我整理一下，我想做一个自动化测试报告生成器，能从 CI 日志里提取关键信息并生成 HTML 报告。",
+    "should_trigger": true
+  },
+  {
+    "query": "/idea-flow 帮我把这个模糊的需求收敛一下：老板说要做一个内部工单系统，但具体要什么功能他也说不清。",
+    "should_trigger": true
+  },
+  {
+    "query": "用 idea-flow 帮我整理这个想法，我想给我们的 monorepo 搞一套自动化的依赖升级和兼容性检查流水线。",
+    "should_trigger": true
+  },
+  {
+    "query": "idea-flow 帮我把需求整理成可执行的任务：我们想把现有的 REST API 网关换成 GraphQL federation 架构。",
+    "should_trigger": true
+  },
+  {
+    "query": "用苏格拉底式收敛需求的方式帮我整理一下：我们团队想搞一个内部的 feature flag 平台，但不确定该自建还是用 SaaS。",
+    "should_trigger": true
+  },
+  {
+    "query": "带交互的需求整理，帮我把这个想法从 idea 推进到可执行：我想做一个 CLI 工具批量管理多个 Git 仓库的 PR。",
+    "should_trigger": true
+  },
+  {
+    "query": "用 idea-flow 整理：我想做个浏览器插件，在 GitHub PR 页面上显示代码变更的 AI 摘要。",
+    "should_trigger": true
+  },
+  {
+    "query": "idea-flow，我有个想法但还没想清楚——我想用 AI 帮运维团队自动分析告警日志，减少误报。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我用 idea-flow 把这个 idea 从零整理成可以交给开发的材料：做一个类似 Linear 的轻量项目管理工具，只保留看板和 sprint 两个核心功能。",
+    "should_trigger": true
+  },
+  {
+    "query": "idea-flow 帮我收敛一下需求，我们想给现有的 SaaS 产品加一个多租户支持但不确定隔离模型怎么选。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这个想法整理一下：我想做一个能自动检测 TypeScript 代码中的 any 类型并提供修复建议的 ESLint 插件。",
+    "should_trigger": false
+  },
+  {
+    "query": "src/api/handler.ts 第 42 行有个 null pointer 的 bug，帮我修一下。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这个函数从 callback 风格重构成 async/await。代码在 src/utils/fetch.ts 里。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一个 Python 脚本，从 CSV 文件里读取销售数据然后生成月度汇总的 Excel 报表。",
+    "should_trigger": false
+  },
+  {
+    "query": "我想在这个 React 项目里加一个暗色模式切换按钮，state 用 Context 管理就行。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我给这个 API 接口写单元测试，覆盖正常和异常场景。测试框架用 vitest。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我 review 一下这个 PR，重点看有没有安全漏洞和性能问题。PR #347 在 feature/auth-refactor 分支上。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我搞一下 CI/CD：在 GitHub Actions 里加一个 workflow，push 到 main 自动跑 lint + test + deploy。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把 README 翻译成英文，保持技术术语不变，语气正式一点。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我看看这个 Docker compose 文件为什么容器起不来，报错是 port 3000 already in use。",
+    "should_trigger": false
+  }
+]

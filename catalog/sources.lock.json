@@ -1,147 +1,760 @@
 {
-  "version": 1,
-  "repository": {
-    "url": "https://github.com/chengguijin-maker/skills.git",
-    "default_ref": "main"
-  },
-  "skills": [
-    {
-      "name": "autonomous-task-executor",
-      "repo_path": "skills/autonomous-task-executor",
-      "category": "productivity",
-      "tags": [
-        "autonomy",
-        "execution",
-        "delivery",
-        "workflow"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "cloud-channel",
-      "repo_path": "skills/cloud-channel",
-      "category": "integration",
-      "tags": [
-        "cloud",
-        "channel",
-        "gerrit",
-        "citrix",
-        "transfer"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "agent-workspace-migration",
-      "repo_path": "skills/agent-workspace-migration",
-      "category": "operations",
-      "tags": [
-        "migration",
-        "server",
-        "ssh",
-        "skills",
-        "claude",
-        "codex"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "find-skills",
-      "repo_path": "skills/find-skills",
-      "category": "discovery",
-      "tags": [
-        "skills",
-        "discovery",
-        "search",
-        "install"
-      ],
-      "source": {
-        "type": "mirrored",
-        "upstream_repo": "vercel-labs/skills",
-        "upstream_path": "skills/find-skills",
-        "ref": "main"
-      }
-    },
-    {
-      "name": "gh-cli",
-      "repo_path": "skills/gh-cli",
-      "category": "integration",
-      "tags": [
-        "github",
-        "gh",
-        "cli",
-        "pull-request",
-        "issue"
-      ],
-      "source": {
-        "type": "mirrored",
-        "upstream_repo": "github/awesome-copilot",
-        "upstream_path": "skills/gh-cli",
-        "ref": "main"
-      }
-    },
-    {
-      "name": "project-kickoff-governance",
-      "repo_path": "skills/project-kickoff-governance",
-      "category": "management",
-      "tags": [
-        "kickoff",
-        "governance",
-        "git",
-        "worktree",
-        "testing"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "powershell-ssh-linux-ops",
-      "repo_path": "skills/powershell-ssh-linux-ops",
-      "category": "operations",
-      "tags": [
-        "powershell",
-        "windows",
-        "ssh",
-        "linux",
-        "quoting"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "repo-skill-authoring",
-      "repo_path": "skills/repo-skill-authoring",
-      "category": "management",
-      "tags": [
-        "skills",
-        "authoring",
-        "repository"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    },
-    {
-      "name": "skills-manager",
-      "repo_path": "skills/skills-manager",
-      "category": "management",
-      "tags": [
-        "skills",
-        "sync",
-        "github",
-        "codex",
-        "claude"
-      ],
-      "source": {
-        "type": "first_party"
-      }
-    }
-  ]
+    "version":  1,
+    "repository":  {
+                       "url":  "https://github.com/chengguijin-maker/skills.git",
+                       "default_ref":  "main"
+                   },
+    "skills":  [
+                   {
+                       "name":  "accessing-confluence-api",
+                       "repo_path":  "skills/accessing-confluence-api",
+                       "category":  "integration",
+                       "tags":  [
+                                    "confluence",
+                                    "api",
+                                    "internal",
+                                    "documentation"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "accessing-coremail-api",
+                       "repo_path":  "skills/accessing-coremail-api",
+                       "category":  "integration",
+                       "tags":  [
+                                    "coremail",
+                                    "api",
+                                    "internal",
+                                    "mail"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "accessing-jira-api",
+                       "repo_path":  "skills/accessing-jira-api",
+                       "category":  "integration",
+                       "tags":  [
+                                    "jira",
+                                    "api",
+                                    "internal",
+                                    "issue-tracking"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "agent-device",
+                       "repo_path":  "skills/agent-device",
+                       "category":  "testing",
+                       "tags":  [
+                                    "mobile",
+                                    "android",
+                                    "ios",
+                                    "automation",
+                                    "debugging"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "callstackincubator/agent-device",
+                                      "upstream_path":  "skills/agent-device",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "agent-workspace-migration",
+                       "repo_path":  "skills/agent-workspace-migration",
+                       "category":  "operations",
+                       "tags":  [
+                                    "migration",
+                                    "server",
+                                    "ssh",
+                                    "skills",
+                                    "claude",
+                                    "codex"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "autonomous-task-executor",
+                       "repo_path":  "skills/autonomous-task-executor",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "autonomy",
+                                    "execution",
+                                    "delivery",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "cc-go",
+                       "repo_path":  "skills/cc-go",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "autonomous",
+                                    "execution",
+                                    "parallel",
+                                    "subagent",
+                                    "task-management"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "changelog-maintenance",
+                       "repo_path":  "skills/changelog-maintenance",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "changelog",
+                                    "release",
+                                    "versioning",
+                                    "documentation"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "chrome-devtools",
+                       "repo_path":  "skills/chrome-devtools",
+                       "category":  "integration",
+                       "tags":  [
+                                    "chrome",
+                                    "devtools",
+                                    "mcp",
+                                    "browser",
+                                    "debugging"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "ChromeDevTools/chrome-devtools-mcp",
+                                      "upstream_path":  "skills/chrome-devtools",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "chrome-devtools-mcp-setup",
+                       "repo_path":  "skills/chrome-devtools-mcp-setup",
+                       "category":  "integration",
+                       "tags":  [
+                                    "chrome",
+                                    "mcp",
+                                    "codex",
+                                    "setup",
+                                    "troubleshooting"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "cloud-channel",
+                       "repo_path":  "skills/cloud-channel",
+                       "category":  "integration",
+                       "tags":  [
+                                    "cloud",
+                                    "channel",
+                                    "gerrit",
+                                    "citrix",
+                                    "transfer"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "find-skills",
+                       "repo_path":  "skills/find-skills",
+                       "category":  "discovery",
+                       "tags":  [
+                                    "skills",
+                                    "discovery",
+                                    "search",
+                                    "install"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "vercel-labs/skills",
+                                      "upstream_path":  "skills/find-skills",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "gh-cli",
+                       "repo_path":  "skills/gh-cli",
+                       "category":  "integration",
+                       "tags":  [
+                                    "github",
+                                    "gh",
+                                    "cli",
+                                    "pull-request",
+                                    "issue"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "github/awesome-copilot",
+                                      "upstream_path":  "skills/gh-cli",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "hv-analysis",
+                       "repo_path":  "skills/hv-analysis",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "research",
+                                    "analysis",
+                                    "horizontal",
+                                    "vertical",
+                                    "report"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "KKKKhazix/khazix-skills",
+                                      "upstream_path":  "hv-analysis",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "idea-flow",
+                       "repo_path":  "skills/idea-flow",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "idea",
+                                    "planning",
+                                    "socratic",
+                                    "spec",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "idea-ops-lite",
+                       "repo_path":  "skills/idea-ops-lite",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "idea",
+                                    "validation",
+                                    "lightweight",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "idea-spec-execution",
+                       "repo_path":  "skills/idea-spec-execution",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "idea",
+                                    "spec",
+                                    "task-breakdown",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "khazix-writer",
+                       "repo_path":  "skills/khazix-writer",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "writing",
+                                    "wechat",
+                                    "article",
+                                    "long-form",
+                                    "style"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "KKKKhazix/khazix-skills",
+                                      "upstream_path":  "khazix-writer",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "lark-approval",
+                       "repo_path":  "skills/lark-approval",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "approval",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-attendance",
+                       "repo_path":  "skills/lark-attendance",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "attendance",
+                                    "records"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-base",
+                       "repo_path":  "skills/lark-base",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "base",
+                                    "bitable",
+                                    "data"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-calendar",
+                       "repo_path":  "skills/lark-calendar",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "calendar",
+                                    "meeting",
+                                    "schedule"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-contact",
+                       "repo_path":  "skills/lark-contact",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "contact",
+                                    "directory"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-doc",
+                       "repo_path":  "skills/lark-doc",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "doc",
+                                    "document"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-drive",
+                       "repo_path":  "skills/lark-drive",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "drive",
+                                    "file"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-event",
+                       "repo_path":  "skills/lark-event",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "event",
+                                    "websocket"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-im",
+                       "repo_path":  "skills/lark-im",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "im",
+                                    "message",
+                                    "chat"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-mail",
+                       "repo_path":  "skills/lark-mail",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "mail",
+                                    "email"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-markdown",
+                       "repo_path":  "skills/lark-markdown",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "markdown",
+                                    "document"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-minutes",
+                       "repo_path":  "skills/lark-minutes",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "minutes",
+                                    "transcript",
+                                    "summary"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-okr",
+                       "repo_path":  "skills/lark-okr",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "lark",
+                                    "okr",
+                                    "goals"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-openapi-explorer",
+                       "repo_path":  "skills/lark-openapi-explorer",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "openapi",
+                                    "explorer"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-shared",
+                       "repo_path":  "skills/lark-shared",
+                       "category":  "integration",
+                       "tags":  [
+                                    "lark",
+                                    "auth",
+                                    "shared",
+                                    "cli"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-sheets",
+                       "repo_path":  "skills/lark-sheets",
+                       "category":  "data",
+                       "tags":  [
+                                    "lark",
+                                    "sheets",
+                                    "spreadsheet"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-skill-maker",
+                       "repo_path":  "skills/lark-skill-maker",
+                       "category":  "management",
+                       "tags":  [
+                                    "lark",
+                                    "skill",
+                                    "authoring"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-slides",
+                       "repo_path":  "skills/lark-slides",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "slides",
+                                    "presentation"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-task",
+                       "repo_path":  "skills/lark-task",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "lark",
+                                    "task",
+                                    "todo"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-vc",
+                       "repo_path":  "skills/lark-vc",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "vc",
+                                    "meeting",
+                                    "summary"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-whiteboard",
+                       "repo_path":  "skills/lark-whiteboard",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "whiteboard",
+                                    "diagram"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-wiki",
+                       "repo_path":  "skills/lark-wiki",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "lark",
+                                    "wiki",
+                                    "knowledge"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-workflow-meeting-summary",
+                       "repo_path":  "skills/lark-workflow-meeting-summary",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "lark",
+                                    "meeting",
+                                    "summary",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "lark-workflow-standup-report",
+                       "repo_path":  "skills/lark-workflow-standup-report",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "lark",
+                                    "standup",
+                                    "calendar",
+                                    "task"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "powershell-ssh-linux-ops",
+                       "repo_path":  "skills/powershell-ssh-linux-ops",
+                       "category":  "operations",
+                       "tags":  [
+                                    "powershell",
+                                    "windows",
+                                    "ssh",
+                                    "linux",
+                                    "quoting"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "project-coding-debug-workflow",
+                       "repo_path":  "skills/project-coding-debug-workflow",
+                       "category":  "operations",
+                       "tags":  [
+                                    "project",
+                                    "coding",
+                                    "debug",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "project-kickoff-governance",
+                       "repo_path":  "skills/project-kickoff-governance",
+                       "category":  "management",
+                       "tags":  [
+                                    "kickoff",
+                                    "governance",
+                                    "git",
+                                    "worktree",
+                                    "testing"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "project-workflow-explorer",
+                       "repo_path":  "skills/project-workflow-explorer",
+                       "category":  "management",
+                       "tags":  [
+                                    "project",
+                                    "workflow",
+                                    "confluence",
+                                    "jira"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "qa-testing-android",
+                       "repo_path":  "skills/qa-testing-android",
+                       "category":  "testing",
+                       "tags":  [
+                                    "android",
+                                    "qa",
+                                    "espresso",
+                                    "uiautomator",
+                                    "adb"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "vasilyu1983/AI-Agents-public",
+                                      "upstream_path":  "frameworks/shared-skills/skills/qa-testing-android",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "qa-testing-mobile",
+                       "repo_path":  "skills/qa-testing-mobile",
+                       "category":  "testing",
+                       "tags":  [
+                                    "mobile",
+                                    "qa",
+                                    "android",
+                                    "ios",
+                                    "strategy"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "vasilyu1983/AI-Agents-public",
+                                      "upstream_path":  "frameworks/shared-skills/skills/qa-testing-mobile",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "repo-skill-authoring",
+                       "repo_path":  "skills/repo-skill-authoring",
+                       "category":  "management",
+                       "tags":  [
+                                    "skills",
+                                    "authoring",
+                                    "repository"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "skill-installer",
+                       "repo_path":  "skills/skill-installer",
+                       "category":  "management",
+                       "tags":  [
+                                    "skills",
+                                    "install",
+                                    "github",
+                                    "codex"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "skills-manager",
+                       "repo_path":  "skills/skills-manager",
+                       "category":  "management",
+                       "tags":  [
+                                    "skills",
+                                    "sync",
+                                    "github",
+                                    "codex",
+                                    "claude"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "windows-command-safety",
+                       "repo_path":  "skills/windows-command-safety",
+                       "category":  "operations",
+                       "tags":  [
+                                    "windows",
+                                    "powershell",
+                                    "safety",
+                                    "timeout"
+                                ],
+                       "source":  {
+                                      "type":  "first_party"
+                                  }
+                   }
+               ]
 }

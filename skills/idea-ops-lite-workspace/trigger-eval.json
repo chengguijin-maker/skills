@@ -1,0 +1,22 @@
+[
+  {"query": "我有个做笔记工具的想法，想先理清楚再动手写代码，帮我把思路整理成可执行方案", "should_trigger": true},
+  {"query": "我们团队最近在讨论一个新的内部工具，需求还很散，有几个 Google Doc 和一些 Slack 讨论记录。帮我把这些信息收敛成一个清晰的项目文档，明确目标、非目标和里程碑", "should_trigger": true},
+  {"query": "这个 repo 之前同事走了留下来的，有些零散的 md 文件和半成品代码，帮我接管一下，先搞清楚现在是什么状态，把文档归拢到一个地方", "should_trigger": true},
+  {"query": "帮我初始化一个新项目的骨架，我想做一个 CLI 工具用来管理 dotfiles，先不写代码，先把规划做好", "should_trigger": true},
+  {"query": "我有三四个功能想法但不确定哪个值得做，帮我把每个想法的目标和风险列出来，做个轻量的可行性分析", "should_trigger": true},
+  {"query": "之前调研了几个方案但笔记散在各处，帮我去重整理一下，哪些结论还有效哪些需要重新调研", "should_trigger": true},
+  {"query": "我想给现有项目加个 AGENTS.md 和 WORK.md，让后续的 AI agent 能快速上手这个项目的上下文", "should_trigger": true},
+  {"query": "帮我把这堆需求邮件整理成一个结构化的需求文档，区分清楚必做和不做的边界", "should_trigger": true},
+  {"query": "项目启动前先帮我做个轻量规划，不要写代码，把架构边界、模块划分、技术选型先想清楚", "should_trigger": true},
+  {"query": "我在 scratch/ 里攒了一堆草稿和脑暴记录，帮我把有用的结论提炼出来更新到 WORK.md，没用的可以删了", "should_trigger": true},
+  {"query": "帮我写一个 Python 脚本，读取 CSV 文件并生成柱状图，用 matplotlib", "should_trigger": false},
+  {"query": "这个 React 组件的 useEffect 有内存泄漏，帮我 debug 一下，组件卸载时没有清理 subscription", "should_trigger": false},
+  {"query": "帮我把这个函数从 JavaScript 重构成 TypeScript，加上类型注解", "should_trigger": false},
+  {"query": "我需要写一份 API 文档，用 OpenAPI 3.0 格式描述这几个 REST 端点的请求和响应结构", "should_trigger": false},
+  {"query": "帮我配置一下 GitHub Actions CI，在 PR 提交时自动跑 lint 和单元测试", "should_trigger": false},
+  {"query": "这个 SQL 查询太慢了，有三个 JOIN 和一个子查询，帮我优化一下执行计划", "should_trigger": false},
+  {"query": "帮我用 Docker Compose 搭建一个本地开发环境，包含 PostgreSQL、Redis 和 Nginx 反代", "should_trigger": false},
+  {"query": "我想了解一下 Rust 的 async/await 是怎么工作的，和 Go 的 goroutine 有什么区别", "should_trigger": false},
+  {"query": "帮我给这个 Express.js 项目加上 JWT 认证中间件，token 过期时间设为 24 小时", "should_trigger": false},
+  {"query": "这个 git merge conflict 帮我解一下，两边都改了同一个函数的参数列表", "should_trigger": false}
+]

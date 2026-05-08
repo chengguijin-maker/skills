@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "生成或更新了 WORK.md 主控文件", "passed": true, "evidence": "192 行 WORK.md，包含完整 15 个区块"},
+    {"text": "生成或更新了 AGENTS.md 约束文件", "passed": true, "evidence": "56 行 AGENTS.md，含项目特定规则"},
+    {"text": "WORK.md 中包含从已有文件中提取的内容（非空模板）", "passed": true, "evidence": "从 notes.md 提取想法/背景/TODO，从 research-db.md 提取调研结论，从 api-draft.rs 提取接口设计"},
+    {"text": "已有的散乱文档内容被整合到 WORK.md 的对应区块中", "passed": true, "evidence": "notes.md→Idea+实施计划, research-db.md→调研登记表+ADR, api-draft.rs→架构与边界"},
+    {"text": "临时或草稿材料被移到或建议移到 scratch/ 目录", "passed": true, "evidence": "notes.md 移到 scratch/notes.md，标记为'已吸收'"},
+    {"text": "WORK.md 包含材料登记表，记录了现有文件的分类", "passed": true, "evidence": "3 条记录：ART-001(scratch), ART-002(archive), ART-003(src)"},
+    {"text": "没有创建多余的文档文件（单文件优先原则）", "passed": true, "evidence": "仅 WORK.md+AGENTS.md+README.md 三个文档文件"}
+  ],
+  "summary": {"passed": 7, "failed": 0, "total": 7, "pass_rate": 1.0},
+  "timing": {"total_duration_seconds": 185.6}
+}

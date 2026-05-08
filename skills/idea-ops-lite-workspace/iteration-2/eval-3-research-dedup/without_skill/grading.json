@@ -1,0 +1,12 @@
+{
+  "expectations": [
+    {"text": "在操作前先查看了 WORK.md 中已有的调研登记表", "passed": true, "evidence": "Agent read WORK.md first"},
+    {"text": "识别出已有的 SQLite vs PostgreSQL 调研（RES-001）", "passed": true, "evidence": "4 references to RES-001 preserved"},
+    {"text": "判断新调研与旧调研的关系（相关但问题不同，需新增）", "passed": true, "evidence": "Correctly identified as different dimension - selection vs performance"},
+    {"text": "新增了调研条目（如 RES-002），而非覆盖旧条目", "passed": true, "evidence": "RES-002 added (3 refs), RES-001 preserved (4 refs)"},
+    {"text": "新调研条目包含完整字段：问题、结论、证据来源、上次检查时间、重查条件", "passed": true, "evidence": "All fields filled including 复用说明 referencing RES-001"},
+    {"text": "WORK.md 的状态或实施记录区块有更新记录", "passed": true, "evidence": "实施记录 updated with RES-002 completion, 当前状态报告 updated"}
+  ],
+  "summary": {"passed": 6, "failed": 0, "total": 6, "pass_rate": 1.0},
+  "timing": {"total_duration_seconds": 90.6}
+}

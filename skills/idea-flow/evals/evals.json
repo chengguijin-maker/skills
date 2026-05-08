@@ -1,0 +1,48 @@
+{
+  "skill_name": "idea-flow",
+  "evals": [
+    {
+      "id": 1,
+      "name": "simple-cli-tool",
+      "prompt": "用 idea-flow 帮我整理一下：我想做一个 CLI 工具，把 markdown 文件批量转成 PDF，支持自定义样式。",
+      "expected_output": "应该触发苏格拉底式提问链，不能因为'简单'就跳过交互。应该先追问问题本质（谁用？当前怎么凑合？为什么值得做？），呈现问题定锚总结并等用户确认，而不是直接开始生成 WORK.md 和任务清单。",
+      "files": [],
+      "assertions": [
+        {"id": "asks_question", "text": "Response asks at least one question to the user instead of directly generating a solution"},
+        {"id": "one_question_only", "text": "Response asks only ONE main question (not multiple questions bundled together)"},
+        {"id": "problem_framing", "text": "Response probes the problem (who uses it, current workaround, why now) rather than jumping to implementation"},
+        {"id": "no_premature_files", "text": "Response does NOT create WORK.md, repo structure, or task list in the first turn"},
+        {"id": "explains_why_asking", "text": "Response explains why the question matters for the subsequent plan"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "solution-as-problem",
+      "prompt": "用 idea-flow 帮我整理：我要用 React + TypeScript 重写我们的 jQuery 管理后台前端。",
+      "expected_output": "应该识别出用户给的是'方案'而非'问题'，追问根本痛点（jQuery 后台现在有什么问题？性能？维护成本？招人难？）。不应该直接接受 React+TS 作为既定方案开始规格收口，而是先定锚问题。",
+      "files": [],
+      "assertions": [
+        {"id": "identifies_solution_not_problem", "text": "Response identifies that the user gave a solution (React+TS rewrite) rather than a problem"},
+        {"id": "asks_about_pain_points", "text": "Response asks about the actual pain points with the jQuery admin panel"},
+        {"id": "does_not_accept_react_as_given", "text": "Response does NOT immediately accept React+TS as the decided approach and start speccing"},
+        {"id": "one_question_only", "text": "Response asks only ONE main question per message"},
+        {"id": "redirects_to_problem", "text": "Response explicitly redirects from solution-space back to problem-space"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "vague-complex-idea",
+      "prompt": "用 idea-flow 帮我整理一下想法：我们团队有十几个人，内部文档散落在飞书、Notion、Google Docs 和各种 Git 仓库里，找东西很痛苦，想搞个统一的内部知识库。",
+      "expected_output": "应该启动完整的苏格拉底交互链：回溯用户说的事实，追问关键未知项（谁是主要用户？搜索需求？是否需要权限控制？预算和时间线？），逐步收敛而不是一次性输出完整方案。每个阶段结束时应有明确的确认动作。",
+      "files": [],
+      "assertions": [
+        {"id": "summarizes_facts", "text": "Response summarizes/acknowledges what the user has already stated before asking questions"},
+        {"id": "asks_question", "text": "Response asks at least one clarifying question about unknowns"},
+        {"id": "one_question_only", "text": "Response asks only ONE main question (not a list of 5 questions)"},
+        {"id": "no_complete_plan", "text": "Response does NOT generate a complete solution/plan/architecture in the first turn"},
+        {"id": "probes_key_unknowns", "text": "Response probes key unknowns (primary users, search needs, permissions, budget/timeline, etc.)"},
+        {"id": "uses_options_format", "text": "If asking a question, response provides multiple choice options rather than open-ended questions"}
+      ]
+    }
+  ]
+}

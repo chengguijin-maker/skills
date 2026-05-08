@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "solution-as-problem",
+  "prompt": "用 idea-flow 帮我整理：我要用 React + TypeScript 重写我们的 jQuery 管理后台前端。",
+  "assertions": [
+    {"id": "identifies_solution_not_problem", "text": "Response identifies that the user gave a solution rather than a problem"},
+    {"id": "asks_about_pain_points", "text": "Response asks about the actual pain points with jQuery admin panel"},
+    {"id": "does_not_accept_react_as_given", "text": "Response does NOT immediately accept React+TS and start speccing"},
+    {"id": "one_question_only", "text": "Response asks only ONE main question"},
+    {"id": "redirects_to_problem", "text": "Response explicitly redirects from solution-space to problem-space"},
+    {"id": "no_workflow_intro", "text": "[NEW] Response does NOT start with '好的，我来用 idea-flow...' or explain what idea-flow is"}
+  ]
+}

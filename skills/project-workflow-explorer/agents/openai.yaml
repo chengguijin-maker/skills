@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目工作流探索"
+  short_description: "从 Confluence 和 Jira 证据梳理项目研发工作流。"
+  default_prompt: "使用本技能探索项目资料库，建立项目工作流阶段图谱，并产出可复用检查表和证据缺口清单。"

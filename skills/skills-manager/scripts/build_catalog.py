@@ -9,6 +9,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 
@@ -64,6 +65,46 @@ def normalized_file_bytes(path: Path) -> bytes:
     return data
 
 
+def run_git(repo_root: Path, args: list[str]) -> bytes:
+    result = subprocess.run(
+        ["git", *args],
+        cwd=str(repo_root),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode != 0:
+        raise ValueError(result.stderr.decode("utf-8", errors="replace").strip() or "git command failed")
+    return result.stdout
+
+
+def is_git_repo(repo_root: Path) -> bool:
+    result = subprocess.run(
+        ["git", "rev-parse", "--git-dir"],
+        cwd=str(repo_root),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    return result.returncode == 0
+
+
+def hash_git_directory(repo_root: Path, repo_path: str) -> str:
+    digest = hashlib.sha256()
+    repo_path_prefix = repo_path.rstrip("/") + "/"
+    output = run_git(repo_root, ["ls-files", "-z", "--", repo_path])
+    files = [item for item in output.decode("utf-8").split("\0") if item]
+    for rel_path in sorted(files):
+        rel_posix = rel_path[len(repo_path_prefix) :] if rel_path.startswith(repo_path_prefix) else Path(rel_path).name
+        suffix = Path(rel_path).suffix
+        blob = run_git(repo_root, ["show", f"HEAD:{rel_path}"])
+        if suffix in TEXT_SUFFIXES:
+            blob = blob.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        digest.update(rel_posix.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(blob)
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
 def hash_directory(root: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted(p for p in root.rglob("*") if p.is_file() and not should_ignore_path(p, root)):
@@ -78,6 +119,7 @@ def hash_directory(root: Path) -> str:
 def build_catalog(repo_root: Path) -> dict:
     lock_path = repo_root / "catalog" / "sources.lock.json"
     lock_data = json.loads(lock_path.read_text(encoding="utf-8"))
+    use_git_hash = is_git_repo(repo_root)
     skills = []
     for item in lock_data.get("skills", []):
         skill_dir = repo_root / item["repo_path"]
@@ -95,7 +137,7 @@ def build_catalog(repo_root: Path) -> dict:
             "tags": item.get("tags", []),
             "source_type": item["source"]["type"],
             "install_url": install_url,
-            "content_hash": hash_directory(skill_dir),
+            "content_hash": hash_git_directory(repo_root, item["repo_path"]) if use_git_hash else hash_directory(skill_dir),
         }
         if item["source"]["type"] == "mirrored":
             entry["upstream"] = {

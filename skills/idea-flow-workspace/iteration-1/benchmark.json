@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "skill_name": "idea-flow",
+    "skill_path": "/home/jinchenggui/.claude/skills/idea-flow",
+    "executor_model": "claude-opus-4-6",
+    "timestamp": "2026-03-16T11:22:00Z",
+    "evals_run": ["simple-cli-tool", "solution-as-problem", "vague-complex-idea"],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_name": "simple-cli-tool",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "assertions": 5,
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "eval_name": "simple-cli-tool",
+      "config": "without_skill",
+      "pass_rate": 0.0,
+      "assertions": 5,
+      "passed": 0,
+      "failed": 5
+    },
+    {
+      "eval_name": "solution-as-problem",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "assertions": 5,
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "eval_name": "solution-as-problem",
+      "config": "without_skill",
+      "pass_rate": 0.0,
+      "assertions": 5,
+      "passed": 0,
+      "failed": 5
+    },
+    {
+      "eval_name": "vague-complex-idea",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "assertions": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "eval_name": "vague-complex-idea",
+      "config": "without_skill",
+      "pass_rate": 0.33,
+      "assertions": 6,
+      "passed": 2,
+      "failed": 4
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "mean_pass_rate": 1.0,
+      "total_assertions": 16,
+      "total_passed": 16,
+      "total_failed": 0
+    },
+    "without_skill": {
+      "mean_pass_rate": 0.11,
+      "total_assertions": 16,
+      "total_passed": 2,
+      "total_failed": 14
+    },
+    "delta": {
+      "pass_rate": "+0.89"
+    }
+  },
+  "notes": [
+    "With-skill runs achieved 100% pass rate across all 3 test cases (16/16 assertions)",
+    "Without-skill runs passed only 2/16 assertions (12.5%), both on vague-complex-idea (summarizes_facts, asks_question)",
+    "Key differentiator: with-skill ALWAYS asks one focused question with options; without-skill dumps multiple questions + premature solutions",
+    "The solution-as-problem test shows the strongest contrast: with-skill identifies the anti-pattern and redirects; without-skill proposes a full React tech stack"
+  ]
+}

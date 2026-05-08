@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 163, in _run_module_as_main
+    mod_name, _Error)
+  File "/usr/lib/python2.7/runpy.py", line 119, in _get_module_details
+    code = loader.get_code(mod_name)
+  File "/usr/lib/python2.7/pkgutil.py", line 281, in get_code
+    self.code = compile(source, self.filename, 'exec')
+  File "/home/jinchenggui/.claude/plugins/cache/claude-plugins-official/skill-creator/d5c15b861cd2/skills/skill-creator/scripts/run_loop.py", line 26
+    def split_eval_set(eval_set: list[dict], holdout: float, seed: int = 42) -> tuple[list[dict], list[dict]]:
+                               ^
+SyntaxError: invalid syntax

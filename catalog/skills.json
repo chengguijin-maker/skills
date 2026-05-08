@@ -1,11 +1,77 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T06:11:41.017743Z",
+  "generated_at": "2026-05-08T13:20:22.576489Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
   },
   "skills": [
+    {
+      "name": "accessing-confluence-api",
+      "description": "Access Confluence Server REST API v1 for content search, page CRUD, comments, children, attachments, spaces, labels, restrictions, content body conversion, and JIRA integration. Use when working with Confluence pages, spaces, documents, attachments, CQL, or JIRA remote links.",
+      "repo_path": "skills/accessing-confluence-api",
+      "category": "integration",
+      "tags": [
+        "confluence",
+        "api",
+        "internal",
+        "documentation"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-confluence-api",
+      "content_hash": "6090510c25bb5ee0e0f30f9d572654ce8befc510b7b454acdde848ea81bfb874"
+    },
+    {
+      "name": "accessing-coremail-api",
+      "description": "Access Hisense Coremail webmail internal APIs for folder listing, thread listing, message reading, tags, contacts, user attributes, and session based operation. Use when working with Hisense Mail System or Coremail URLs.",
+      "repo_path": "skills/accessing-coremail-api",
+      "category": "integration",
+      "tags": [
+        "coremail",
+        "api",
+        "internal",
+        "mail"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-coremail-api",
+      "content_hash": "d13c4a6d74207ddea5f64cde35235269c1617e88e885bffa6491567b95f3a606"
+    },
+    {
+      "name": "accessing-jira-api",
+      "description": "Access JIRA Server REST API v2 for issue search, issue CRUD, comments, assignees, workflow transitions, projects, metadata, attachments, and remote links. Use when working with JIRA issues, tickets, projects, JQL, or Confluence integration.",
+      "repo_path": "skills/accessing-jira-api",
+      "category": "integration",
+      "tags": [
+        "jira",
+        "api",
+        "internal",
+        "issue-tracking"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-jira-api",
+      "content_hash": "fddf3bdd7e57e19494ed2b3d6ecfac0d1d61a52469deaba40298b79bcf3a7f85"
+    },
+    {
+      "name": "agent-device",
+      "description": "Automates interactions for iOS simulators/devices and Android emulators/devices. Use when navigating apps, taking snapshots/screenshots, tapping, typing, scrolling, or extracting UI info on mobile targets.",
+      "repo_path": "skills/agent-device",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "android",
+        "ios",
+        "automation",
+        "debugging"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-device",
+      "content_hash": "b28165a98e69400443ca2d64e0680aacea1089c5c3e132f6c9544405d4cb2d04",
+      "upstream": {
+        "repo": "callstackincubator/agent-device",
+        "path": "skills/agent-device",
+        "ref": "main"
+      }
+    },
     {
       "name": "agent-workspace-migration",
       "description": "Use when migrating a Claude, Codex, Gemini, or similar agent workspace from one Linux server to another. Covers source and target host inventory, target user bootstrap, SSH key login, passwordless sudo, nvm with Node LTS plus pnpm, standard `gh` setup, GitHub-backed skill installation, selective shell config sync, MCP and agent dotdir migration, filtered project transfer, and final verification.",
@@ -21,11 +87,11 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-workspace-migration",
-      "content_hash": "377c9423c88a8f36977c702663862d750177d495f8316daeba547953a4d5574e"
+      "content_hash": "5ff05992d69677f826e6e9db2b1652af71c5e270d09399f96d56e83295436f2a"
     },
     {
       "name": "autonomous-task-executor",
-      "description": "\u5728\u76ee\u6807\u3001\u8303\u56f4\u3001\u8ba1\u5212\u6216\u4efb\u52a1\u6e05\u5355\u5df2\u7ecf\u660e\u786e\u65f6\uff0c\u6309\u201c\u9ed8\u8ba4\u8fde\u7eed\u6267\u884c\u5230\u5b8c\u6210\u3001\u53ea\u5728\u771f\u5b9e\u963b\u585e\u65f6\u505c\u4e0b\u201d\u7684\u65b9\u5f0f\u63a8\u8fdb\u5f00\u53d1\u3001\u91cd\u6784\u3001\u4fee\u590d\u3001\u6587\u6863\u548c\u6d4b\u8bd5\u5de5\u4f5c\u3002\u7528\u4e8e\u201c\u5df2\u7ecf\u89c4\u5212\u597d\u4e86\u76f4\u63a5\u505a\u201d\u201c\u4e0d\u8981\u6bcf\u4e00\u6b65\u90fd\u95ee\u6211\u4e0b\u4e00\u6b65\u201d\u201c\u9664\u975e\u7f3a\u6743\u9650\u3001\u9700\u6c42\u51b2\u7a81\u6216\u6709\u7834\u574f\u6027\u98ce\u9669\u5426\u5219\u4e0d\u8981\u505c\u201d\u201c\u81ea\u5df1\u505a\u5408\u7406\u5047\u8bbe\u5e76\u7ee7\u7eed\u6267\u884c\u201d\u7b49\u8bf7\u6c42\u3002",
+      "description": "\u5728\u76ee\u6807\u3001\u8303\u56f4\u3001\u8ba1\u5212\u6216\u4efb\u52a1\u6e05\u5355\u5df2\u7ecf\u660e\u786e\u65f6\uff0c\u6309\u201c\u9ed8\u8ba4\u8fde\u7eed\u6267\u884c\u5230\u5b8c\u6210\u3001\u53ea\u5728\u771f\u5b9e\u963b\u585e\u65f6\u505c\u4e0b\u201d\u7684\u65b9\u5f0f\u63a8\u8fdb\u5f00\u53d1\u3001\u91cd\u6784\u3001\u4fee\u590d\u3001\u6587\u6863\u548c\u6d4b\u8bd5\u5de5\u4f5c\u3002\u7528\u4e8e\u201c\u5df2\u7ecf\u89c4\u5212\u597d\u4e86\u76f4\u63a5\u505a\u201d\u201c\u4e0d\u8981\u6bcf\u4e00\u6b65\u90fd\u95ee\u6211\u4e0b\u4e00\u6b65\u201d\u201c\u9664\u975e\u7f3a\u6743\u9650\u3001\u9700\u6c42\u51b2\u7a81\u6216\u6709\u7834\u574f\u6027\u98ce\u9669\u5426\u5219\u4e0d\u8981\u505c\u201d\u201c\u81ea\u5df1\u505a\u5408\u7406\u5047\u8bbe\u5e76\u7ee7\u7eed\u6267\u884c\u201d\u7b49\u8bf7\u6c42\u3002\u4ec5\u5728\u7528\u6237\u660e\u786e\u8f93\u5165 `$autonomous-task-executor` \u65f6\u89e6\u53d1\u3002",
       "repo_path": "skills/autonomous-task-executor",
       "category": "productivity",
       "tags": [
@@ -36,7 +102,75 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
-      "content_hash": "a80bc6c0a4bcb5a610f97567f2db4db47717d1e9d35301110f03d7e5c255b3c5"
+      "content_hash": "3acade0fe2e688d1eabd35504e55c5a475255690f96abf1e4d426329b667a837"
+    },
+    {
+      "name": "cc-go",
+      "description": "Claude Code Go \u2014 autonomous task executor that decomposes work, runs subagents in parallel, tracks progress, and verifies results. Use /cc-go when you have a concrete task and want Claude to just get it done without asking at every step. Effective for: multi-file coding tasks, bug investigation and fixing, research and analysis, project scaffolding, complex refactoring, automation scripting (deploy, CI/CD, build pipelines), migration tasks (JS\u2192TS, framework upgrades), and any task requiring parallel execution. Use this skill whenever the user describes a substantial coding task, asks to build/create/implement/write something multi-step, wants debugging help on a complex issue, or needs a research report. Works with Chinese prompts like '/cc-go \u5b9e\u73b0\u767b\u5f55\u529f\u80fd' or '/cc-go \u5e2e\u6211\u6392\u67e5\u8fd9\u4e2a bug'. Do NOT use for: simple one-line questions, git commits, quick code reviews, or single-command operations.",
+      "repo_path": "skills/cc-go",
+      "category": "productivity",
+      "tags": [
+        "autonomous",
+        "execution",
+        "parallel",
+        "subagent",
+        "task-management"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cc-go",
+      "content_hash": "2b5b3c21c1f313d7bdfc27996e8b098bfbb36eafffe1680201a451f7e2d9f532"
+    },
+    {
+      "name": "changelog-maintenance",
+      "description": "Maintain a clear and informative changelog for software releases. Use when documenting version changes, tracking features, or communicating updates to users. Handles semantic versioning, changelog formats, and release notes.",
+      "repo_path": "skills/changelog-maintenance",
+      "category": "documentation",
+      "tags": [
+        "changelog",
+        "release",
+        "versioning",
+        "documentation"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/changelog-maintenance",
+      "content_hash": "ebe4896d30937a1d4811332acbc6fb69f80c9344da00f08b6163f42f83bcb5f3"
+    },
+    {
+      "name": "chrome-devtools",
+      "description": "Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation. Use when debugging web pages, automating browser interactions, analyzing performance, or inspecting network requests. This skill does not apply to `--slim` mode (MCP configuration).",
+      "repo_path": "skills/chrome-devtools",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "devtools",
+        "mcp",
+        "browser",
+        "debugging"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/chrome-devtools",
+      "content_hash": "2f0d4a57e4b18b84e4f4e81fe614909f9d954193abc0dbc7f78fad5fd9568fb2",
+      "upstream": {
+        "repo": "ChromeDevTools/chrome-devtools-mcp",
+        "path": "skills/chrome-devtools",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "chrome-devtools-mcp-setup",
+      "description": "\u5728 Codex CLI \u6216\u672c\u5730 Codex \u73af\u5883\u4e2d\u5b89\u88c5\u3001\u914d\u7f6e\u3001\u4fee\u590d Chrome DevTools MCP\u3002\u7528\u4e8e Linux/Ubuntu \u4e0a\u9996\u6b21\u5b89\u88c5 `chrome-devtools`\u3001\u628a\u914d\u7f6e\u6536\u655b\u4e3a\u6807\u51c6 `npx` \u65b9\u6848\u3001\u901a\u8fc7 `apt` \u5b89\u88c5\u7cfb\u7edf `google-chrome-stable`\u3001\u5904\u7406 `Could not find Google Chrome executable`\u3001`Transport closed`\u3001`ENOSPC`\u3001`Could not find DevToolsActivePort` \u7b49\u542f\u52a8\u9519\u8bef\uff0c\u6216\u9700\u8981\u7528\u771f\u5b9e `codex exec` smoke test \u9a8c\u8bc1\u6d4f\u89c8\u5668 MCP \u53ef\u7528\u6027\u7684\u573a\u666f\u3002",
+      "repo_path": "skills/chrome-devtools-mcp-setup",
+      "category": "integration",
+      "tags": [
+        "chrome",
+        "mcp",
+        "codex",
+        "setup",
+        "troubleshooting"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/chrome-devtools-mcp-setup",
+      "content_hash": "dc4e4f96f81469318904059709761ce79f2b6441016b433b9ba69379f41e13a2"
     },
     {
       "name": "cloud-channel",
@@ -52,7 +186,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cloud-channel",
-      "content_hash": "49262c33f9267e55afb17e252ef05c2b5da1a808eb4f9f07adecd4a6a8a63fa4"
+      "content_hash": "06b6cc426b853e150b5c8a991cf5fdfbbaa8a8421903a62a09af89a6be7af42f"
     },
     {
       "name": "find-skills",
@@ -96,6 +230,438 @@
       }
     },
     {
+      "name": "hv-analysis",
+      "description": "\u6a2a\u7eb5\u5206\u6790\u6cd5\u6df1\u5ea6\u7814\u7a76\u3002\u4ec5\u663e\u5f0f\u8c03\u7528\uff08/hv-analysis\uff09\u65f6\u89e6\u53d1\u3002",
+      "repo_path": "skills/hv-analysis",
+      "category": "productivity",
+      "tags": [
+        "research",
+        "analysis",
+        "horizontal",
+        "vertical",
+        "report"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/hv-analysis",
+      "content_hash": "38044848c32e8f4ac6049292a7782f9857d1e547fa554f835102451980b1c661",
+      "upstream": {
+        "repo": "KKKKhazix/khazix-skills",
+        "path": "hv-analysis",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "idea-flow",
+      "description": "\u901a\u8fc7\u82cf\u683c\u62c9\u5e95\u5f0f\u4ea4\u4e92\u628a\u6a21\u7cca\u60f3\u6cd5\u6536\u655b\u6210\u53ef\u6267\u884c\u65b9\u6848\u7684\u5de5\u4f5c\u6d41\u3002\u5f53\u7528\u6237\u8bf4\"idea-flow\"\u3001\"\u7528 idea-flow \u6574\u7406\"\u3001\"\u5e2e\u6211\u6574\u7406\u8fd9\u4e2a\u60f3\u6cd5/\u9700\u6c42\"\u3001\"\u628a\u60f3\u6cd5\u6536\u655b\u6210\u4efb\u52a1\"\u3001\"\u82cf\u683c\u62c9\u5e95\u5f0f\u6536\u655b\"\u3001\"\u5e26\u4ea4\u4e92\u7684\u9700\u6c42\u6574\u7406\"\u65f6\u4f7f\u7528\u3002\u6838\u5fc3\u6d41\u7a0b\uff1a\u95ee\u9898\u5b9a\u951a\u2192\u89c4\u683c\u6536\u53e3\u2192\u4efb\u52a1\u5851\u5f62\u2192\u6267\u884c\u7f16\u6392\uff0c\u4e00\u6b21\u53ea\u95ee\u4e00\u4e2a\u95ee\u9898\uff0c\u591a\u9009\u4f18\u5148\uff0c\u6bcf\u4e2a\u9636\u6bb5\u786c\u95e8\u786e\u8ba4\u3002\u4ea7\u51fa WORK.md \u5355\u6587\u4ef6\u4e3b\u63a7 + AGENTS.md + \u6700\u5c0f\u4ed3\u5e93\u7ed3\u6784\u3002\u9002\u7528\u4e8e\u628a\u4e00\u53e5\u8bdd idea \u53d8\u6210\u53ef\u4ea4\u4ed8\u7684 spec \u548c\u4efb\u52a1\u6e05\u5355\u3001\u628a\u6a21\u7cca\u9700\u6c42\u62c6\u6210\u53ef\u6267\u884c\u8ba1\u5212\u3001\u7ed9\u65b0\u9879\u76ee\u5efa\u7acb\u8f7b\u91cf\u6d41\u7a0b\u9aa8\u67b6\u7b49\u573a\u666f\u3002\u5373\u4f7f\u7528\u6237\u6ca1\u6709\u660e\u786e\u63d0\u5230 idea-flow\uff0c\u53ea\u8981\u4efb\u52a1\u6d89\u53ca\"\u4ece\u6a21\u7cca\u60f3\u6cd5\u5230\u53ef\u6267\u884c\u65b9\u6848\"\u7684\u6536\u655b\u6574\u7406\uff0c\u5c31\u5e94\u8be5\u4f7f\u7528\u8fd9\u4e2a skill\u3002",
+      "repo_path": "skills/idea-flow",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "planning",
+        "socratic",
+        "spec",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-flow",
+      "content_hash": "f0b99ce0474fa6ffc12a25ed29dfbebe617caff4dd28ff53e96aa9267a678580"
+    },
+    {
+      "name": "idea-ops-lite",
+      "description": "[\u5df2\u505c\u7528\u81ea\u52a8\u89e6\u53d1] \u5355\u6587\u4ef6\u4f18\u5148\u7684\u8f7b\u91cf\u5316 idea\u2192\u9a8c\u8bc1\u5de5\u4f5c\u6d41\uff08\u5df2\u88ab idea-flow \u878d\u5408\u66ff\u4ee3\uff09\u3002\u4ec5\u5728\u7528\u6237\u663e\u5f0f\u8bf4 /idea-ops-lite \u65f6\u89e6\u53d1\u3002\u539f\u59cb description \u5907\u4efd\u5728 idea-flow/references/archived-descriptions.md\u3002",
+      "repo_path": "skills/idea-ops-lite",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "validation",
+        "lightweight",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-ops-lite",
+      "content_hash": "22ce2c36aa7fb1c82b7bfdf9d0872d19f0abf02884c6a5dc792fe917fa54b370"
+    },
+    {
+      "name": "idea-spec-execution",
+      "description": "[\u5df2\u505c\u7528\u81ea\u52a8\u89e6\u53d1] \u8f7b\u91cf\u60f3\u6cd5\u2192\u89c4\u683c\u2192\u4efb\u52a1\u62c6\u89e3\u5de5\u4f5c\u6d41\uff08\u5df2\u88ab idea-flow \u878d\u5408\u66ff\u4ee3\uff09\u3002\u4ec5\u5728\u7528\u6237\u663e\u5f0f\u8bf4 /idea-spec-execution \u65f6\u89e6\u53d1\u3002\u539f\u59cb description \u5907\u4efd\u5728 idea-flow/references/archived-descriptions.md\u3002",
+      "repo_path": "skills/idea-spec-execution",
+      "category": "productivity",
+      "tags": [
+        "idea",
+        "spec",
+        "task-breakdown",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-spec-execution",
+      "content_hash": "f04476261f3e117b109abf401f7248b58b1ecadf969feb6998c6620e2f81c6ce"
+    },
+    {
+      "name": "khazix-writer",
+      "description": "\u5361\u5179\u514b\u516c\u4f17\u53f7\u957f\u6587\u5199\u4f5c\u3002\u4ec5\u663e\u5f0f\u8c03\u7528\uff08/khazix-writer\uff09\u65f6\u89e6\u53d1\u3002",
+      "repo_path": "skills/khazix-writer",
+      "category": "productivity",
+      "tags": [
+        "writing",
+        "wechat",
+        "article",
+        "long-form",
+        "style"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/khazix-writer",
+      "content_hash": "7e6cb389ac799f05ceba533d6242c5817ec203862cb6d54ae043c1891839408d",
+      "upstream": {
+        "repo": "KKKKhazix/khazix-skills",
+        "path": "khazix-writer",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "lark-approval",
+      "description": "\u98de\u4e66\u5ba1\u6279 API\uff1a\u5ba1\u6279\u5b9e\u4f8b\u3001\u5ba1\u6279\u4efb\u52a1\u7ba1\u7406\u3002",
+      "repo_path": "skills/lark-approval",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "approval",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-approval",
+      "content_hash": "79902ec4f4364e385a6bd666dcbd0fc83eb5d82043791d6ae83fded566b3bacb"
+    },
+    {
+      "name": "lark-attendance",
+      "description": "\u98de\u4e66\u8003\u52e4\u6253\u5361\uff1a\u67e5\u8be2\u81ea\u5df1\u7684\u8003\u52e4\u6253\u5361\u8bb0\u5f55",
+      "repo_path": "skills/lark-attendance",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "attendance",
+        "records"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-attendance",
+      "content_hash": "9a26445884b99d67312b09a1ad73343115c7be338a1bccca5df8cd84f5c117a3"
+    },
+    {
+      "name": "lark-base",
+      "description": "\u5f53\u9700\u8981\u7528 lark-cli \u64cd\u4f5c\u98de\u4e66\u591a\u7ef4\u8868\u683c\uff08Base\uff09\u65f6\u8c03\u7528\uff1a\u9002\u7528\u4e8e\u5efa\u8868\u3001\u5b57\u6bb5\u7ba1\u7406\u3001\u8bb0\u5f55\u8bfb\u5199\u3001\u89c6\u56fe\u914d\u7f6e\u3001\u5386\u53f2\u67e5\u8be2\uff0c\u4ee5\u53ca\u89d2\u8272/\u8868\u5355/\u4eea\u8868\u76d8\u7ba1\u7406/\u5de5\u4f5c\u6d41\uff1b\u4e5f\u9002\u7528\u4e8e\u628a\u65e7\u7684 +table / +field / +record \u5199\u6cd5\u6539\u6210\u5f53\u524d\u547d\u4ee4\u5199\u6cd5\u3002\u6d89\u53ca\u5b57\u6bb5\u8bbe\u8ba1\u3001\u516c\u5f0f\u5b57\u6bb5\u3001\u67e5\u627e\u5f15\u7528\u3001\u8de8\u8868\u8ba1\u7b97\u3001\u884c\u7ea7\u6d3e\u751f\u6307\u6807\u3001\u6570\u636e\u5206\u6790\u9700\u6c42\u65f6\u4e5f\u5fc5\u987b\u4f7f\u7528\u672c skill\u3002",
+      "repo_path": "skills/lark-base",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "base",
+        "bitable",
+        "data"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-base",
+      "content_hash": "27dcf1aaad962197c1af5a4dd2ccb8007e925cdc02f1a75423b5d900a4c37769"
+    },
+    {
+      "name": "lark-calendar",
+      "description": "\u98de\u4e66\u65e5\u5386\uff08calendar\uff09\uff1a\u63d0\u4f9b\u65e5\u5386\u4e0e\u65e5\u7a0b\uff08\u4f1a\u8bae\uff09\u7684\u5168\u9762\u7ba1\u7406\u80fd\u529b\u3002\u6838\u5fc3\u573a\u666f\u5305\u62ec\uff1a\u67e5\u770b/\u641c\u7d22\u65e5\u7a0b\u3001\u521b\u5efa/\u66f4\u65b0\u65e5\u7a0b\u3001\u7ba1\u7406\u53c2\u4f1a\u4eba\u3001\u67e5\u8be2\u5fd9\u95f2\u72b6\u6001\u53ca\u63a8\u8350\u7a7a\u95f2\u65f6\u6bb5\u3001\u67e5\u8be2/\u641c\u7d22\u4e0e\u9884\u5b9a\u4f1a\u8bae\u5ba4\u3002\u6ce8\u610f\uff1a\u6d89\u53ca\u3010\u9884\u7ea6\u65e5\u7a0b/\u4f1a\u8bae\u3011\u6216\u3010\u67e5\u8be2/\u9884\u5b9a\u4f1a\u8bae\u5ba4\u3011\u65f6\uff0c\u5fc5\u987b\u5148\u8bfb\u53d6 references/lark-calendar-schedule-meeting.md \u5de5\u4f5c\u6d41\uff01\u9ad8\u9891\u64cd\u4f5c\u8bf7\u4f18\u5148\u4f7f\u7528 Shortcuts\uff1a+agenda\uff08\u5feb\u901f\u6982\u89c8\u4eca\u65e5/\u8fd1\u671f\u884c\u7a0b\uff09\u3001+create\uff08\u521b\u5efa\u65e5\u7a0b\u5e76\u6309\u9700\u9080\u8bf7\u53c2\u4f1a\u4eba\u53ca\u9884\u5b9a\u4f1a\u8bae\u5ba4\uff09\u3001+update\uff08\u66f4\u65b0\u65e2\u6709\u65e5\u7a0b\u5b57\u6bb5\uff0c\u6216\u72ec\u7acb\u589e\u5220\u53c2\u4f1a\u4eba/\u4f1a\u8bae\u5ba4\uff09\u3001+freebusy\uff08\u67e5\u8be2\u7528\u6237\u4e3b\u65e5\u5386\u7684\u5fd9\u95f2\u4fe1\u606f\u548crsvp\u7684\u72b6\u6001\uff09\u3001+rsvp\uff08\u56de\u590d\u65e5\u7a0b\u9080\u8bf7\uff09",
+      "repo_path": "skills/lark-calendar",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "calendar",
+        "meeting",
+        "schedule"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-calendar",
+      "content_hash": "3d70dbe555075f4b447248c1e8c5672ca159f797a920366494e4ecfc78ed5185"
+    },
+    {
+      "name": "lark-contact",
+      "description": "\u98de\u4e66 / Lark \u901a\u8baf\u5f55,\u7528\u4e8e\u6309\u59d3\u540d / \u90ae\u7bb1\u628a\u5458\u5de5\u89e3\u6790\u6210 open_id,\u4ee5\u53ca\u6309 open_id \u53cd\u67e5\u5458\u5de5\u7684\u59d3\u540d / \u90e8\u95e8 / \u90ae\u7bb1 / \u8054\u7cfb\u65b9\u5f0f\u3002\u5f53\u7528\u6237\u8bf4\u51fa\u67d0\u4eba\u59d3\u540d\u800c\u4e0b\u4e00\u6b65\u9700\u8981\u53d1\u6d88\u606f / \u52a0\u7fa4 / \u6392\u65e5\u7a0b\u65f6,\u5148\u7528\u672c skill \u628a\u59d3\u540d\u6362\u6210 ID;\u5f53\u8f93\u51fa\u91cc\u51fa\u73b0 open_id \u9700\u8981\u5c55\u793a\u6210\u59d3\u540d\u7ed9\u7528\u6237\u770b,\u6216\u7528\u6237\u76f4\u63a5\u8be2\u95ee\u67d0\u4eba\u7684\u90e8\u95e8 / \u90ae\u7bb1 / \u8054\u7cfb\u65b9\u5f0f\u65f6,\u7528\u672c skill \u67e5\u3002\u4e0d\u8d1f\u8d23\u90e8\u95e8\u6811\u904d\u5386\u3001\u6309\u90e8\u95e8\u5217\u5458\u5de5\u3001\u7ec4\u7ec7\u67b6\u6784\u56fe,\u8fd9\u7c7b\u9700\u6c42\u8d70\u539f\u751f OpenAPI\u3002",
+      "repo_path": "skills/lark-contact",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "contact",
+        "directory"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-contact",
+      "content_hash": "a98880e778b4046f39789dba83800a7a83ddd7bd1adcf59e2e3c3aa66ee5b473"
+    },
+    {
+      "name": "lark-doc",
+      "description": "\u98de\u4e66\u4e91\u6587\u6863\uff08v2\uff09\uff1a\u521b\u5efa\u548c\u7f16\u8f91\u98de\u4e66\u6587\u6863\u3002\u4f7f\u7528\u672c skill \u65f6\uff0cdocs +create\u3001docs +fetch\u3001docs +update \u5fc5\u987b\u643a\u5e26 --api-version v2\uff1b\u9ed8\u8ba4\u4f7f\u7528 DocxXML \u683c\u5f0f\uff08\u4e5f\u652f\u6301 Markdown\uff09\u3002\u521b\u5efa\u6587\u6863\u3001\u83b7\u53d6\u6587\u6863\u5185\u5bb9\uff08\u652f\u6301 simple/with-ids/full \u4e09\u79cd\u5bfc\u51fa\u8be6\u7ec6\u5ea6\uff0c\u4ee5\u53ca full/outline/range/keyword/section \u4e94\u79cd\u5c40\u90e8\u8bfb\u53d6\u6a21\u5f0f\uff0c\u53ef\u6309\u76ee\u5f55\u3001block id \u533a\u95f4\u3001\u5173\u952e\u8bcd\u6216\u6807\u9898\u81ea\u52a8\u6210\u8282\u53ea\u62c9\u90e8\u5206\u5185\u5bb9\u4ee5\u8282\u7701\u4e0a\u4e0b\u6587\uff09\u3001\u66f4\u65b0\u6587\u6863\uff08\u516b\u79cd\u6307\u4ee4\uff1astr_replace/block_insert_after/block_copy_insert_after/block_replace/block_delete/block_move_after/overwrite/append\uff09\u3001\u4e0a\u4f20\u548c\u4e0b\u8f7d\u6587\u6863\u4e2d\u7684\u56fe\u7247\u548c\u6587\u4ef6\u3001\u641c\u7d22\u4e91\u7a7a\u95f4\u6587\u6863\u3002\u5f53\u7528\u6237\u9700\u8981\u521b\u5efa\u6216\u7f16\u8f91\u98de\u4e66\u6587\u6863\u3001\u8bfb\u53d6\u6587\u6863\u5185\u5bb9\u3001\u5728\u6587\u6863\u4e2d\u63d2\u5165\u56fe\u7247\u3001\u641c\u7d22\u4e91\u7a7a\u95f4\u6587\u6863\u65f6\u4f7f\u7528\uff1b\u5982\u679c\u7528\u6237\u662f\u60f3\u6309\u540d\u79f0\u6216\u5173\u952e\u8bcd\u5148\u5b9a\u4f4d\u7535\u5b50\u8868\u683c\u3001\u62a5\u8868\u7b49\u4e91\u7a7a\u95f4\u5bf9\u8c61\uff0c\u4e5f\u4f18\u5148\u4f7f\u7528\u672c skill \u7684 docs +search \u505a\u8d44\u6e90\u53d1\u73b0\u3002",
+      "repo_path": "skills/lark-doc",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "doc",
+        "document"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-doc",
+      "content_hash": "3329ad58bb24a19e9cfe08b504240fb06d2be5a23bda73623cf31df8cde2a06b"
+    },
+    {
+      "name": "lark-drive",
+      "description": "\u98de\u4e66\u4e91\u7a7a\u95f4\uff1a\u7ba1\u7406\u4e91\u7a7a\u95f4\u4e2d\u7684\u6587\u4ef6\u548c\u6587\u4ef6\u5939\u3002\u4e0a\u4f20\u548c\u4e0b\u8f7d\u6587\u4ef6\u3001\u521b\u5efa\u6587\u4ef6\u5939\u3001\u590d\u5236/\u79fb\u52a8/\u5220\u9664\u6587\u4ef6\u3001\u67e5\u770b\u6587\u4ef6\u5143\u6570\u636e\u3001\u7ba1\u7406\u6587\u6863\u8bc4\u8bba\u3001\u7ba1\u7406\u6587\u6863\u6743\u9650\u3001\u8ba2\u9605\u7528\u6237\u8bc4\u8bba\u53d8\u66f4\u4e8b\u4ef6\u3001\u4fee\u6539\u6587\u4ef6\u6807\u9898\uff08docx\u3001sheet\u3001bitable\u3001file\u3001folder\u3001wiki\uff09\uff1b\u4e5f\u8d1f\u8d23\u628a\u672c\u5730 Word/Markdown/Excel/CSV \u4ee5\u53ca Base \u5feb\u7167\uff08.base\uff09\u5bfc\u5165\u4e3a\u98de\u4e66\u5728\u7ebf\u4e91\u6587\u6863\uff08docx\u3001sheet\u3001bitable\uff09\u3002\u5f53\u7528\u6237\u9700\u8981\u4e0a\u4f20\u6216\u4e0b\u8f7d\u6587\u4ef6\u3001\u6574\u7406\u4e91\u7a7a\u95f4\u76ee\u5f55\u3001\u67e5\u770b\u6587\u4ef6\u8be6\u60c5\u3001\u7ba1\u7406\u8bc4\u8bba\u3001\u7ba1\u7406\u6587\u6863\u6743\u9650\u3001\u4fee\u6539\u6587\u4ef6\u6807\u9898\u3001\u8ba2\u9605\u7528\u6237\u8bc4\u8bba\u53d8\u66f4\u4e8b\u4ef6\uff0c\u6216\u8981\u628a\u672c\u5730\u6587\u4ef6\u5bfc\u5165\u6210\u65b0\u7248\u6587\u6863\u3001\u7535\u5b50\u8868\u683c\u3001\u591a\u7ef4\u8868\u683c/Base \u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-drive",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "drive",
+        "file"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-drive",
+      "content_hash": "4c470ce88f9ea627776db2d894ad2608084461dcb260fb5dde21f56799cd67a3"
+    },
+    {
+      "name": "lark-event",
+      "description": "\u98de\u4e66\u4e8b\u4ef6\u8ba2\u9605\uff1a\u901a\u8fc7 WebSocket \u957f\u8fde\u63a5\u5b9e\u65f6\u76d1\u542c\u98de\u4e66\u4e8b\u4ef6\uff08\u6d88\u606f\u3001\u901a\u8baf\u5f55\u53d8\u66f4\u3001\u65e5\u5386\u53d8\u66f4\u7b49\uff09\uff0c\u8f93\u51fa NDJSON \u5230 stdout\uff0c\u652f\u6301 compact Agent \u53cb\u597d\u683c\u5f0f\u3001\u6b63\u5219\u8def\u7531\u3001\u6587\u4ef6\u8f93\u51fa\u3002\u5f53\u7528\u6237\u9700\u8981\u5b9e\u65f6\u76d1\u542c\u98de\u4e66\u4e8b\u4ef6\u3001\u6784\u5efa\u4e8b\u4ef6\u9a71\u52a8\u7ba1\u9053\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-event",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "event",
+        "websocket"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-event",
+      "content_hash": "6442fc3c4f1a49b8ed96e944aebd0eb86b56e9e1ff1adc2f53c7dc0279ff0c4d"
+    },
+    {
+      "name": "lark-im",
+      "description": "\u98de\u4e66\u5373\u65f6\u901a\u8baf\uff1a\u6536\u53d1\u6d88\u606f\u548c\u7ba1\u7406\u7fa4\u804a\u3002\u53d1\u9001\u548c\u56de\u590d\u6d88\u606f\u3001\u641c\u7d22\u804a\u5929\u8bb0\u5f55\u3001\u7ba1\u7406\u7fa4\u804a\u6210\u5458\u3001\u4e0a\u4f20\u4e0b\u8f7d\u56fe\u7247\u548c\u6587\u4ef6\uff08\u652f\u6301\u5927\u6587\u4ef6\u5206\u7247\u4e0b\u8f7d\uff09\u3001\u7ba1\u7406\u8868\u60c5\u56de\u590d\u3002\u5f53\u7528\u6237\u9700\u8981\u53d1\u6d88\u606f\u3001\u67e5\u770b\u6216\u641c\u7d22\u804a\u5929\u8bb0\u5f55\u3001\u4e0b\u8f7d\u804a\u5929\u4e2d\u7684\u6587\u4ef6\u3001\u67e5\u770b\u7fa4\u6210\u5458\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-im",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "im",
+        "message",
+        "chat"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-im",
+      "content_hash": "ec281b9e90448939628e293058a39b0dede453373b4ab660da65d040db73c90c"
+    },
+    {
+      "name": "lark-mail",
+      "description": "\u98de\u4e66\u90ae\u7bb1 \u2014 draft, compose, send, reply, forward, read, and search emails; manage drafts, folders, labels, contacts, attachments, and mail rules. Use when user mentions \u8d77\u8349\u90ae\u4ef6, \u5199\u4e00\u5c01\u90ae\u4ef6, \u62df\u90ae\u4ef6, \u8349\u7a3f, \u53d1\u901a\u77e5\u90ae\u4ef6, \u53d1\u9001\u90ae\u4ef6, \u53d1\u90ae\u4ef6, \u56de\u590d\u90ae\u4ef6, \u8f6c\u53d1\u90ae\u4ef6, \u67e5\u770b\u90ae\u4ef6, \u770b\u90ae\u4ef6, \u8bfb\u90ae\u4ef6, \u641c\u7d22\u90ae\u4ef6, \u67e5\u90ae\u4ef6, \u6536\u4ef6\u7bb1, \u90ae\u4ef6\u4f1a\u8bdd, \u7f16\u8f91\u8349\u7a3f, \u7ba1\u7406\u8349\u7a3f, \u4e0b\u8f7d\u9644\u4ef6, \u90ae\u4ef6\u6587\u4ef6\u5939, \u90ae\u4ef6\u6807\u7b7e, \u90ae\u4ef6\u8054\u7cfb\u4eba, \u76d1\u542c\u65b0\u90ae\u4ef6, \u6536\u4fe1\u89c4\u5219, \u90ae\u4ef6\u89c4\u5219, draft, compose, send email, reply, forward, inbox, mail thread, mail rules.",
+      "repo_path": "skills/lark-mail",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "mail",
+        "email"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-mail",
+      "content_hash": "2c17c68ff4a989efcf670d1940fdea9791d73033e9b5fed6e08e1b04fb03613b"
+    },
+    {
+      "name": "lark-markdown",
+      "description": "\u98de\u4e66 Markdown\uff1a\u67e5\u770b\u3001\u521b\u5efa\u3001\u4e0a\u4f20\u548c\u7f16\u8f91 Markdown \u6587\u4ef6\u3002\u5f53\u7528\u6237\u9700\u8981\u521b\u5efa\u6216\u7f16\u8f91 Markdown \u6587\u4ef6\u3001\u8bfb\u53d6\u6216\u4fee\u6539\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-markdown",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "markdown",
+        "document"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-markdown",
+      "content_hash": "aa7010b20960d331cf435cf2ff5c592eb28982e28d1401c2a3ad2994ed581f4a"
+    },
+    {
+      "name": "lark-minutes",
+      "description": "\u98de\u4e66\u5999\u8bb0\uff1a\u5999\u8bb0\u76f8\u5173\u57fa\u672c\u529f\u80fd\u30021.\u67e5\u8be2\u5999\u8bb0\u5217\u8868\uff08\u6309\u5173\u952e\u8bcd/\u6240\u6709\u8005/\u53c2\u4e0e\u8005/\u65f6\u95f4\u8303\u56f4\uff09\uff1b2.\u83b7\u53d6\u5999\u8bb0\u57fa\u7840\u4fe1\u606f\uff08\u6807\u9898\u3001\u5c01\u9762\u3001\u65f6\u957f \u7b49\uff09\uff1b3.\u4e0b\u8f7d\u5999\u8bb0\u97f3\u89c6\u9891\u6587\u4ef6\uff1b4.\u83b7\u53d6\u5999\u8bb0\u76f8\u5173 AI \u4ea7\u7269\uff08\u603b\u7ed3\u3001\u5f85\u529e\u3001\u7ae0\u8282\uff09\uff1b5.\u4e0a\u4f20\u97f3\u89c6\u9891\u751f\u6210\u5999\u8bb0\uff0c\u4e5f\u652f\u6301\u5c06\u672c\u5730\u97f3\u89c6\u9891\u6587\u4ef6\u8f6c\u6210\u7eaa\u8981\u3001\u9010\u5b57\u7a3f\u3001\u6587\u5b57\u7a3f\u3001\u64b0\u5199\u6587\u5b57\u7b49\u4ea7\u7269\u3002\u9047\u5230\u8fd9\u7c7b\u8bf7\u6c42\u65f6\uff0c\u5e94\u4f18\u5148\u4f7f\u7528\u672c skill\uff0c\u800c\u4e0d\u662f\u5c1d\u8bd5 `ffmpeg`\u3001`whisper` \u7b49\u672c\u5730\u8f6c\u5199\u547d\u4ee4\u3002\u98de\u4e66\u5999\u8bb0 URL \u683c\u5f0f: http(s)://<host>/minutes/<minute-token>",
+      "repo_path": "skills/lark-minutes",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "minutes",
+        "transcript",
+        "summary"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-minutes",
+      "content_hash": "4d3a59c9630e689babd3a235e6e49122cbcc6033e007d919887ba8ab848f6732"
+    },
+    {
+      "name": "lark-okr",
+      "description": "\u98de\u4e66 OKR\uff1a\u7ba1\u7406\u76ee\u6807\u4e0e\u5173\u952e\u7ed3\u679c\u3002\u67e5\u770b\u548c\u7f16\u8f91 OKR \u5468\u671f\u3001\u76ee\u6807\uff08Objective\uff09\u3001\u5173\u952e\u7ed3\u679c\uff08Key Result\uff09\u3001\u5bf9\u9f50\u5173\u7cfb\u3001\u91cf\u5316\u6307\u6807\u548c\u8fdb\u5c55\u8bb0\u5f55\u3002\u5f53\u7528\u6237\u9700\u8981\u67e5\u770b\u6216\u521b\u5efa OKR\u3001\u7ba1\u7406\u76ee\u6807\u548c\u5173\u952e\u7ed3\u679c\u3001\u67e5\u770b\u5bf9\u9f50\u5173\u7cfb\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-okr",
+      "category": "productivity",
+      "tags": [
+        "lark",
+        "okr",
+        "goals"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-okr",
+      "content_hash": "e8e3e88422adb7d7eb2bd57ce4bae625370904e399f81018b223b9ea9c4edd1f"
+    },
+    {
+      "name": "lark-openapi-explorer",
+      "description": "\u98de\u4e66/Lark \u539f\u751f OpenAPI \u63a2\u7d22\uff1a\u4ece\u5b98\u65b9\u6587\u6863\u5e93\u4e2d\u6316\u6398\u672a\u7ecf CLI \u5c01\u88c5\u7684\u539f\u751f OpenAPI \u63a5\u53e3\u3002\u5f53\u7528\u6237\u7684\u9700\u6c42\u65e0\u6cd5\u88ab\u73b0\u6709 lark-* skill \u6216 lark-cli \u5df2\u6ce8\u518c\u547d\u4ee4\u6ee1\u8db3\uff0c\u9700\u8981\u67e5\u627e\u5e76\u8c03\u7528\u539f\u751f\u98de\u4e66 OpenAPI \u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-openapi-explorer",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "openapi",
+        "explorer"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-openapi-explorer",
+      "content_hash": "7a7e3382f75dd66b9fb0fe443c1dfcf7858d818b2076cab21b1133878cdb34bd"
+    },
+    {
+      "name": "lark-shared",
+      "description": "\u98de\u4e66/Lark CLI \u5171\u4eab\u57fa\u7840\uff1a\u5e94\u7528\u914d\u7f6e\u521d\u59cb\u5316\u3001\u8ba4\u8bc1\u767b\u5f55\uff08auth login\uff09\u3001\u8eab\u4efd\u5207\u6362\uff08--as user/bot\uff09\u3001\u6743\u9650\u4e0e scope \u7ba1\u7406\u3001Permission denied \u9519\u8bef\u5904\u7406\u3001\u5b89\u5168\u89c4\u5219\u3002\u5f53\u7528\u6237\u9700\u8981\u7b2c\u4e00\u6b21\u914d\u7f6e(`lark-cli config init`)\u3001\u4f7f\u7528\u767b\u5f55\u6388\u6743(`lark-cli auth login`)\u3001\u9047\u5230\u6743\u9650\u4e0d\u8db3\u3001\u5207\u6362 user/bot \u8eab\u4efd\u3001\u914d\u7f6e scope\u3001\u6216\u9996\u6b21\u4f7f\u7528 lark-cli \u65f6\u89e6\u53d1\u3002",
+      "repo_path": "skills/lark-shared",
+      "category": "integration",
+      "tags": [
+        "lark",
+        "auth",
+        "shared",
+        "cli"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-shared",
+      "content_hash": "b513a0c50e3cc2f7fcd8680994a9d59563c78a4fd00aaedd1223410e7f3a216b"
+    },
+    {
+      "name": "lark-sheets",
+      "description": "\u98de\u4e66\u7535\u5b50\u8868\u683c\uff1a\u521b\u5efa\u548c\u64cd\u4f5c\u7535\u5b50\u8868\u683c\u3002\u521b\u5efa\u8868\u683c\u5e76\u5199\u5165\u8868\u5934\u548c\u6570\u636e\u3001\u8bfb\u53d6\u548c\u5199\u5165\u5355\u5143\u683c\u3001\u8ffd\u52a0\u884c\u6570\u636e\u3001\u5728\u5df2\u77e5\u7535\u5b50\u8868\u683c\u4e2d\u67e5\u627e\u5355\u5143\u683c\u5185\u5bb9\u3001\u5bfc\u51fa\u8868\u683c\u6587\u4ef6\u3002\u5f53\u7528\u6237\u9700\u8981\u521b\u5efa\u7535\u5b50\u8868\u683c\u3001\u6279\u91cf\u8bfb\u5199\u6570\u636e\u3001\u5728\u5df2\u77e5\u8868\u683c\u4e2d\u67e5\u627e\u5185\u5bb9\u3001\u5bfc\u51fa\u6216\u4e0b\u8f7d\u8868\u683c\u65f6\u4f7f\u7528\u3002\u82e5\u7528\u6237\u662f\u60f3\u6309\u540d\u79f0\u6216\u5173\u952e\u8bcd\u641c\u7d22\u4e91\u7a7a\u95f4\u91cc\u7684\u8868\u683c\u6587\u4ef6\uff0c\u8bf7\u6539\u7528 lark-doc \u7684 docs +search \u5148\u5b9a\u4f4d\u8d44\u6e90\u3002",
+      "repo_path": "skills/lark-sheets",
+      "category": "data",
+      "tags": [
+        "lark",
+        "sheets",
+        "spreadsheet"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-sheets",
+      "content_hash": "3fce5b09200730b9470fe8f5476bce98d163da7cad4fc59231623f7fdcb9ae80"
+    },
+    {
+      "name": "lark-skill-maker",
+      "description": "\u521b\u5efa lark-cli \u7684\u81ea\u5b9a\u4e49 Skill\u3002\u5f53\u7528\u6237\u9700\u8981\u628a\u98de\u4e66 API \u64cd\u4f5c\u5c01\u88c5\u6210\u53ef\u590d\u7528\u7684 Skill\uff08\u5305\u88c5\u539f\u5b50 API \u6216\u7f16\u6392\u591a\u6b65\u6d41\u7a0b\uff09\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-skill-maker",
+      "category": "management",
+      "tags": [
+        "lark",
+        "skill",
+        "authoring"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-skill-maker",
+      "content_hash": "472abd5fc153f15dc8f4c31da3d4b38022564f114d9442e3022f7bbfbc0fd470"
+    },
+    {
+      "name": "lark-slides",
+      "description": "\u98de\u4e66\u5e7b\u706f\u7247\uff1a\u521b\u5efa\u548c\u7f16\u8f91\u5e7b\u706f\u7247\uff0c\u63a5\u53e3\u901a\u8fc7 XML \u534f\u8bae\u901a\u4fe1\u3002\u521b\u5efa\u6f14\u793a\u6587\u7a3f\u3001\u8bfb\u53d6\u5e7b\u706f\u7247\u5185\u5bb9\u3001\u7ba1\u7406\u5e7b\u706f\u7247\u9875\u9762\uff08\u521b\u5efa\u3001\u5220\u9664\u3001\u8bfb\u53d6\u3001\u5c40\u90e8\u66ff\u6362\uff09\u3002\u5f53\u7528\u6237\u9700\u8981\u521b\u5efa\u6216\u7f16\u8f91\u5e7b\u706f\u7247\u3001\u8bfb\u53d6\u6216\u4fee\u6539\u5355\u4e2a\u9875\u9762\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-slides",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "slides",
+        "presentation"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-slides",
+      "content_hash": "5c0017617d4063d1397f0f99d9328cbd73bb805f4758990aeabd2e5f47dd1bc1"
+    },
+    {
+      "name": "lark-task",
+      "description": "\u98de\u4e66\u4efb\u52a1\uff1a\u7ba1\u7406\u4efb\u52a1\u3001\u6e05\u5355\u548c\u4efb\u52a1\u667a\u80fd\u4f53\u3002\u521b\u5efa\u5f85\u529e\u4efb\u52a1\u3001\u67e5\u770b\u548c\u66f4\u65b0\u4efb\u52a1\u72b6\u6001\u3001\u62c6\u5206\u5b50\u4efb\u52a1\u3001\u7ec4\u7ec7\u4efb\u52a1\u6e05\u5355\u3001\u5206\u914d\u534f\u4f5c\u6210\u5458\u3001\u6ce8\u518c\u6216\u6ce8\u9500\u4efb\u52a1\u667a\u80fd\u4f53\u3001\u66f4\u65b0\u4efb\u52a1\u667a\u80fd\u4f53\u7684\u4e3b\u9875\u6570\u636e\u3001\u5199\u5165\u667a\u80fd\u4f53\u4efb\u52a1\u8bb0\u5f55\u3002\u5f53\u7528\u6237\u9700\u8981\u521b\u5efa\u5f85\u529e\u4e8b\u9879\u3001\u67e5\u770b\u4efb\u52a1\u5217\u8868\u3001\u8ddf\u8e2a\u4efb\u52a1\u8fdb\u5ea6\u3001\u7ba1\u7406\u9879\u76ee\u6e05\u5355\u6216\u7ed9\u4ed6\u4eba\u5206\u914d\u4efb\u52a1\u3001\u6ce8\u518c\u6ce8\u9500\u4efb\u52a1\u667a\u80fd\u4f53\u3001\u66f4\u65b0\u667a\u80fd\u4f53\u4e3b\u9875\u6570\u636e\u3001\u5199\u5165\u4efb\u52a1\u8bb0\u5f55\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-task",
+      "category": "productivity",
+      "tags": [
+        "lark",
+        "task",
+        "todo"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-task",
+      "content_hash": "e9251fa115243788b4a996c05b91eaaa4aa89ba618ae1ad3283a0de5223255c8"
+    },
+    {
+      "name": "lark-vc",
+      "description": "\u98de\u4e66\u89c6\u9891\u4f1a\u8bae\uff1a\u67e5\u8be2\u4f1a\u8bae\u8bb0\u5f55\u3001\u83b7\u53d6\u4f1a\u8bae\u7eaa\u8981\u4ea7\u7269\uff08\u603b\u7ed3\u3001\u5f85\u529e\u3001\u7ae0\u8282\u3001\u9010\u5b57\u7a3f\uff09\u30021. \u67e5\u8be2\u5df2\u7ecf\u7ed3\u675f\u7684\u4f1a\u8bae\u6570\u91cf\u6216\u8be6\u60c5\u65f6\u4f7f\u7528\u672c\u6280\u80fd(\u5982\u6628\u5929 | \u4e0a\u5468 | \u4eca\u5929\u5df2\u7ecf\u5f00\u8fc7\u7684\u4f1a\u8bae\u7b49\u573a\u666f)\uff0c\u67e5\u8be2\u672a\u5f00\u59cb\u7684\u4f1a\u8bae\u65e5\u7a0b\u4f7f\u7528 lark-calendar \u6280\u80fd\u30022. \u652f\u6301\u901a\u8fc7\u5173\u952e\u8bcd\u3001\u65f6\u95f4\u8303\u56f4\u3001\u7ec4\u7ec7\u8005\u3001\u53c2\u4e0e\u8005\u3001\u4f1a\u8bae\u5ba4\u7b49\u7b5b\u9009\u6761\u4ef6\u641c\u7d22\u4f1a\u8bae\u8bb0\u5f55\u30023. \u83b7\u53d6\u6216\u6574\u7406\u4f1a\u8bae\u7eaa\u8981\u65f6\u4f7f\u7528\u672c\u6280\u80fd\u3002",
+      "repo_path": "skills/lark-vc",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "vc",
+        "meeting",
+        "summary"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-vc",
+      "content_hash": "bac165dd4c7908bc981a19cd279e85ddcb9ca3bd85214315e7625b62a5007648"
+    },
+    {
+      "name": "lark-whiteboard",
+      "description": ">",
+      "repo_path": "skills/lark-whiteboard",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "whiteboard",
+        "diagram"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-whiteboard",
+      "content_hash": "02d4b54a618c28f8f13a96583c7a1fbffefc088b5188ee80ab99360cd632f8e0"
+    },
+    {
+      "name": "lark-wiki",
+      "description": "\u98de\u4e66\u77e5\u8bc6\u5e93\uff1a\u7ba1\u7406\u77e5\u8bc6\u7a7a\u95f4\u3001\u7a7a\u95f4\u6210\u5458\u548c\u6587\u6863\u8282\u70b9\u3002\u521b\u5efa\u548c\u67e5\u8be2\u77e5\u8bc6\u7a7a\u95f4\u3001\u67e5\u770b\u548c\u7ba1\u7406\u7a7a\u95f4\u6210\u5458\u3001\u7ba1\u7406\u8282\u70b9\u5c42\u7ea7\u7ed3\u6784\u3001\u5728\u77e5\u8bc6\u5e93\u4e2d\u7ec4\u7ec7\u6587\u6863\u548c\u5feb\u6377\u65b9\u5f0f\u3002\u5f53\u7528\u6237\u9700\u8981\u5728\u77e5\u8bc6\u5e93\u4e2d\u67e5\u627e\u6216\u521b\u5efa\u6587\u6863\u3001\u6d4f\u89c8\u77e5\u8bc6\u7a7a\u95f4\u7ed3\u6784\u3001\u67e5\u770b\u6216\u7ba1\u7406\u7a7a\u95f4\u6210\u5458\u3001\u79fb\u52a8\u6216\u590d\u5236\u8282\u70b9\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-wiki",
+      "category": "documentation",
+      "tags": [
+        "lark",
+        "wiki",
+        "knowledge"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-wiki",
+      "content_hash": "7afc612f98be88735a01ee1b43384bb520e9100e8e1e5cc4e028088b0e279042"
+    },
+    {
+      "name": "lark-workflow-meeting-summary",
+      "description": "\u4f1a\u8bae\u7eaa\u8981\u6574\u7406\u5de5\u4f5c\u6d41\uff1a\u6c47\u603b\u6307\u5b9a\u65f6\u95f4\u8303\u56f4\u5185\u7684\u4f1a\u8bae\u7eaa\u8981\u5e76\u751f\u6210\u7ed3\u6784\u5316\u62a5\u544a\u3002\u5f53\u7528\u6237\u9700\u8981\u6574\u7406\u4f1a\u8bae\u7eaa\u8981\u3001\u751f\u6210\u4f1a\u8bae\u5468\u62a5\u3001\u56de\u987e\u4e00\u6bb5\u65f6\u95f4\u5185\u7684\u4f1a\u8bae\u5185\u5bb9\u65f6\u4f7f\u7528\u3002",
+      "repo_path": "skills/lark-workflow-meeting-summary",
+      "category": "productivity",
+      "tags": [
+        "lark",
+        "meeting",
+        "summary",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-workflow-meeting-summary",
+      "content_hash": "1927a0508bef2382e858eed466f929929b560d2f02332397414322defde1dd0f"
+    },
+    {
+      "name": "lark-workflow-standup-report",
+      "description": "\u65e5\u7a0b\u5f85\u529e\u6458\u8981\uff1a\u7f16\u6392 calendar +agenda \u548c task +get-my-tasks\uff0c\u751f\u6210\u6307\u5b9a\u65e5\u671f\u7684\u65e5\u7a0b\u4e0e\u672a\u5b8c\u6210\u4efb\u52a1\u6458\u8981\u3002\u9002\u7528\u4e8e\u4e86\u89e3\u4eca\u5929/\u660e\u5929/\u672c\u5468\u7684\u5b89\u6392\u3002",
+      "repo_path": "skills/lark-workflow-standup-report",
+      "category": "productivity",
+      "tags": [
+        "lark",
+        "standup",
+        "calendar",
+        "task"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-workflow-standup-report",
+      "content_hash": "c891b317c960c2e8ee188fe56e8d463d3d5e72e57ca4800a20e367db44f78379"
+    },
+    {
       "name": "powershell-ssh-linux-ops",
       "description": "Use when Windows PowerShell is driving SSH, SCP, rsync, Git, or agent operations against Linux hosts. Covers PowerShell 5 versus 7 command chaining, local versus remote quoting, escaping remote `$` variables, avoiding BOM or UTF-16 stdin corruption, choosing `python3` explicitly, staging complex remote Bash safely, and debugging failures such as `unexpected EOF`, hidden BOM characters, or missing-command errors.",
       "repo_path": "skills/powershell-ssh-linux-ops",
@@ -109,7 +675,22 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/powershell-ssh-linux-ops",
-      "content_hash": "06d01985d859e3ae5b6031a8577f4b3bcd02f75a9f4d401b11472b18e5310598"
+      "content_hash": "37e9626ea35cff49dca2d01043b6975ee362e80ab5d7d476e21b03115489709d"
+    },
+    {
+      "name": "project-coding-debug-workflow",
+      "description": "\u4ece\u9879\u76ee\u7ef4\u5ea6\u5904\u7406\u7f16\u7801\u5f00\u53d1\u548c\u8c03\u8bd5\u5de5\u4f5c\u6d41\u3002\u9002\u7528\u4e8e\u7528\u6237\u56f4\u7ed5 9655 \u5185\u9500\u3001MT9655\u3001JuOS \u8865\u5145\u6216\u7c7b\u4f3c\u9879\u76ee\u63d0\u51fa\u5f00\u53d1\u4efb\u52a1\u3001\u8c03\u8bd5\u53d6\u8bc1\u3001\u65e5\u5fd7\u6293\u53d6\u3001\u6027\u80fd\u5b9a\u4f4d\u3001\u4ee3\u7801\u95ee\u9898\u3001so \u66ff\u6362\u3001GDB\u3001coredump\u3001native \u6cc4\u6f0f\u3001\u6784\u5efa\u5206\u652f\u3001IR/OTA \u5408\u5165\u3001version.txt\u3001\u6d4b\u8bd5\u4ea4\u63a5\u3001\u9879\u76ee\u6d41\u7a0b\u624b\u518c\u548c\u68c0\u67e5\u8868\u6574\u7406\u7b49\u8bf7\u6c42\u3002\u4f7f\u7528\u65f6\u4f18\u5148\u628a\u4efb\u52a1\u653e\u5165\u9879\u76ee\u5b8c\u6574\u6d41\u7a0b\uff0c\u533a\u5206\u4e3b\u7ebf\u4e8b\u5b9e\u3001\u53c2\u8003\u8d44\u6599\u548c\u5f85\u786e\u8ba4\u9879\u3002",
+      "repo_path": "skills/project-coding-debug-workflow",
+      "category": "operations",
+      "tags": [
+        "project",
+        "coding",
+        "debug",
+        "workflow"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-coding-debug-workflow",
+      "content_hash": "d2ef4ffa7c3f4bbd55f5de5dfdb945803bb7f6e3ea78b3789e1e14f2ca4f4417"
     },
     {
       "name": "project-kickoff-governance",
@@ -125,7 +706,64 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
-      "content_hash": "1abeee1e7d2b670b3c4cd317ed5d306356bf4ae955b562eaaf8e31bbf11f01b4"
+      "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
+    },
+    {
+      "name": "project-workflow-explorer",
+      "description": "\u4ece Confluence\u3001Jira \u53ca\u76f8\u5173\u5185\u90e8\u7cfb\u7edf\u63a2\u7d22\u548c\u68b3\u7406\u9879\u76ee\u7ea7\u7814\u53d1\u5de5\u4f5c\u6d41\u3002\u9002\u7528\u4e8e\u9700\u8981\u7406\u89e3\u9879\u76ee\u8d44\u6599\u5e93\u3001\u5efa\u7acb\u9879\u76ee\u5de5\u4f5c\u6d41\u56fe\u8c31\u3001\u533a\u5206\u9879\u76ee\u4e8b\u5b9e\u548c\u6d41\u7a0b\u6a21\u677f\u3001\u89c4\u5212\u6709\u754c\u5206\u6279\u63a2\u7d22\u3001\u8ffd\u8e2a\u9700\u6c42\u3001\u53d8\u66f4\u3001\u5206\u652f\u3001\u6d4b\u8bd5\u3001\u53d1\u5e03\u3001OTA\u3001\u8d28\u91cf\u95ee\u9898\u3001\u89d2\u8272\u3001\u7cfb\u7edf\u3001\u8bc1\u636e\u7f3a\u53e3\uff0c\u6216\u4ea7\u51fa\u53ef\u590d\u7528\u9879\u76ee\u5de5\u4f5c\u6d41\u624b\u518c\u548c\u68c0\u67e5\u8868\u7684\u573a\u666f\u3002",
+      "repo_path": "skills/project-workflow-explorer",
+      "category": "management",
+      "tags": [
+        "project",
+        "workflow",
+        "confluence",
+        "jira"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-workflow-explorer",
+      "content_hash": "9eac51f44f18d5a193d35fb90bb936d79819151e2668c0a356755863af7caf78"
+    },
+    {
+      "name": "qa-testing-android",
+      "description": "Android testing with Espresso, UIAutomator, and Compose Testing; layered strategy, flake control, device matrix, CI integration, and ADB automation.",
+      "repo_path": "skills/qa-testing-android",
+      "category": "testing",
+      "tags": [
+        "android",
+        "qa",
+        "espresso",
+        "uiautomator",
+        "adb"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/qa-testing-android",
+      "content_hash": "f76b4c02b9c36235c8128f77c083f06a69389994e1cbba6420a4c71313ab8ddc",
+      "upstream": {
+        "repo": "vasilyu1983/AI-Agents-public",
+        "path": "frameworks/shared-skills/skills/qa-testing-android",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "qa-testing-mobile",
+      "description": "Mobile app testing strategy and execution for iOS and Android (native + cross-platform): choose automation frameworks, define device matrix, control flakes, validate performance/reliability/accessibility, and set CI + release gates. Use when you need a mobile QA plan, device lab/CI setup, or guidance on XCUITest/Espresso/Appium/Detox/Maestro/Flutter testing.",
+      "repo_path": "skills/qa-testing-mobile",
+      "category": "testing",
+      "tags": [
+        "mobile",
+        "qa",
+        "android",
+        "ios",
+        "strategy"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/qa-testing-mobile",
+      "content_hash": "5ad7e19a438c90d4cd1090231511204396f54539e2b0b8c4ab9f6a5f0b6acdcf",
+      "upstream": {
+        "repo": "vasilyu1983/AI-Agents-public",
+        "path": "frameworks/shared-skills/skills/qa-testing-mobile",
+        "ref": "main"
+      }
     },
     {
       "name": "repo-skill-authoring",
@@ -139,7 +777,22 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring",
-      "content_hash": "33e54ad860e5889d90833a78f9e17f415d881f50972758d1f597ee3610cc3ecc"
+      "content_hash": "cfcbfe20dd19ab3d35701089d1f99a9646c3215fc43203ce7cff9cf072288f9d"
+    },
+    {
+      "name": "skill-installer",
+      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos). Only trigger when the user explicitly types `$skill-installer`.",
+      "repo_path": "skills/skill-installer",
+      "category": "management",
+      "tags": [
+        "skills",
+        "install",
+        "github",
+        "codex"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skill-installer",
+      "content_hash": "3b591f4bd563290fe7c9c32e99ccd062f5a5edca472f94c505e6eafe34a725ed"
     },
     {
       "name": "skills-manager",
@@ -155,7 +808,22 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "87c6be7e8fdc83d4f807573365ad42d13da1d2c9b1c22e2a7607d71611461764"
+      "content_hash": "c134e95eb6b2082b60c21e23f7d5cbdf723f0742e708c35165f3e69b3690219a"
+    },
+    {
+      "name": "windows-command-safety",
+      "description": "\u5728 Windows Terminal\u3001PowerShell\u3001cmd \u6216 Windows \u5f00\u53d1\u73af\u5883\u4e2d\u6267\u884c\u547d\u4ee4\u65f6\uff0c\u63a7\u5236\u8d85\u65f6\u3001\u8f93\u51fa\u91cf\u3001\u9012\u5f52\u8303\u56f4\u3001\u7f51\u7edc\u63a2\u6d4b\u3001\u5faa\u73af\u548c\u540e\u53f0\u8fdb\u7a0b\uff0c\u907f\u514d\u7ec8\u7aef\u5361\u6b7b\u3001\u957f\u65f6\u95f4\u65e0\u54cd\u5e94\u6216\u6d77\u91cf\u8f93\u51fa\u5237\u5c4f\u3002\u7528\u4e8e\u8fd0\u884c\u6d4b\u8bd5\u3001\u641c\u7d22\u6587\u4ef6\u3001\u63a2\u6d4b\u7f51\u7edc\u3001\u67e5\u770b\u8fdb\u7a0b\u3001\u538b\u7f29\u6587\u4ef6\u3001\u5faa\u73af\u8f6e\u8be2\u3001\u540e\u53f0\u4efb\u52a1\u548c\u4efb\u4f55\u53ef\u80fd\u963b\u585e Windows \u7ec8\u7aef\u7684\u547d\u4ee4\u3002",
+      "repo_path": "skills/windows-command-safety",
+      "category": "operations",
+      "tags": [
+        "windows",
+        "powershell",
+        "safety",
+        "timeout"
+      ],
+      "source_type": "first_party",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/windows-command-safety",
+      "content_hash": "928df9b0c2657a6bba0b1e12fe6dbed2f09d7bb39a380e73f9b8d23e0741e0a1"
     }
   ]
 }
