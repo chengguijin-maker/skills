@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -407,6 +408,76 @@ class CloudChannelTests(unittest.TestCase):
             run_command("unpack", "--input-dir", str(inbox), "--out-dir", str(received))
             restored = next(received.glob("*/payload/large.bin"))
             self.assertEqual(sha256_file(source), sha256_file(restored))
+
+    def test_citrix_auto_file_uses_sidecar_folder_and_tree_fingerprint(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = root / "transfer-root"
+            (source / "scripts").mkdir(parents=True)
+            (source / "references").mkdir()
+            (source / "SKILL.md").write_text("skill body", encoding="utf-8")
+            (source / "scripts" / "cloud_channel.py").write_text("print('ok')", encoding="utf-8")
+            (source / "references" / "message-format.md").write_text("format", encoding="utf-8")
+
+            outbox = root / "outbox"
+            inbox = root / "inbox"
+            received = root / "received"
+            outbox.mkdir()
+            inbox.mkdir()
+
+            run_command(
+                "pack",
+                "--direction",
+                "cloud-outer-to-cloud-inner",
+                "--sender",
+                "cloud-outer",
+                "--receiver",
+                "cloud-inner",
+                "--subject",
+                "sidecar folder",
+                "--file",
+                str(source),
+                "--out-dir",
+                str(outbox),
+                "--transport-hint",
+                "citrix-drive",
+                "--skip-environment-guard",
+            )
+
+            json_file = next(outbox.glob("*.json"))
+            message = json.loads(json_file.read_text(encoding="utf-8"))
+            self.assertEqual(message["payload_type"], "sidecar-folder")
+            self.assertEqual(message["integrity"]["file_count"], 3)
+            self.assertEqual(message["integrity"]["directory_count"], 2)
+            self.assertTrue(message["integrity"]["tree_fingerprint"].startswith("sha256:"))
+            payload_folder = outbox / message["payload"]["folder_name"]
+            self.assertTrue(payload_folder.is_dir())
+            self.assertEqual((payload_folder / "SKILL.md").read_text(encoding="utf-8"), "skill body")
+
+            shutil.copy2(json_file, inbox / json_file.name)
+            shutil.copytree(payload_folder, inbox / payload_folder.name, copy_function=shutil.copy2)
+            run_command("unpack", "--input-dir", str(inbox), "--out-dir", str(received))
+            self.assertEqual(next(received.glob("*/payload/SKILL.md")).read_text(encoding="utf-8"), "skill body")
+            self.assertEqual(
+                next(received.glob("*/payload/scripts/cloud_channel.py")).read_text(encoding="utf-8"),
+                "print('ok')",
+            )
+
+            broken_inbox = root / "broken-inbox"
+            broken_inbox.mkdir()
+            shutil.copy2(json_file, broken_inbox / json_file.name)
+            shutil.copytree(payload_folder, broken_inbox / payload_folder.name, copy_function=shutil.copy2)
+            changed_file = broken_inbox / payload_folder.name / "SKILL.md"
+            os.utime(changed_file, (changed_file.stat().st_atime, changed_file.stat().st_mtime + 5))
+            result = run_command(
+                "unpack",
+                "--input-dir",
+                str(broken_inbox),
+                "--out-dir",
+                str(root / "broken-received"),
+                expect_success=False,
+            )
+            self.assertIn("payload 文件夹校验失败", result.stderr)
 
     def test_folder_payload_round_trip_preserves_nested_files(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

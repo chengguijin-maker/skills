@@ -10,6 +10,7 @@ import io
 import json
 import os
 import platform
+import shutil
 import socket
 import sys
 import uuid
@@ -128,6 +129,14 @@ def should_use_sidecar(args: argparse.Namespace, payload_size: int) -> bool:
         getattr(args, "transport_hint", "") == "citrix-drive"
         and getattr(args, "sidecar", True)
         and payload_size >= SIDECAR_THRESHOLD_BYTES
+    )
+
+
+def should_use_sidecar_folder(args: argparse.Namespace) -> bool:
+    return (
+        getattr(args, "transport_hint", "") == "citrix-drive"
+        and getattr(args, "sidecar", True)
+        and getattr(args, "payload_type", "auto") == "auto"
     )
 
 
@@ -392,6 +401,8 @@ def command_pack(args: argparse.Namespace) -> int:
     if args.payload_type == "auto":
         if args.file:
             file_path = Path(args.file)
+            if should_use_sidecar_folder(args):
+                return write_sidecar_folder(args, envelope, file_path)
             if file_path.is_dir():
                 archive_bytes = build_zip_from_folder(file_path, compression_level(args))
                 archive_name = f"{file_path.name}.zip"
@@ -403,6 +414,8 @@ def command_pack(args: argparse.Namespace) -> int:
                 raise SystemExit(f"路径不存在：{file_path}")
         else:
             payload_bytes = (args.text if args.text is not None else args.body or "").encode("utf-8")
+            if getattr(args, "transport_hint", "") == "citrix-drive":
+                return write_text_message(args, envelope, payload_bytes)
             archive_bytes = build_zip_bytes(DEFAULT_TEXT_ENTRY_NAME, payload_bytes, compression_level(args))
             archive_name = "payload.zip"
         if should_use_sidecar(args, len(archive_bytes)):
@@ -416,19 +429,7 @@ def command_pack(args: argparse.Namespace) -> int:
             if should_use_sidecar(args, len(archive_bytes)):
                 return write_sidecar_archive(args, envelope, "payload.zip", archive_bytes)
             return write_archive_messages(args, envelope, "payload.zip", archive_bytes)
-        envelope["payload"] = {
-            "encoding": "utf-8",
-            "text": payload_bytes.decode("utf-8"),
-        }
-        envelope["integrity"] = {
-            "payload_sha256": sha256_hex(payload_bytes),
-            "payload_size": len(payload_bytes),
-        }
-        enforce_message_size(args, envelope)
-        enforce_transfer_size(args, [envelope])
-        write_json(out_dir / output_name(message_id, "text"), envelope)
-        print(str(out_dir / output_name(message_id, "text")))
-        return 0
+        return write_text_message(args, envelope, payload_bytes)
 
     if args.payload_type == "inline-file":
         if not args.file:
@@ -623,6 +624,23 @@ def command_unpack(args: argparse.Namespace) -> int:
         print(str(out_dir))
         return 0
 
+    if payload_type == "sidecar-folder":
+        payload = first.get("payload", {})
+        folder_name = sanitize_file_name(payload.get("folder_name") or "")
+        if not folder_name:
+            raise SystemExit("sidecar-folder 缺少 folder_name")
+        sidecar_folder = input_dir / folder_name
+        if not sidecar_folder.exists() or not sidecar_folder.is_dir():
+            raise SystemExit(f"没有找到旁路 payload 文件夹：{sidecar_folder}")
+        verify_payload_folder(first, sidecar_folder)
+        payload_dir = out_dir / "payload"
+        if payload_dir.exists():
+            raise SystemExit(f"payload 目录已存在：{payload_dir}")
+        shutil.copytree(sidecar_folder, payload_dir, copy_function=shutil.copy2)
+        write_received_message(root_out_dir, out_dir, first)
+        print(str(out_dir))
+        return 0
+
     raise SystemExit(f"不支持的载荷类型: {payload_type}")
 
 
@@ -652,6 +670,66 @@ def build_zip_from_folder(folder_path: Path, compression_level: int = DEFAULT_ZI
             if path.is_file():
                 zip_file.write(path, arcname=path.relative_to(folder_path).as_posix())
     return buffer.getvalue()
+
+
+def payload_folder_integrity(folder_path: Path) -> dict[str, Any]:
+    file_count = 0
+    directory_count = 0
+    total_size = 0
+    digest = hashlib.sha256()
+    entries: list[Path] = []
+    for path in folder_path.rglob("*"):
+        entries.append(path)
+    for path in sorted(entries, key=lambda item: item.relative_to(folder_path).as_posix()):
+        relative_path = path.relative_to(folder_path).as_posix()
+        stat = path.stat()
+        mtime_seconds = int(stat.st_mtime)
+        if path.is_dir():
+            directory_count += 1
+            line = f"D\t{relative_path}\t{mtime_seconds}\n"
+        elif path.is_file():
+            file_count += 1
+            total_size += stat.st_size
+            line = f"F\t{relative_path}\t{stat.st_size}\t{mtime_seconds}\n"
+        else:
+            continue
+        digest.update(line.encode("utf-8"))
+    return {
+        "payload_kind": "folder",
+        "file_count": file_count,
+        "directory_count": directory_count,
+        "total_size": total_size,
+        "tree_fingerprint": f"sha256:{digest.hexdigest()}",
+    }
+
+
+def copy_source_to_payload_folder(source_path: Path, payload_folder: Path) -> None:
+    if payload_folder.exists():
+        raise SystemExit(f"payload 目录已存在：{payload_folder}")
+    payload_folder.mkdir(parents=True)
+    if source_path.is_file():
+        shutil.copy2(source_path, payload_folder / source_path.name)
+        return
+    if source_path.is_dir():
+        for child in source_path.iterdir():
+            target = payload_folder / child.name
+            if child.is_dir():
+                shutil.copytree(child, target, copy_function=shutil.copy2)
+            elif child.is_file():
+                shutil.copy2(child, target)
+        return
+    raise SystemExit(f"路径不存在：{source_path}")
+
+
+def verify_payload_folder(message: dict[str, Any], folder_path: Path) -> None:
+    expected = message.get("integrity", {})
+    actual = payload_folder_integrity(folder_path)
+    for key in ["file_count", "directory_count", "total_size", "tree_fingerprint"]:
+        if expected.get(key) != actual.get(key):
+            raise SystemExit(
+                f"payload 文件夹校验失败：{key} 期望 {expected.get(key)}，实际 {actual.get(key)}。"
+                "请确认复制时保留目录结构和修改时间。"
+            )
 
 
 def extract_archive_bytes(archive_bytes: bytes, out_dir: Path) -> None:
@@ -720,6 +798,48 @@ def write_archive_messages(args: argparse.Namespace, envelope: dict[str, Any], a
         name = output_name(message_id, f"part{index:03d}of{total:03d}")
         write_json(out_dir / name, part)
         print(str(out_dir / name))
+    return 0
+
+
+def write_text_message(args: argparse.Namespace, envelope: dict[str, Any], payload_bytes: bytes) -> int:
+    out_dir = Path(args.out_dir)
+    message_id = envelope["message_id"]
+    message = dict(envelope)
+    message["payload_type"] = "text"
+    message["payload"] = {
+        "encoding": "utf-8",
+        "text": payload_bytes.decode("utf-8"),
+    }
+    message["integrity"] = {
+        "payload_sha256": sha256_hex(payload_bytes),
+        "payload_size": len(payload_bytes),
+    }
+    enforce_message_size(args, message)
+    enforce_transfer_size(args, [message])
+    out_path = out_dir / output_name(message_id, "text")
+    write_json(out_path, message)
+    print(str(out_path))
+    return 0
+
+
+def write_sidecar_folder(args: argparse.Namespace, envelope: dict[str, Any], source_path: Path) -> int:
+    out_dir = Path(args.out_dir)
+    message_id = envelope["message_id"]
+    payload_folder_name = f"{message_id}_payload"
+    payload_folder = out_dir / payload_folder_name
+    copy_source_to_payload_folder(source_path, payload_folder)
+
+    message = dict(envelope)
+    message["payload_type"] = "sidecar-folder"
+    message["payload"] = {
+        "folder_name": payload_folder_name,
+        "encoding": "folder",
+    }
+    message["integrity"] = payload_folder_integrity(payload_folder)
+    out_path = out_dir / output_name(message_id, "folder")
+    write_json(out_path, message)
+    print(str(out_path))
+    print(str(payload_folder))
     return 0
 
 

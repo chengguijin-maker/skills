@@ -41,7 +41,7 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 - 身份：按方向推断 `sender` 和 `receiver`。
 - 传输方式：云内到云外默认 `gerrit-mail`，云外到云内默认 `citrix-drive`。
 - 输出目录：`gerrit-mail` 默认 `./outbox`，`citrix-drive` 默认 `D:\cloudshare\cloud-channel\outbox`。
-- 载荷类型：默认 `auto`，先压缩成 zip，再按方向和大小自动决定内联、分片或旁路 zip。
+- 载荷类型：默认 `auto`，云内到云外压缩后走 JSON，云外到云内文本走 JSON、文件走旁路 payload 文件夹。
 - 压缩级别：Gerrit 方向默认 `9`，Citrix/SCP 方向默认 `3`。
 - 标题：未提供时默认 `云内外通道消息`。
 - 异步配对：新消息自动创建 `conversation_id`，回复消息用 `--reply-to` 关联上一条消息。
@@ -54,7 +54,8 @@ description: 建立和使用云内与云外之间的基础通信通道。适用�
 - `auto`：默认入口。用户只提供 `--file transfer-root`，脚本自动选择后续载荷。
 - `inline-archive`：默认载荷。传输文件夹压成 zip 后，Base64 放入 JSON。
 - `inline-archive-chunk`：zip 放不进单条 JSON 时生成的分片消息。
-- `sidecar-archive`：云外到云内的大包载荷。JSON 只放清单，zip 作为同目录旁路文件传递。
+- `sidecar-folder`：云外到云内的默认文件载荷。JSON 只放清单，文件原样放在同目录旁路 payload 文件夹。
+- `sidecar-archive`：兼容旧的大包载荷。JSON 只放清单，zip 作为同目录旁路文件传递。
 
 `text` 和 `inline-file` 只作为兼容入口，内部也会被整理成 zip，不作为推荐用法。新流程不要单独设计文本、单文件或多文件夹参数，统一先放进 `transfer-root`。
 
@@ -89,9 +90,11 @@ python3 scripts/cloud_channel.py pack --reply-to <message_id> --file transfer-ro
 
 谨慎使用内联载荷：
 
-- 默认 `auto` 行为保持简单：Gerrit 方向把 zip 内联进 JSON；Citrix/SCP 方向大包走旁路 zip 文件。
+- 默认 `auto` 行为保持简单：Gerrit 方向把 zip 内联进 JSON；Citrix/SCP 方向带文件时走旁路 payload 文件夹。
 - Gerrit 方向默认压缩级别为 `9`。
-- Citrix/SCP 方向默认压缩级别为 `3`，超过 1 MB 的 zip 使用 `sidecar-archive`，避免把大文件塞进 JSON。
+- Citrix/SCP 方向默认不压缩文件和文件夹，生成 `message.json + <message_id>_payload/`。
+- `sidecar-folder` 不记录完整文件清单，不读文件内容，只记录 `file_count`、`directory_count`、`total_size` 和基于相对路径、大小、秒级修改时间的 `tree_fingerprint`。
+- 复制 `sidecar-folder` 时必须保留文件修改时间，否则接收端校验会失败。
 - 压缩后单条 JSON 不超过当前传输上限时，发送一条 `inline-archive`。
 - 压缩后单条 JSON 超过当前传输上限时，自动拆成多个 `inline-archive-chunk`。
 - 走 Gerrit 评论邮件时，单条通道 JSON 默认按 3,000,000 字节以内控制。

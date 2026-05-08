@@ -47,7 +47,7 @@ python .\scripts\cloud_channel.py doctor
 python .\scripts\cloud_channel.py pack --file .\transfer-root
 ```
 
-推荐先整理 `transfer-root` 文件夹，再发送该文件夹。默认输出到 `D:\cloudshare\cloud-channel\outbox`。大包会生成一个 JSON 清单和一个旁路 zip 文件。在跳板机上，把映射出来的发件目录文件复制到云内 Linux。然后运行：
+推荐先整理 `transfer-root` 文件夹，再发送该文件夹。默认输出到 `D:\cloudshare\cloud-channel\outbox`。带文件时会生成一个 JSON 清单和一个旁路 payload 文件夹。在跳板机上，把映射出来的 JSON 和 payload 文件夹复制到云内 Linux，复制时要保留修改时间。然后运行：
 
 ```bash
 python3 scripts/cloud_channel.py unpack --input-dir ./inbox --out-dir ./received

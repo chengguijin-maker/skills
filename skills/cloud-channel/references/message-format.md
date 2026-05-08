@@ -43,7 +43,8 @@
 - `auto`：默认入口。使用方只传 `--file transfer-root`，脚本自动选择实际载荷。
 - `inline-archive`：默认载荷。传输文件夹压成 zip 后，把完整 zip 用 Base64 存放在 `payload.content`。
 - `inline-archive-chunk`：Base64 压缩包分片，存放在 `payload.content`。
-- `sidecar-archive`：JSON 存放旁路文件名和校验信息，压缩包作为同目录文件传递。主要用于 `citrix-drive`。
+- `sidecar-folder`：JSON 存放旁路 payload 文件夹名和轻量校验信息，文件和目录原样作为同目录文件夹传递。主要用于 `citrix-drive`。
+- `sidecar-archive`：兼容旧格式，JSON 存放旁路文件名和校验信息，压缩包作为同目录文件传递。
 - `text` 和 `inline-file`：兼容入口，推荐新流程不要使用。
 
 异步配对：
@@ -58,9 +59,9 @@
 
 大小策略：
 
-- 默认 auto 行为保持简单：`gerrit-mail` 把 zip 内联进 JSON，`citrix-drive` 的大 zip 走旁路文件。
+- 默认 auto 行为保持简单：`gerrit-mail` 把 zip 内联进 JSON，`citrix-drive` 的文件和目录走旁路 payload 文件夹。
 - `gerrit-mail` 默认 zip 使用 `ZIP_DEFLATED` 且默认 `--compression-level 9`。
-- `citrix-drive` 默认压缩级别为 `3`，超过 1 MB 的压缩包自动生成 `sidecar-archive`。
+- `citrix-drive` 默认不压缩文件和目录，自动生成 `sidecar-folder`。
 - 压缩级别可在 `0` 到 `9` 之间调整；`9` 压缩率最高，`0` 基本不压缩，只保留 zip 封装。
 - 已经是压缩包或其他难压缩二进制时，也先放进 `transfer-root`，不要让使用方切换载荷类型。
 - 压缩后单条 JSON 不超过当前传输上限时，发送一条 `inline-archive`。
@@ -90,6 +91,9 @@
 - 接收方必须收齐全部分片，再运行 `unpack`。
 - `unpack` 会校验分片连续性、还原 Base64、校验压缩包 SHA256，并把 zip 解压到 `payload` 目录。
 - `unpack` 会在输出目录维护 `index.jsonl`，用于后续按 `message_id`、`conversation_id` 和 `reply_to` 查看沟通关系。
+- `sidecar-folder` 要求 JSON 和 `<message_id>_payload/` 在同一个 `input-dir`。接收端会重新计算 `file_count`、`directory_count`、`total_size` 和 `tree_fingerprint`，一致后复制到 `received/<message_id>/payload/`。
+- `tree_fingerprint` 只使用相对路径、文件大小和秒级修改时间，不读取文件内容，不记录完整文件列表。
+- 复制 `sidecar-folder` 时必须保留修改时间。
 - `sidecar-archive` 还原时要求旁路文件和 JSON 在同一个 `input-dir`，校验 SHA256 后再解压。
 - 如果缺少分片，接收方不解包，保留原文件并按错误信息人工补齐。
 - 真实 Gerrit 边界需要用 `probe-plan` 生成探测计划后在云内专用承载 change 上测试。测试说明见 `references/gerrit-capacity-probe.md`。
