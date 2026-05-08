@@ -602,6 +602,32 @@ class CloudChannelTests(unittest.TestCase):
             self.assertEqual(index_records[0]["reply_to"], request["message_id"])
             self.assertEqual(index_records[0]["conversation_id"], request["message_id"])
 
+            followup_outbox = root / "followup-outbox"
+            followup_outbox.mkdir()
+            run_command(
+                "pack",
+                "--direction",
+                "cloud-inner-to-cloud-outer",
+                "--sender",
+                "cloud-inner",
+                "--receiver",
+                "cloud-outer",
+                "--subject",
+                "async followup",
+                "--text",
+                "thanks",
+                "--reply-to",
+                reply["message_id"],
+                "--out-dir",
+                str(followup_outbox),
+                "--transport-hint",
+                "gerrit-mail",
+                "--skip-environment-guard",
+            )
+            followup = json.loads(next(followup_outbox.glob("*.json")).read_text(encoding="utf-8"))
+            self.assertEqual(followup["reply_to"], reply["message_id"])
+            self.assertEqual(followup["conversation_id"], request["message_id"])
+
             expired_outbox = root / "expired-outbox"
             expired_outbox.mkdir()
             run_command(

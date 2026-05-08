@@ -50,8 +50,9 @@
 
 - 新发起消息时，`conversation_id` 默认等于自己的 `message_id`，`reply_to` 为空。
 - 回复消息时，使用 `--reply-to <message_id>`，`reply_to` 写入原消息编号。
-- 回复消息时，`conversation_id` 默认使用 `reply_to`，仍能形成粗粒度会话。
-- 如果要把回复挂到更早的会话上，可以显式补 `--conversation-id <conversation_id>`。
+- 回复消息时，脚本优先从 `received/index.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。
+- 找不到原消息时，`conversation_id` 默认使用 `reply_to`，仍能形成粗粒度会话。
+- 只有本地索引缺失且必须挂到指定旧会话时，才显式补 `--conversation-id <conversation_id>`。
 - 使用 `--timeout-minutes <分钟>` 时，脚本写入 `expect_reply_before`。
 - `list` 发现 `expect_reply_before` 已经过期时只提示 `timeout`。
 

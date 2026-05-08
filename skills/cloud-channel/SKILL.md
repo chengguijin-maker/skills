@@ -85,7 +85,7 @@ python3 scripts/cloud_channel.py pack --reply-to <message_id> --text "已收到�
 python3 scripts/cloud_channel.py pack --reply-to <message_id> --file transfer-root
 ```
 
-使用 `--reply-to` 时，脚本默认把 `conversation_id` 设为这个 `reply_to`。如果要把回复挂到更早的会话上，可以显式补 `--conversation-id <conversation_id>`。
+使用 `--reply-to` 时，脚本会优先从 `received/index.jsonl` 或 `received/<message_id>/message.json` 自动继承原会话。找不到原消息时，才把 `conversation_id` 设为这个 `reply_to`。日常不要手写 `--conversation-id`。
 
 谨慎使用内联载荷：
 
@@ -200,6 +200,7 @@ python3 scripts/cloud_channel.py unpack --input-dir ./inbox --out-dir ./received
 - 需要更清晰的人类摘要：加 `--subject` 或 `--body`。
 - 回复已有消息：加 `--reply-to <message_id>`。
 - 需要提示对方回应时限：加 `--timeout-minutes <分钟>`。
+- 只有本地索引缺失且必须挂到指定旧会话时，才手写 `--conversation-id`。
 - Gerrit 容量边界已经重新实测：才调整 `--max-message-bytes`、`--max-transfer-bytes` 或 `--chunk-chars`。
 
 ## 参考资料

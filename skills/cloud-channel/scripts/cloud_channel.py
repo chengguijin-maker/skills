@@ -161,13 +161,56 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def candidate_received_roots(args: argparse.Namespace) -> list[Path]:
+    roots = [Path("received")]
+    out_dir = getattr(args, "out_dir", None)
+    if out_dir:
+        roots.append(Path(out_dir).parent / "received")
+    unique_roots: list[Path] = []
+    seen: set[str] = set()
+    for root in roots:
+        key = str(root.resolve()) if root.exists() else str(root.absolute())
+        if key not in seen:
+            unique_roots.append(root)
+            seen.add(key)
+    return unique_roots
+
+
+def find_conversation_id_for_reply(args: argparse.Namespace, reply_to: str) -> str:
+    reply_path = Path(reply_to)
+    if reply_path.exists() and reply_path.is_file():
+        message = load_json(reply_path)
+        return message.get("conversation_id") or message.get("message_id") or reply_to
+
+    for root in candidate_received_roots(args):
+        index_path = root / "index.jsonl"
+        if index_path.exists():
+            lines = index_path.read_text(encoding="utf-8").splitlines()
+            for line in reversed(lines):
+                if not line.strip():
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if record.get("message_id") == reply_to:
+                    return record.get("conversation_id") or reply_to
+
+        message_path = root / reply_to / "message.json"
+        if message_path.exists():
+            message = load_json(message_path)
+            return message.get("conversation_id") or message.get("message_id") or reply_to
+
+    return reply_to
+
+
 def resolve_conversation_id(args: argparse.Namespace, message_id: str) -> str:
     configured = getattr(args, "conversation_id", None)
     if configured:
         return configured
     reply_to = getattr(args, "reply_to", None)
     if reply_to:
-        return reply_to
+        return find_conversation_id_for_reply(args, reply_to)
     return message_id
 
 
