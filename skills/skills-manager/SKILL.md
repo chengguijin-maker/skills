@@ -1,6 +1,6 @@
 ---
 name: skills-manager
-description: Use when installing, listing, checking, or syncing skills from the private GitHub repository into Codex or Claude. Also use when maintaining the private skills catalog, updating source locks, or managing first-party versus mirrored skills.
+description: Use when installing, listing, checking, or syncing skills from the private GitHub repository into Codex, Claude, or Qoder. Also use when maintaining the private skills catalog, updating source locks, or managing first-party versus mirrored skills.
 ---
 
 # Skills Manager
@@ -13,7 +13,7 @@ Read `references/repository-model.md` before editing repository structure and `r
 
 Use this skill when the task involves:
 
-- installing a skill from the private repository into Codex or Claude
+- installing a skill from the private repository into Codex, Claude, or Qoder
 - listing available skills from the private repository
 - checking whether installed managed skills are out of date
 - syncing installed skills after the private repository changes
@@ -29,6 +29,7 @@ python scripts/skills_manager.py list
 python scripts/skills_manager.py status --agent codex
 python scripts/skills_manager.py install --skill skills-manager --agent codex
 python scripts/skills_manager.py sync --agent both
+python scripts/skills_manager.py sync --agent qoder
 ```
 
 ## Install This Skill
@@ -76,5 +77,6 @@ python skills/skills-manager/scripts/build_catalog.py --repo-root .
 
 - Codex global skills: `~/.codex/skills`
 - Claude global skills: `~/.claude/skills`
+- Qoder global skills: `~/.qoder/skills`
 
 The manager writes an install manifest under each target root so later syncs know what was installed and from which repository state.

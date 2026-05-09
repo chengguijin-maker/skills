@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-08T13:20:22.576489Z",
+  "generated_at": "2026-05-09T01:30:19.036755Z",
   "repository": {
     "url": "https://github.com/chengguijin-maker/skills.git",
     "default_ref": "main"
@@ -19,7 +19,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-confluence-api",
-      "content_hash": "6090510c25bb5ee0e0f30f9d572654ce8befc510b7b454acdde848ea81bfb874"
+      "content_hash": "10d1c1cf20b7ed72b0563ebed59e3f7d29a0aadf006745670358da579e5854c7"
     },
     {
       "name": "accessing-coremail-api",
@@ -34,7 +34,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-coremail-api",
-      "content_hash": "d13c4a6d74207ddea5f64cde35235269c1617e88e885bffa6491567b95f3a606"
+      "content_hash": "4729585093056b99e9057712140a124f117fe87efdd9d4e0e1b76c66706011c3"
     },
     {
       "name": "accessing-jira-api",
@@ -49,7 +49,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/accessing-jira-api",
-      "content_hash": "fddf3bdd7e57e19494ed2b3d6ecfac0d1d61a52469deaba40298b79bcf3a7f85"
+      "content_hash": "5ae5d123961bfab0ddaf6a006f9bbf70eded2b130a0704b5f9251b34494a96df"
     },
     {
       "name": "agent-device",
@@ -65,7 +65,7 @@
       ],
       "source_type": "mirrored",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-device",
-      "content_hash": "b28165a98e69400443ca2d64e0680aacea1089c5c3e132f6c9544405d4cb2d04",
+      "content_hash": "81d8522bc8ff5ed7621c4401f0f50783d3836283cd8bbdf11311901f43841bc4",
       "upstream": {
         "repo": "callstackincubator/agent-device",
         "path": "skills/agent-device",
@@ -87,7 +87,47 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agent-workspace-migration",
-      "content_hash": "5ff05992d69677f826e6e9db2b1652af71c5e270d09399f96d56e83295436f2a"
+      "content_hash": "377c9423c88a8f36977c702663862d750177d495f8316daeba547953a4d5574e"
+    },
+    {
+      "name": "agp-9-upgrade",
+      "description": "Upgrades, or migrates, an Android project to use Android Gradle Plugin",
+      "repo_path": "skills/agp-9-upgrade",
+      "category": "devops",
+      "tags": [
+        "android",
+        "agp",
+        "gradle",
+        "upgrade"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/agp-9-upgrade",
+      "content_hash": "45c3025f094f255c8cd3cdae025942fc19d5088d2a939912a8fecc184e423932",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "build/agp/agp-9-upgrade",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "automate-github-issues",
+      "description": "Set up automated GitHub issue triage and resolution using parallel Jules coding agents",
+      "repo_path": "skills/automate-github-issues",
+      "category": "productivity",
+      "tags": [
+        "google",
+        "jules",
+        "github",
+        "issues"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/automate-github-issues",
+      "content_hash": "6663327ebda16b2a3fa2c2294adc258ea9a0add27efe118ff4df1d34e8f97d3f",
+      "upstream": {
+        "repo": "google-labs-code/jules-skills",
+        "path": "skills/automate-github-issues",
+        "ref": "main"
+      }
     },
     {
       "name": "autonomous-task-executor",
@@ -102,7 +142,46 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/autonomous-task-executor",
-      "content_hash": "3acade0fe2e688d1eabd35504e55c5a475255690f96abf1e4d426329b667a837"
+      "content_hash": "2ff683c1dc16f52cbefa33d4d855bff5e1fa39b035e6d82fa80d2a551f798fc5"
+    },
+    {
+      "name": "base",
+      "description": "Orchestrates Android development tasks",
+      "repo_path": "skills/base",
+      "category": "testing",
+      "tags": [
+        "android",
+        "development",
+        "orchestration"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/base",
+      "content_hash": "ad174440e0b6d2f200fbed6fa5f6a44994fb86bcf23b1667e50ee2e649a90284",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "android-cli/base",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "camera1-to-camerax",
+      "description": "Use this skill to migrate legacy Android camera implementations (Camera1",
+      "repo_path": "skills/camera1-to-camerax",
+      "category": "testing",
+      "tags": [
+        "android",
+        "camera",
+        "camerax",
+        "migration"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/camera1-to-camerax",
+      "content_hash": "3664dd786de68b0138d8a9ad9f41c2cf636b2ce9bfd51b8909cbcfb39dec55d7",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "camera/camera1-to-camerax",
+        "ref": "main"
+      }
     },
     {
       "name": "cc-go",
@@ -133,7 +212,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/changelog-maintenance",
-      "content_hash": "ebe4896d30937a1d4811332acbc6fb69f80c9344da00f08b6163f42f83bcb5f3"
+      "content_hash": "2343dcd7b5e5b82c1b6322935317d506b2475a5ce0e39529e236a693af33fd0b"
     },
     {
       "name": "chrome-devtools",
@@ -170,7 +249,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/chrome-devtools-mcp-setup",
-      "content_hash": "dc4e4f96f81469318904059709761ce79f2b6441016b433b9ba69379f41e13a2"
+      "content_hash": "16e6477e9e58783a55a0f87801d8074b6437132b63c8ae58dbfe0e2b9bee05c5"
     },
     {
       "name": "cloud-channel",
@@ -186,7 +265,87 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/cloud-channel",
-      "content_hash": "06b6cc426b853e150b5c8a991cf5fdfbbaa8a8421903a62a09af89a6be7af42f"
+      "content_hash": "49262c33f9267e55afb17e252ef05c2b5da1a808eb4f9f07adecd4a6a8a63fa4"
+    },
+    {
+      "name": "design-md",
+      "description": "Analyze Stitch projects and synthesize a semantic design system into DESIGN.md files",
+      "repo_path": "skills/design-md",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "design-system"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/design-md",
+      "content_hash": "bee75bd0e412811b5c1b778a2b79c191257afce42c1cf1d18f68388c0c7c065b",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/design-md",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "display-ai-glasses-with-jetpack-compose-glimmer",
+      "description": "Provides guidelines for developing projected applications for Android",
+      "repo_path": "skills/display-ai-glasses-with-jetpack-compose-glimmer",
+      "category": "frontend",
+      "tags": [
+        "android",
+        "xr",
+        "glasses",
+        "compose",
+        "glimmer"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/display-ai-glasses-with-jetpack-compose-glimmer",
+      "content_hash": "25e2a5c86ab4dfebcff3ebb22191e0fda2ce2bcbb6c40ada60e470b2a7a51dc2",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "xr/display-ai-glasses-with-jetpack-compose-glimmer",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "edge-to-edge",
+      "description": "Use this skill to migrate your Jetpack Compose app to add adaptive edge-to-edge",
+      "repo_path": "skills/edge-to-edge",
+      "category": "frontend",
+      "tags": [
+        "android",
+        "compose",
+        "edge-to-edge",
+        "insets"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/edge-to-edge",
+      "content_hash": "ae9866defe14d16a9530aa41fa1db1f9f66c7e7513f0d86f2db27064ddc35718",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "system/edge-to-edge",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "enhance-prompt",
+      "description": "Transforms vague UI ideas into polished, Stitch-optimized prompts. Enhances specificity, adds UI/UX keywords, injects design system context, and structures output for better generation results.",
+      "repo_path": "skills/enhance-prompt",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "prompt",
+        "ui"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/enhance-prompt",
+      "content_hash": "57e6bbac520beddd814f560c1d0f268d70ca84a56d76f23d0120ddeb051374eb",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/enhance-prompt",
+        "ref": "main"
+      }
     },
     {
       "name": "find-skills",
@@ -205,6 +364,66 @@
       "upstream": {
         "repo": "vercel-labs/skills",
         "path": "skills/find-skills",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "gemini-api-dev",
+      "description": "Use this skill when building applications with Gemini API hosted models, including Gemini and Gemma 4, working with multimodal content (text, images, audio, video), implementing function calling, using structured outputs, or needing current model specifications. Covers SDK usage (google-genai for Python, @google/genai for JavaScript/TypeScript, com.google.genai:google-genai for Java, google.golang.org/genai for Go), model selection, and API capabilities.",
+      "repo_path": "skills/gemini-api-dev",
+      "category": "backend",
+      "tags": [
+        "google",
+        "gemini",
+        "api",
+        "ai"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/gemini-api-dev",
+      "content_hash": "82221ada9dcfa0da9dc7b52b4c7128239539fc02e5f259f7e11c2520b1672820",
+      "upstream": {
+        "repo": "google-gemini/gemini-skills",
+        "path": "skills/gemini-api-dev",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "gemini-interactions-api",
+      "description": "Use this skill when writing code that calls the Gemini API for text generation, multi-turn chat, multimodal understanding, image generation, streaming responses, background research tasks, function calling, structured output, or migrating from the old generateContent API. This skill covers the Interactions API, the recommended way to use Gemini models and agents in Python and TypeScript.",
+      "repo_path": "skills/gemini-interactions-api",
+      "category": "backend",
+      "tags": [
+        "google",
+        "gemini",
+        "interactions-api",
+        "ai"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/gemini-interactions-api",
+      "content_hash": "84f1e944413fdfbc9cbb87fc68b3b74e7005a59b199155a285edc5a36ba7f195",
+      "upstream": {
+        "repo": "google-gemini/gemini-skills",
+        "path": "skills/gemini-interactions-api",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "gemini-live-api-dev",
+      "description": "Use this skill when building real-time, bidirectional streaming applications with the Gemini Live API. Covers WebSocket-based audio/video/text streaming, voice activity detection (VAD), native audio features, function calling, session management, ephemeral tokens for client-side auth, and all Live API configuration options. SDKs covered - google-genai (Python), @google/genai (JavaScript/TypeScript).",
+      "repo_path": "skills/gemini-live-api-dev",
+      "category": "backend",
+      "tags": [
+        "google",
+        "gemini",
+        "live-api",
+        "streaming"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/gemini-live-api-dev",
+      "content_hash": "7a2d3127fc4bc22e48ebab69ed056a8c6e5f79187317658a8dc6fbde3c397696",
+      "upstream": {
+        "repo": "google-gemini/gemini-skills",
+        "path": "skills/gemini-live-api-dev",
         "ref": "main"
       }
     },
@@ -243,7 +462,7 @@
       ],
       "source_type": "mirrored",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/hv-analysis",
-      "content_hash": "38044848c32e8f4ac6049292a7782f9857d1e547fa554f835102451980b1c661",
+      "content_hash": "013b152f3b24422069403fe6ca83788434ec068413aff7547df137182ffb296f",
       "upstream": {
         "repo": "KKKKhazix/khazix-skills",
         "path": "hv-analysis",
@@ -264,7 +483,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-flow",
-      "content_hash": "f0b99ce0474fa6ffc12a25ed29dfbebe617caff4dd28ff53e96aa9267a678580"
+      "content_hash": "7b2fe893a55d2b55dfd1a22341e8f48db5f0cad7c995aa2d5719ff58b5cda337"
     },
     {
       "name": "idea-ops-lite",
@@ -279,7 +498,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-ops-lite",
-      "content_hash": "22ce2c36aa7fb1c82b7bfdf9d0872d19f0abf02884c6a5dc792fe917fa54b370"
+      "content_hash": "13dbcdad1bcf4ec58238577d90fabb6ae2c3df19c5ce06e5e601116769699c40"
     },
     {
       "name": "idea-spec-execution",
@@ -294,7 +513,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/idea-spec-execution",
-      "content_hash": "f04476261f3e117b109abf401f7248b58b1ecadf969feb6998c6620e2f81c6ce"
+      "content_hash": "31efe8deb63be05c848533c3cbec9c572564f59ef7f86d1847ef310cfa0c52f5"
     },
     {
       "name": "khazix-writer",
@@ -310,7 +529,7 @@
       ],
       "source_type": "mirrored",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/khazix-writer",
-      "content_hash": "7e6cb389ac799f05ceba533d6242c5817ec203862cb6d54ae043c1891839408d",
+      "content_hash": "2b6fcd6b1e1552b48487e62d953ae9a1c5a39a63493ab4cc3af0e92379e61e37",
       "upstream": {
         "repo": "KKKKhazix/khazix-skills",
         "path": "khazix-writer",
@@ -358,7 +577,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-base",
-      "content_hash": "27dcf1aaad962197c1af5a4dd2ccb8007e925cdc02f1a75423b5d900a4c37769"
+      "content_hash": "1fb140f0cad267d0924e889e8a73dac7322686148abd17727889e7f777fa81d4"
     },
     {
       "name": "lark-calendar",
@@ -373,7 +592,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-calendar",
-      "content_hash": "3d70dbe555075f4b447248c1e8c5672ca159f797a920366494e4ecfc78ed5185"
+      "content_hash": "eb259b1c3102a8677d8d70f0e3d9374c4f86e28f807cd10391ec75710a06f340"
     },
     {
       "name": "lark-contact",
@@ -387,7 +606,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-contact",
-      "content_hash": "a98880e778b4046f39789dba83800a7a83ddd7bd1adcf59e2e3c3aa66ee5b473"
+      "content_hash": "e411e3c7695f4916cbe2b4bbd4c05e3a2896f1ed738daeb8c9af0b5c113cb2ec"
     },
     {
       "name": "lark-doc",
@@ -401,7 +620,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-doc",
-      "content_hash": "3329ad58bb24a19e9cfe08b504240fb06d2be5a23bda73623cf31df8cde2a06b"
+      "content_hash": "e4daa38ec1092333707d461f007dab71f850b83feef819b3ba7abd497395668a"
     },
     {
       "name": "lark-drive",
@@ -415,7 +634,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-drive",
-      "content_hash": "4c470ce88f9ea627776db2d894ad2608084461dcb260fb5dde21f56799cd67a3"
+      "content_hash": "d2230f9443f9670bfa18396973dff8ee870a9452b108b161bbe3b958539f9abe"
     },
     {
       "name": "lark-event",
@@ -429,7 +648,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-event",
-      "content_hash": "6442fc3c4f1a49b8ed96e944aebd0eb86b56e9e1ff1adc2f53c7dc0279ff0c4d"
+      "content_hash": "df51570716112bdf36191d1482c8b162f6195e217a6b4b965b2a3ce5d54f7626"
     },
     {
       "name": "lark-im",
@@ -444,7 +663,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-im",
-      "content_hash": "ec281b9e90448939628e293058a39b0dede453373b4ab660da65d040db73c90c"
+      "content_hash": "17e7730826f95e64edfe83c1cdaf9a65620673394034ee312400e136e9838d1d"
     },
     {
       "name": "lark-mail",
@@ -458,7 +677,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-mail",
-      "content_hash": "2c17c68ff4a989efcf670d1940fdea9791d73033e9b5fed6e08e1b04fb03613b"
+      "content_hash": "3c5de55e0cd07a205f20381598bc1f93888d9d425025e3436ef839073044b16e"
     },
     {
       "name": "lark-markdown",
@@ -472,7 +691,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-markdown",
-      "content_hash": "aa7010b20960d331cf435cf2ff5c592eb28982e28d1401c2a3ad2994ed581f4a"
+      "content_hash": "50455b8fb4e07d10d8835a391dbf01bb63d0d0bd564e40e5b3a072b3948e821c"
     },
     {
       "name": "lark-minutes",
@@ -487,7 +706,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-minutes",
-      "content_hash": "4d3a59c9630e689babd3a235e6e49122cbcc6033e007d919887ba8ab848f6732"
+      "content_hash": "138d5fecbb12428599f6be3e45cc7184b0f7c3b9bd5a295a526a3511e4222e91"
     },
     {
       "name": "lark-okr",
@@ -501,7 +720,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-okr",
-      "content_hash": "e8e3e88422adb7d7eb2bd57ce4bae625370904e399f81018b223b9ea9c4edd1f"
+      "content_hash": "8ebca4387b3e750bceff554567bc9d99f50d6cc7b563b786e4733767baa3f4bd"
     },
     {
       "name": "lark-openapi-explorer",
@@ -544,7 +763,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-sheets",
-      "content_hash": "3fce5b09200730b9470fe8f5476bce98d163da7cad4fc59231623f7fdcb9ae80"
+      "content_hash": "121ebb3f845ca50cbc9018f3ae3fbd2e0ab4c3ba8b383174add8cff4c81d09bb"
     },
     {
       "name": "lark-skill-maker",
@@ -572,7 +791,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-slides",
-      "content_hash": "5c0017617d4063d1397f0f99d9328cbd73bb805f4758990aeabd2e5f47dd1bc1"
+      "content_hash": "0a6e7530fb77393399647ad7a9c7fb410580f82af2995ff0122597aad27fb89c"
     },
     {
       "name": "lark-task",
@@ -586,7 +805,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-task",
-      "content_hash": "e9251fa115243788b4a996c05b91eaaa4aa89ba618ae1ad3283a0de5223255c8"
+      "content_hash": "8dacef305a3dbc7b16d05530acecddeeb4caa10e9b9ed34ea5cb9f7216be2184"
     },
     {
       "name": "lark-vc",
@@ -601,7 +820,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-vc",
-      "content_hash": "bac165dd4c7908bc981a19cd279e85ddcb9ca3bd85214315e7625b62a5007648"
+      "content_hash": "a4237106eba94fc38c8c3c367c4f6b18ff0621317002047d0373e68fcff68df4"
     },
     {
       "name": "lark-whiteboard",
@@ -615,7 +834,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-whiteboard",
-      "content_hash": "02d4b54a618c28f8f13a96583c7a1fbffefc088b5188ee80ab99360cd632f8e0"
+      "content_hash": "0f254e75920f3b5d08cf8ff3a80b9bdb5f36c18b804d5cb820acb695e97279fe"
     },
     {
       "name": "lark-wiki",
@@ -629,7 +848,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/lark-wiki",
-      "content_hash": "7afc612f98be88735a01ee1b43384bb520e9100e8e1e5cc4e028088b0e279042"
+      "content_hash": "10628f4b19f9b5490d39211461f2d10bdfea5e848c3bd8bc33186c546261aab6"
     },
     {
       "name": "lark-workflow-meeting-summary",
@@ -662,6 +881,85 @@
       "content_hash": "c891b317c960c2e8ee188fe56e8d463d3d5e72e57ca4800a20e367db44f78379"
     },
     {
+      "name": "local-action-verification",
+      "description": "Set up a repository for local GitHub Actions verification using act, so Jules can validate CI before pushing",
+      "repo_path": "skills/local-action-verification",
+      "category": "testing",
+      "tags": [
+        "google",
+        "jules",
+        "github-actions",
+        "local"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/local-action-verification",
+      "content_hash": "be46f4cbd7508379d7d1cea44bed5a7dd78f32a9297ec50676c2339d7cef6e8a",
+      "upstream": {
+        "repo": "google-labs-code/jules-skills",
+        "path": "skills/local-action-verification",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "migrate-xml-views-to-jetpack-compose",
+      "description": "Provides a structured workflow for migrating an Android XML View to Jetpack",
+      "repo_path": "skills/migrate-xml-views-to-jetpack-compose",
+      "category": "frontend",
+      "tags": [
+        "android",
+        "compose",
+        "xml",
+        "migration"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/migrate-xml-views-to-jetpack-compose",
+      "content_hash": "b49e8faa06b0e9b0e0420a5d718e5be46c278ecf0b1765e1c3a5f52f5075c14f",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "jetpack-compose/migration/migrate-xml-views-to-jetpack-compose",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "navigation-3",
+      "description": "Learn how to install and migrate to Jetpack Navigation 3, and how to",
+      "repo_path": "skills/navigation-3",
+      "category": "frontend",
+      "tags": [
+        "android",
+        "navigation",
+        "jetpack",
+        "kotlin"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/navigation-3",
+      "content_hash": "f29c1e0d56260034d422d23c6df920657dfadcec17e35b689296074fa7c7513d",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "navigation/navigation-3",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "play-billing-library-version-upgrade",
+      "description": "Use this skill when upgrading or migrating an Android project from any",
+      "repo_path": "skills/play-billing-library-version-upgrade",
+      "category": "backend",
+      "tags": [
+        "android",
+        "play-billing",
+        "migration"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/play-billing-library-version-upgrade",
+      "content_hash": "d81ae3767a5df28e29cde711f0d5a82126e9ef5d535106b4546c5501b0644069",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "play/play-billing-library-version-upgrade",
+        "ref": "main"
+      }
+    },
+    {
       "name": "powershell-ssh-linux-ops",
       "description": "Use when Windows PowerShell is driving SSH, SCP, rsync, Git, or agent operations against Linux hosts. Covers PowerShell 5 versus 7 command chaining, local versus remote quoting, escaping remote `$` variables, avoiding BOM or UTF-16 stdin corruption, choosing `python3` explicitly, staging complex remote Bash safely, and debugging failures such as `unexpected EOF`, hidden BOM characters, or missing-command errors.",
       "repo_path": "skills/powershell-ssh-linux-ops",
@@ -675,7 +973,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/powershell-ssh-linux-ops",
-      "content_hash": "37e9626ea35cff49dca2d01043b6975ee362e80ab5d7d476e21b03115489709d"
+      "content_hash": "06d01985d859e3ae5b6031a8577f4b3bcd02f75a9f4d401b11472b18e5310598"
     },
     {
       "name": "project-coding-debug-workflow",
@@ -690,7 +988,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-coding-debug-workflow",
-      "content_hash": "d2ef4ffa7c3f4bbd55f5de5dfdb945803bb7f6e3ea78b3789e1e14f2ca4f4417"
+      "content_hash": "e34c83cdf6b9015816d4dc44ab8882caf8a270ed077925a7a9b9f8a0adc2b5ec"
     },
     {
       "name": "project-kickoff-governance",
@@ -706,7 +1004,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-kickoff-governance",
-      "content_hash": "f7d7c60acae482809e212534e7e705f22e14da230f6c280024946d89d4cf0187"
+      "content_hash": "1abeee1e7d2b670b3c4cd317ed5d306356bf4ae955b562eaaf8e31bbf11f01b4"
     },
     {
       "name": "project-workflow-explorer",
@@ -721,7 +1019,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/project-workflow-explorer",
-      "content_hash": "9eac51f44f18d5a193d35fb90bb936d79819151e2668c0a356755863af7caf78"
+      "content_hash": "f8364606b8f03159275c29d38b9b9b48a193b0f83f172b5f2b3a8a8dd078fc2a"
     },
     {
       "name": "qa-testing-android",
@@ -766,6 +1064,66 @@
       }
     },
     {
+      "name": "r8-analyzer",
+      "description": "Analyzes Android build files and R8 keep rules to identify redundancies,",
+      "repo_path": "skills/r8-analyzer",
+      "category": "devops",
+      "tags": [
+        "android",
+        "r8",
+        "proguard",
+        "optimization"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/r8-analyzer",
+      "content_hash": "c4cf4b8382800607bbcdaea7530d7180d96881b7c34a2f28a0d5e4a53e5e6db9",
+      "upstream": {
+        "repo": "android/skills",
+        "path": "performance/r8-analyzer",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "react-components",
+      "description": "Converts Stitch designs into modular Vite and React components using system-level networking and AST-based validation.",
+      "repo_path": "skills/react-components",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "react",
+        "components"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/react-components",
+      "content_hash": "053301581175f729808d181d52cd1448de0651249c7abba8129dce9b333e09e2",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/react-components",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "remotion",
+      "description": "Generate walkthrough videos from Stitch projects using Remotion with smooth transitions, zooming, and text overlays",
+      "repo_path": "skills/remotion",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "video",
+        "remotion"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/remotion",
+      "content_hash": "76d0c2cd036c514e468f0d57e6262d0b7810f9f562c68f52c9274d93c2d2c6a1",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/remotion",
+        "ref": "main"
+      }
+    },
+    {
       "name": "repo-skill-authoring",
       "description": "Use when creating, updating, reviewing, or reorganizing skills in this repository. Applies this repo's layout, metadata rules, portability guidelines, and publication checklist.",
       "repo_path": "skills/repo-skill-authoring",
@@ -777,7 +1135,27 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/repo-skill-authoring",
-      "content_hash": "cfcbfe20dd19ab3d35701089d1f99a9646c3215fc43203ce7cff9cf072288f9d"
+      "content_hash": "33e54ad860e5889d90833a78f9e17f415d881f50972758d1f597ee3610cc3ecc"
+    },
+    {
+      "name": "shadcn-ui",
+      "description": "Expert guidance for integrating and building applications with shadcn/ui components, including component discovery, installation, customization, and best practices.",
+      "repo_path": "skills/shadcn-ui",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "shadcn",
+        "ui"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/shadcn-ui",
+      "content_hash": "6adef9f90ae07329dcf6a9a64f947f3cfc0857ed2be973d3567728c71fdf9af7",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/shadcn-ui",
+        "ref": "main"
+      }
     },
     {
       "name": "skill-installer",
@@ -792,11 +1170,11 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skill-installer",
-      "content_hash": "3b591f4bd563290fe7c9c32e99ccd062f5a5edca472f94c505e6eafe34a725ed"
+      "content_hash": "5dc07ed0a4284421b72961714530dbd8fcc6078ac892972bc9d6c7a9562ca241"
     },
     {
       "name": "skills-manager",
-      "description": "Use when installing, listing, checking, or syncing skills from the private GitHub repository into Codex or Claude. Also use when maintaining the private skills catalog, updating source locks, or managing first-party versus mirrored skills.",
+      "description": "Use when installing, listing, checking, or syncing skills from the private GitHub repository into Codex, Claude, or Qoder. Also use when maintaining the private skills catalog, updating source locks, or managing first-party versus mirrored skills.",
       "repo_path": "skills/skills-manager",
       "category": "management",
       "tags": [
@@ -808,7 +1186,186 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/skills-manager",
-      "content_hash": "c134e95eb6b2082b60c21e23f7d5cbdf723f0742e708c35165f3e69b3690219a"
+      "content_hash": "4a9bf0133b1a6e7ede4997c523eaa746f716fb88fcaf0c5e38fd11c0eb88e63b"
+    },
+    {
+      "name": "stitch-design",
+      "description": "Unified entry point for Stitch design work. Handles prompt enhancement (UI/UX keywords, atmosphere), design system synthesis (.stitch/DESIGN.md), and high-fidelity screen generation/editing via Stitch MCP.",
+      "repo_path": "skills/stitch-design",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "design",
+        "ui"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-design",
+      "content_hash": "685cbbc6d8a9e5728c75dad26b353f5384ed6d2b84f44d0143fab19253ac2697",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/stitch-design",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-loop",
+      "description": "Teaches agents to iteratively build websites using Stitch with an autonomous baton-passing loop pattern",
+      "repo_path": "skills/stitch-loop",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "workflow"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-loop",
+      "content_hash": "79a3084b78486368164f36503e43f2fab646b99a6d7a98b22d44da20725a8eb0",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/stitch-loop",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-sdk-development",
+      "description": "Develop the Stitch SDK. Covers the generation pipeline, dual modality (agent vs SDK), error handling, and Traffic Light (Red-Green-Yellow) implementation workflow. Use when adding features, fixing bugs, or understanding the architecture.",
+      "repo_path": "skills/stitch-sdk-development",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "sdk",
+        "development"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-sdk-development",
+      "content_hash": "3bddc867a36a1f423d88c9782d672c0d486c81386d0fc1cda973e71d9caf26e6",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/stitch-sdk-development",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-sdk-domain-design",
+      "description": "Design the domain model for the Stitch SDK. Use when mapping MCP tools to domain classes and bindings in domain-map.json. This is Stage 2 of the generation pipeline.",
+      "repo_path": "skills/stitch-sdk-domain-design",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "sdk",
+        "domain-design"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-sdk-domain-design",
+      "content_hash": "6b9057859f947d1bf24ecc85defe320ea4b962358e888dff608e171bfe32b98d",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/stitch-sdk-domain-design",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-sdk-pipeline",
+      "description": "Run the full Stitch SDK generation pipeline. Use when a new tool is added, or the SDK needs to be regenerated end-to-end.",
+      "repo_path": "skills/stitch-sdk-pipeline",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "sdk",
+        "pipeline"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-sdk-pipeline",
+      "content_hash": "9216895b92f2c837bde1fcda50d608810d0c5a661a904591dc8b82649efb7c19",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/stitch-sdk-pipeline",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-sdk-readme",
+      "description": "Generate or update the README for the Stitch SDK. Use the Bookstore Test structure and source the current API from the codebase. Use when the README needs to be written or updated.",
+      "repo_path": "skills/stitch-sdk-readme",
+      "category": "documentation",
+      "tags": [
+        "google",
+        "stitch",
+        "sdk",
+        "readme"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-sdk-readme",
+      "content_hash": "396ba67e6e90da3967025715e853219e835c567b506d1b8933f0b8c1ece3f08b",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/stitch-sdk-readme",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "stitch-sdk-usage",
+      "description": "Use the Stitch SDK to generate, edit, and iterate on UI screens from text prompts, manage projects, and retrieve screen HTML/images. Use when the user wants to consume the SDK in their application.",
+      "repo_path": "skills/stitch-sdk-usage",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "sdk",
+        "usage"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/stitch-sdk-usage",
+      "content_hash": "9f4b1f385d88fad5395b0b2ec7003422c2732809e1255de950265ee91e0e4192",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/stitch-sdk-usage",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "taste-design",
+      "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards \u2014 strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
+      "repo_path": "skills/taste-design",
+      "category": "frontend",
+      "tags": [
+        "google",
+        "stitch",
+        "design-system",
+        "ui"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/taste-design",
+      "content_hash": "76e4cbb7f931fa7b5de592a982187a11856d1e947320df6a14ec23eb17bf77a4",
+      "upstream": {
+        "repo": "google-labs-code/stitch-skills",
+        "path": "skills/taste-design",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "tdd-red-green-refactor",
+      "description": ">",
+      "repo_path": "skills/tdd-red-green-refactor",
+      "category": "testing",
+      "tags": [
+        "google",
+        "stitch",
+        "tdd",
+        "workflow"
+      ],
+      "source_type": "mirrored",
+      "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/tdd-red-green-refactor",
+      "content_hash": "fbcf922933338e05d8282b5a1fb26b6674beb33261dd1a07eccdd2f8498698b8",
+      "upstream": {
+        "repo": "google-labs-code/stitch-sdk",
+        "path": ".agents/skills/tdd",
+        "ref": "main"
+      }
     },
     {
       "name": "windows-command-safety",
@@ -823,7 +1380,7 @@
       ],
       "source_type": "first_party",
       "install_url": "https://github.com/chengguijin-maker/skills/tree/main/skills/windows-command-safety",
-      "content_hash": "928df9b0c2657a6bba0b1e12fe6dbed2f09d7bb39a380e73f9b8d23e0741e0a1"
+      "content_hash": "a3ca5d3cc2bc986a1d429370cea749574876ef3a723709ef6e415d9b25614ce7"
     }
   ]
 }

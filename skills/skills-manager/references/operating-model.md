@@ -35,6 +35,12 @@ Each target root stores:
 <agent-root>/.skills-manager/installed.json
 ```
 
+Supported target roots:
+
+- Codex: `~/.codex/skills`
+- Claude: `~/.claude/skills`
+- Qoder: `~/.qoder/skills`
+
 Each manifest entry records:
 
 - skill name

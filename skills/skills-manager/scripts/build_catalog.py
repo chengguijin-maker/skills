@@ -92,6 +92,8 @@ def hash_git_directory(repo_root: Path, repo_path: str) -> str:
     repo_path_prefix = repo_path.rstrip("/") + "/"
     output = run_git(repo_root, ["ls-files", "-z", "--", repo_path])
     files = [item for item in output.decode("utf-8").split("\0") if item]
+    if not files:
+        return hash_directory(repo_root / repo_path)
     for rel_path in sorted(files):
         rel_posix = rel_path[len(repo_path_prefix) :] if rel_path.startswith(repo_path_prefix) else Path(rel_path).name
         suffix = Path(rel_path).suffix
@@ -118,8 +120,7 @@ def hash_directory(root: Path) -> str:
 
 def build_catalog(repo_root: Path) -> dict:
     lock_path = repo_root / "catalog" / "sources.lock.json"
-    lock_data = json.loads(lock_path.read_text(encoding="utf-8"))
-    use_git_hash = is_git_repo(repo_root)
+    lock_data = json.loads(lock_path.read_text(encoding="utf-8-sig"))
     skills = []
     for item in lock_data.get("skills", []):
         skill_dir = repo_root / item["repo_path"]
@@ -137,7 +138,7 @@ def build_catalog(repo_root: Path) -> dict:
             "tags": item.get("tags", []),
             "source_type": item["source"]["type"],
             "install_url": install_url,
-            "content_hash": hash_git_directory(repo_root, item["repo_path"]) if use_git_hash else hash_directory(skill_dir),
+            "content_hash": hash_directory(skill_dir),
         }
         if item["source"]["type"] == "mirrored":
             entry["upstream"] = {

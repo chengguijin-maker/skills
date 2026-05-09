@@ -39,7 +39,10 @@ TEXT_SUFFIXES = {
 AGENT_ROOTS = {
     "codex": Path.home() / ".codex" / "skills",
     "claude": Path.home() / ".claude" / "skills",
+    "qoder": Path.home() / ".qoder" / "skills",
 }
+
+AGENT_CHOICES = ["codex", "claude", "qoder", "both"]
 
 
 class ManagerError(RuntimeError):
@@ -327,16 +330,16 @@ def build_parser() -> argparse.ArgumentParser:
 
     install_parser = subparsers.add_parser("install", help="Install one or more skills")
     install_parser.add_argument("--skill", nargs="+", required=True, help="Skill names or * for all")
-    install_parser.add_argument("--agent", choices=["codex", "claude", "both"], default="codex")
+    install_parser.add_argument("--agent", choices=AGENT_CHOICES, default="codex")
     install_parser.set_defaults(func=cmd_install)
 
     status_parser = subparsers.add_parser("status", help="Show managed skill status")
-    status_parser.add_argument("--agent", choices=["codex", "claude", "both"], default="codex")
+    status_parser.add_argument("--agent", choices=AGENT_CHOICES, default="codex")
     status_parser.set_defaults(func=cmd_status)
 
     sync_parser = subparsers.add_parser("sync", help="Sync managed skills from repository catalog")
     sync_parser.add_argument("--skill", nargs="+", default=["*"], help="Skill names or * for all managed skills")
-    sync_parser.add_argument("--agent", choices=["codex", "claude", "both"], default="codex")
+    sync_parser.add_argument("--agent", choices=AGENT_CHOICES, default="codex")
     sync_parser.set_defaults(func=cmd_sync)
 
     return parser

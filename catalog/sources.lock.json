@@ -82,6 +82,40 @@
                                   }
                    },
                    {
+                       "name":  "agp-9-upgrade",
+                       "repo_path":  "skills/agp-9-upgrade",
+                       "category":  "devops",
+                       "tags":  [
+                                    "android",
+                                    "agp",
+                                    "gradle",
+                                    "upgrade"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "build/agp/agp-9-upgrade",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "automate-github-issues",
+                       "repo_path":  "skills/automate-github-issues",
+                       "category":  "productivity",
+                       "tags":  [
+                                    "google",
+                                    "jules",
+                                    "github",
+                                    "issues"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/jules-skills",
+                                      "upstream_path":  "skills/automate-github-issues",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
                        "name":  "autonomous-task-executor",
                        "repo_path":  "skills/autonomous-task-executor",
                        "category":  "productivity",
@@ -93,6 +127,39 @@
                                 ],
                        "source":  {
                                       "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "base",
+                       "repo_path":  "skills/base",
+                       "category":  "testing",
+                       "tags":  [
+                                    "android",
+                                    "development",
+                                    "orchestration"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "android-cli/base",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "camera1-to-camerax",
+                       "repo_path":  "skills/camera1-to-camerax",
+                       "category":  "testing",
+                       "tags":  [
+                                    "android",
+                                    "camera",
+                                    "camerax",
+                                    "migration"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "camera/camera1-to-camerax",
+                                      "ref":  "main"
                                   }
                    },
                    {
@@ -173,6 +240,74 @@
                                   }
                    },
                    {
+                       "name":  "design-md",
+                       "repo_path":  "skills/design-md",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "design-system"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/design-md",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "display-ai-glasses-with-jetpack-compose-glimmer",
+                       "repo_path":  "skills/display-ai-glasses-with-jetpack-compose-glimmer",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "android",
+                                    "xr",
+                                    "glasses",
+                                    "compose",
+                                    "glimmer"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "xr/display-ai-glasses-with-jetpack-compose-glimmer",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "edge-to-edge",
+                       "repo_path":  "skills/edge-to-edge",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "android",
+                                    "compose",
+                                    "edge-to-edge",
+                                    "insets"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "system/edge-to-edge",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "enhance-prompt",
+                       "repo_path":  "skills/enhance-prompt",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "prompt",
+                                    "ui"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/enhance-prompt",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
                        "name":  "find-skills",
                        "repo_path":  "skills/find-skills",
                        "category":  "discovery",
@@ -186,6 +321,57 @@
                                       "type":  "mirrored",
                                       "upstream_repo":  "vercel-labs/skills",
                                       "upstream_path":  "skills/find-skills",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "gemini-api-dev",
+                       "repo_path":  "skills/gemini-api-dev",
+                       "category":  "backend",
+                       "tags":  [
+                                    "google",
+                                    "gemini",
+                                    "api",
+                                    "ai"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-gemini/gemini-skills",
+                                      "upstream_path":  "skills/gemini-api-dev",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "gemini-interactions-api",
+                       "repo_path":  "skills/gemini-interactions-api",
+                       "category":  "backend",
+                       "tags":  [
+                                    "google",
+                                    "gemini",
+                                    "interactions-api",
+                                    "ai"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-gemini/gemini-skills",
+                                      "upstream_path":  "skills/gemini-interactions-api",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "gemini-live-api-dev",
+                       "repo_path":  "skills/gemini-live-api-dev",
+                       "category":  "backend",
+                       "tags":  [
+                                    "google",
+                                    "gemini",
+                                    "live-api",
+                                    "streaming"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-gemini/gemini-skills",
+                                      "upstream_path":  "skills/gemini-live-api-dev",
                                       "ref":  "main"
                                   }
                    },
@@ -607,6 +793,73 @@
                                   }
                    },
                    {
+                       "name":  "local-action-verification",
+                       "repo_path":  "skills/local-action-verification",
+                       "category":  "testing",
+                       "tags":  [
+                                    "google",
+                                    "jules",
+                                    "github-actions",
+                                    "local"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/jules-skills",
+                                      "upstream_path":  "skills/local-action-verification",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "migrate-xml-views-to-jetpack-compose",
+                       "repo_path":  "skills/migrate-xml-views-to-jetpack-compose",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "android",
+                                    "compose",
+                                    "xml",
+                                    "migration"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "jetpack-compose/migration/migrate-xml-views-to-jetpack-compose",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "navigation-3",
+                       "repo_path":  "skills/navigation-3",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "android",
+                                    "navigation",
+                                    "jetpack",
+                                    "kotlin"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "navigation/navigation-3",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "play-billing-library-version-upgrade",
+                       "repo_path":  "skills/play-billing-library-version-upgrade",
+                       "category":  "backend",
+                       "tags":  [
+                                    "android",
+                                    "play-billing",
+                                    "migration"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "play/play-billing-library-version-upgrade",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
                        "name":  "powershell-ssh-linux-ops",
                        "repo_path":  "skills/powershell-ssh-linux-ops",
                        "category":  "operations",
@@ -701,6 +954,57 @@
                                   }
                    },
                    {
+                       "name":  "r8-analyzer",
+                       "repo_path":  "skills/r8-analyzer",
+                       "category":  "devops",
+                       "tags":  [
+                                    "android",
+                                    "r8",
+                                    "proguard",
+                                    "optimization"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "android/skills",
+                                      "upstream_path":  "performance/r8-analyzer",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "react-components",
+                       "repo_path":  "skills/react-components",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "react",
+                                    "components"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/react-components",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "remotion",
+                       "repo_path":  "skills/remotion",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "video",
+                                    "remotion"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/remotion",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
                        "name":  "repo-skill-authoring",
                        "repo_path":  "skills/repo-skill-authoring",
                        "category":  "management",
@@ -711,6 +1015,23 @@
                                 ],
                        "source":  {
                                       "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "shadcn-ui",
+                       "repo_path":  "skills/shadcn-ui",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "shadcn",
+                                    "ui"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/shadcn-ui",
+                                      "ref":  "main"
                                   }
                    },
                    {
@@ -740,6 +1061,158 @@
                                 ],
                        "source":  {
                                       "type":  "first_party"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-design",
+                       "repo_path":  "skills/stitch-design",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "design",
+                                    "ui"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/stitch-design",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-loop",
+                       "repo_path":  "skills/stitch-loop",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/stitch-loop",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-sdk-development",
+                       "repo_path":  "skills/stitch-sdk-development",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "sdk",
+                                    "development"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/stitch-sdk-development",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-sdk-domain-design",
+                       "repo_path":  "skills/stitch-sdk-domain-design",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "sdk",
+                                    "domain-design"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/stitch-sdk-domain-design",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-sdk-pipeline",
+                       "repo_path":  "skills/stitch-sdk-pipeline",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "sdk",
+                                    "pipeline"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/stitch-sdk-pipeline",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-sdk-readme",
+                       "repo_path":  "skills/stitch-sdk-readme",
+                       "category":  "documentation",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "sdk",
+                                    "readme"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/stitch-sdk-readme",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "stitch-sdk-usage",
+                       "repo_path":  "skills/stitch-sdk-usage",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "sdk",
+                                    "usage"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/stitch-sdk-usage",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "taste-design",
+                       "repo_path":  "skills/taste-design",
+                       "category":  "frontend",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "design-system",
+                                    "ui"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-skills",
+                                      "upstream_path":  "skills/taste-design",
+                                      "ref":  "main"
+                                  }
+                   },
+                   {
+                       "name":  "tdd-red-green-refactor",
+                       "repo_path":  "skills/tdd-red-green-refactor",
+                       "category":  "testing",
+                       "tags":  [
+                                    "google",
+                                    "stitch",
+                                    "tdd",
+                                    "workflow"
+                                ],
+                       "source":  {
+                                      "type":  "mirrored",
+                                      "upstream_repo":  "google-labs-code/stitch-sdk",
+                                      "upstream_path":  ".agents/skills/tdd",
+                                      "ref":  "main"
                                   }
                    },
                    {
